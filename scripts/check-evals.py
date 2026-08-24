@@ -93,9 +93,10 @@ def main() -> int:
     # pattern. Fixtures are exempt: they simulate the documents under review
     # and may legitimately contain every pattern we ban.
     import re
-    forbidden_chars = voice.get("forbidden_characters", [])
-    forbidden_words = voice.get("forbidden_words", [])
-    forbidden_phrases = voice.get("forbidden_phrases", [])
+    core_lint = load_json(ROOT / "core" / "lint.json")
+    forbidden_chars = sorted(set(core_lint["forbidden_characters"]) | set(voice.get("forbidden_characters", [])))
+    forbidden_words = sorted(set(core_lint["forbidden_words"]) | set(voice.get("forbidden_words", [])))
+    forbidden_phrases = sorted(set(core_lint["forbidden_phrases"]) | set(voice.get("forbidden_phrases", [])))
     emoji_re = re.compile(
         "[\U0001F000-\U0001FAFF\U00002700-\U000027BF\U0001F1E6-\U0001F1FF\u2B00-\u2BFF\u2600-\u26FF]"
     )

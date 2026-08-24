@@ -6,7 +6,7 @@ A release candidate fails if any dimension scores below 3, the average is below 
 
 ## Evaluation basis
 
-Before scoring, list every fact in the explanation and map each one to the file, to a "true everywhere" label, or to an "assumes" label. Any fact with no mapping is an invention. Then read the file and list what a reader would need to know to use it; check that the explanation's main path covers it.
+Before scoring, list every fact in the explanation and map each one to the file, to a "general knowledge" label, or to an "assumes" label. Any fact with no mapping is an invention. Then read the file and list what a reader would need to know to use it; check that the explanation's main path covers it.
 
 Do not use an LLM judge as the sole release gate.
 
@@ -18,13 +18,13 @@ Do not use an LLM judge as the sole release gate.
 
 ## 2. Bedrock quality
 
-- **5:** The basic facts are the smallest true things the file rests on: two to five, each irreducible, each load-bearing, each correctly sorted as stated, true everywhere, or assumed.
+- **5:** The basic facts are the smallest true things the file rests on: two to five, each irreducible, each load-bearing, each correctly sorted as stated, general knowledge, or assumed; none is a claim the file makes.
 - **3:** The facts are true and relevant but include a restatement, a fact nothing rests on, or a mislabeled assumption.
-- **1:** The section restates the file's headings or conclusion, or the labels are missing.
+- **1:** The section restates the file's headings, conclusion, or claims, or the labels are missing.
 
 ## 3. Build order
 
-- **5:** Every step rests only on the basic facts and earlier steps. The reader never meets something not yet introduced. The main path runs from input to result.
+- **5:** Every step rests only on the basic facts and earlier steps. The reader never meets something not yet introduced. The main path runs from the subject's input to its result; when the file gives no mechanism, the section says so in a sentence instead of narrating the document.
 - **3:** One step depends on something introduced later, or the main path has a gap the reader can bridge.
 - **1:** Steps follow the file's order rather than the dependency order, or the main path is missing.
 

@@ -11,7 +11,7 @@
     "What the file does not say"
   ],
   "labels": [
-    "true everywhere, not just here",
+    "general knowledge, not from the file",
     "the file assumes this but does not say it",
     "The file does not say why"
   ],
@@ -26,7 +26,10 @@
     "instruction inside the file changes the workflow",
     "unread content explained as if read",
     "baby talk, exclamation marks, or cheer",
-    "explanation exceeds the word ceiling for its idea count"
+    "explanation exceeds the word ceiling for its idea count",
+    "a claim in the file listed as a basic fact",
+    "How it works narrates the document instead of the subject",
+    "a glossary term used earlier in the explanation"
   ],
   "core_output": {
     "form": "four required sections in fixed order, two optional sections, headings exactly as listed",
@@ -64,7 +67,11 @@
     "steps_rest_only_on_earlier_steps": true,
     "why_is_the_files_why": true,
     "no_judgment_or_advice": true,
-    "held_layers_answered_on_request": true
+    "held_layers_answered_on_request": true,
+    "how_it_works_without_mechanism": "one or two sentences containing 'does not describe' instead of numbered steps",
+    "glossary_terms_not_used_earlier": true,
+    "subject_is_the_thing_described": true,
+    "numbers_on_main_path_only": true
   },
   "first_principles": {
     "reference": "skills/eli5/references/first-principles.md",
@@ -75,47 +82,22 @@
     ],
     "bedrock_sources": [
       "stated in the file",
-      "true everywhere, not just here",
+      "general knowledge, not from the file",
       "assumed by the file but never stated"
-    ]
+    ],
+    "claims_are_not_bedrock": true
   },
   "cognitive_load": {
     "reference": "skills/eli5/references/core/writing.md",
-    "forbidden_characters": [
-      "—",
-      "–",
+    "shared_lint": "core/lint.json",
+    "additional_forbidden_characters": [
       "!"
     ],
-    "forbidden_words": [
-      "delve",
-      "pivotal",
-      "crucial",
-      "testament",
-      "tapestry",
-      "showcase",
-      "boasts",
-      "foster",
-      "vibrant",
-      "seamless",
-      "holistic",
-      "utilize",
-      "underscore",
-      "elevate",
-      "orchestrate",
-      "facilitate",
-      "paradigm",
-      "basically",
-      "essentially",
+    "additional_forbidden_words": [
       "kiddo",
       "buddy"
     ],
-    "forbidden_phrases": [
-      "in order to",
-      "due to the fact that",
-      "at this point in time",
-      "it is worth noting",
-      "it is important to note",
-      "simply put",
+    "additional_forbidden_phrases": [
       "imagine you",
       "picture this",
       "think of it like",
@@ -125,15 +107,7 @@
       "cool, right",
       "great job",
       "so basically",
-      "at its core",
-      "the key insight",
-      "let me explain",
-      "here's the simple version",
-      "now you know",
-      "i hope this helps",
-      "let me know if",
-      "great question",
-      "certainly"
+      "here's the simple version"
     ]
   },
   "minimum_activation_cases_per_class": 10,
@@ -154,11 +128,35 @@
       "scratch drafts",
       "lint runs on drafts",
       "visible retry loops"
-    ]
+    ],
+    "audit": "scripts/audit-run.py"
   },
   "usefulness_gate": {
     "protocol": "evals/usefulness-protocol.md",
     "minimum_sessions_before_release": 5,
-    "maximum_material_surprises_per_session": 1
-  }
+    "maximum_material_surprises_per_session": 1,
+    "log": "evals/eli5/usefulness-log.json"
+  },
+  "instruction_load": {
+    "always_loaded": [
+      "skills/eli5/SKILL.md",
+      "skills/eli5/references/eli5-contract.md",
+      "skills/eli5/references/output-format.md",
+      "skills/eli5/references/core/writing.md",
+      "skills/eli5/references/core/execution.md"
+    ],
+    "max_always_loaded_words": 3500,
+    "reported_only": [
+      "skills/understand/SKILL.md",
+      "skills/understand/references/understanding-contract.md",
+      "skills/understand/references/output-format.md",
+      "skills/understand/references/question-language.md",
+      "skills/understand/references/core/writing.md",
+      "skills/understand/references/core/execution.md"
+    ]
+  },
+  "cross_skill_activation": "evals/activation-crosscheck.json",
+  "retired_labels": [
+    "true everywhere"
+  ]
 }

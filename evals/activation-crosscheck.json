@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "description": "Prompts that must activate exactly one skill, or none, when both are installed. Each skill's own cases.json tests it alone; this file tests the boundary between them.",
+  "skills": ["understand", "eli5"],
+  "cases": [
+    { "id": "x01", "prompt": "Explain this proposal like I'm five.", "expected": "eli5", "reason": "Plain explanation, no review questions." },
+    { "id": "x02", "prompt": "What is this proposal actually saying, and where does its logic jump?", "expected": "understand", "reason": "Asks for unsupported claims and gaps." },
+    { "id": "x03", "prompt": "Simplify this board deck without losing assumptions or caveats.", "expected": "understand", "reason": "Reviewer framing: assumptions and caveats preserved for challenge." },
+    { "id": "x04", "prompt": "Explain this deck so I could explain it to my mom.", "expected": "eli5", "reason": "Repeat-back framing for a reader with no background." },
+    { "id": "x05", "prompt": "Which claims in this report are supported and which are assumed?", "expected": "understand", "reason": "Evidence classification." },
+    { "id": "x06", "prompt": "What does this YAML pipeline do, step by step, in simple terms?", "expected": "eli5", "reason": "Mechanism explanation of a config file." },
+    { "id": "x07", "prompt": "Give me the questions I should send the author of this design doc.", "expected": "understand", "reason": "Review questions." },
+    { "id": "x08", "prompt": "I'm new here. What is this file and why does it exist?", "expected": "eli5", "reason": "Newcomer comprehension." },
+    { "id": "x09", "prompt": "Explain this policy and preserve every threshold and exception.", "expected": "understand", "reason": "Fidelity for a reviewer who must challenge it; thresholds and exceptions are the review object." },
+    { "id": "x10", "prompt": "Explain this policy in plain words. I have no legal background.", "expected": "eli5", "reason": "Plain explanation for a reader with no background." },
+    { "id": "x11", "prompt": "Help me understand the model behind this spreadsheet and what it assumes.", "expected": "understand", "reason": "Model assumptions are a review object." },
+    { "id": "x12", "prompt": "What does this spreadsheet actually compute, in plain words?", "expected": "eli5", "reason": "Mechanism, no review." },
+    { "id": "x13", "prompt": "Rewrite this document in simpler language.", "expected": "none", "reason": "Rewriting." },
+    { "id": "x14", "prompt": "Should we approve this?", "expected": "none", "reason": "Decision-making." },
+    { "id": "x15", "prompt": "Make this Python function simpler.", "expected": "none", "reason": "Code change." },
+    { "id": "x16", "prompt": "Summarize this report for the board.", "expected": "none", "reason": "Expert-audience summary is neither skill." }
+  ]
+}

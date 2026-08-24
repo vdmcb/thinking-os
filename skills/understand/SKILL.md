@@ -9,8 +9,9 @@ description: >-
   really saying and obtain precise, claim-linked questions that make unsupported
   claims testable. Include executive, technical, implementation, and operational
   review perspectives when relevant. Do not use for rewriting, persuasion,
-  recommendations, decision-making, source-code simplification, or merely
-  shortening prose.
+  recommendations, decision-making, source-code simplification, merely
+  shortening prose, or a plain explanation for a reader with no background who
+  wants no review questions (use eli5).
 license: Proprietary internal preview; see LICENSE
 compatibility: Requires local file access. Document fallback requires Node.js 20+ and npx.
 metadata:
@@ -47,15 +48,7 @@ If multiple files form one logical source, inventory each and preserve per-file 
 
 ### 1. Establish the source
 
-1. Identify the source type, title, and available stable locators.
-2. Confirm that the complete source is accessible.
-3. Record its visible structure before interpreting it:
-   - PDF: physical pages and visible section or slide titles;
-   - PowerPoint: slide numbers, titles, speaker notes, and image-only slides;
-   - Word: heading path, tables, footnotes, and endnotes;
-   - spreadsheet: sheet names, used ranges, headers, formulas, units, notes, and hidden or merged regions when detectable;
-   - text or Markdown: headings and section names.
-4. If encrypted, corrupt, missing, permission-denied, or unreadable, stop and explain the failure. Never infer content from the filename.
+Follow [references/core/reading.md](references/core/reading.md): identify the source type, title, and stable locators; confirm the complete source is accessible; record its visible structure (pages and titles, slides and notes, heading path and tables, sheets and ranges) before interpreting it. If the source is unreadable, stop and explain. Never infer content from the filename.
 
 ### 2. Read with the safest reliable path
 
@@ -65,9 +58,7 @@ Follow [references/core/execution.md](references/core/execution.md) for the visi
 
 ### 3. Check completeness
 
-Compare extracted content against the source inventory. Look for absent sections, skipped pages, missing notes, incoherent tables, charts without values, spreadsheet formulas without displayed values or units, abrupt endings, repetition caused by extraction, parser warnings, or truncation.
-
-For a source too large to read safely in one pass, follow [references/large-documents.md](references/large-documents.md). Never silently truncate.
+Compare extracted content against the source inventory as [references/core/reading.md](references/core/reading.md) describes: absent sections, skipped pages, missing notes, incoherent tables, charts without values, spreadsheet formulas without displayed values or units, abrupt endings, extraction repetition, parser warnings, truncation. For a source too large to read safely in one pass, follow the large-source procedure in the same reference. Never silently truncate.
 
 ### 4. Find the review spine
 
@@ -216,5 +207,4 @@ The brief is the first move. When the reader asks for the reference analysis, th
 - [references/question-language.md](references/question-language.md): how questions are phrased for the reviewer and the author. Load before step 7.
 - [references/understanding-contract.md](references/understanding-contract.md): normative transformations and boundaries. Always load.
 - [references/output-format.md](references/output-format.md): required Understanding Packet structure. Load before output.
-- [references/large-documents.md](references/large-documents.md): coverage-ledger workflow. Load for large or multi-part sources.
 - [references/examples.md](references/examples.md): good and bad patterns. Load when behavior is ambiguous or when evaluating output quality.

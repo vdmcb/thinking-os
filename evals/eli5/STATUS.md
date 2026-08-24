@@ -1,5 +1,25 @@
 # Evaluation status
 
+## v0.3.0 internal preview: review fixes
+
+Driven by a deep review of v0.2.0 (2026-08-24). Every finding maps to a check that now runs in CI or a script that runs on a transcript.
+
+- **Subject, not document.** A new step picks the subject (the thing described; the file itself only for code and config). "How it works" may be one or two sentences saying the file describes no mechanism; the lint accepts that form and rejects narration of the document. `first-principles.md` gained tests (is it smaller, does anything stand on it, is it a claim) and worked examples for a proposal and a config. Exemplar 03 rewritten.
+- **Labels name the source, not the truth.** "(true everywhere, not just here)" is retired for "(general knowledge, not from the file)". A basic fact that begins "the file says" fails the bedrock lint.
+- **Numbers on the main path.** The contract now selects: main-path numbers enter exactly; others are held with their location. "Never cut a number" became "never cut a main-path number".
+- **Glossary is a lookup.** A term listed under "Words you will see" may not be used earlier in the explanation; the lint checks it.
+- **Duplication removed.** Baby-talk and typography rules each live in one place; `understand` steps 1 and 3 and its large-document procedure now delegate to `core/reading.md`.
+- **Instruction load is measured.** The always-loaded set (SKILL, contract, output format, core writing, core execution) is capped at 3,500 words and the checker fails above it. `understand`'s load is reported, not gated.
+- **Cross-skill activation.** `evals/activation-crosscheck.json` holds prompts that must activate exactly one skill; `scripts/check-activation.py` verifies them against both skills' cases and rejects a prompt that is positive for both.
+- **Lint word lists are shared.** `core/lint.json` feeds both checkers; skill invariants add, never remove.
+- **Documentation checks test headings, not phrases.**
+- **The run is auditable.** `scripts/audit-run.py TRANSCRIPT.jsonl` finds each skill run in a Claude Code transcript and flags printed sources, diagnostics, scratch drafts, and lint runs. Run on the session that motivated v0.2.0, it reports 11 violations for that run and none for a clean one.
+- **Usefulness sessions are logged.** `evals/eli5/usefulness-log.json` is read by the checker, which reports passing sessions against the gate of five.
+- README gained a five-minute smoke test for ELI5.
+
+Usefulness sessions completed: 0 of 5. Still model-judged: bedrock quality beyond the claim pattern, build order, why fidelity, number selection.
+
+
 ## v0.2.0 internal preview: shared core, idea-count budget, the run, the follow-up
 
 Changes driven by a live run on a 31-page deck (2026-08-24), where the output was within contract but the run was not: page diagnostics, the source printed to the terminal, a scratch draft linted three times in public. The framework had no rule for any of it.

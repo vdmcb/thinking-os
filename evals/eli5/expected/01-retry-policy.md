@@ -6,8 +6,8 @@ A short rule for a program that talks to a payment service. It says what to do w
 
 ## The basic facts
 
-- A request can fail for a moment and then work if sent again (true everywhere, not just here).
-- A request that was wrong will fail the same way every time it is sent (true everywhere, not just here).
+- A request can fail for a moment and then work if sent again (general knowledge, not from the file).
+- A request with a mistake in it fails the same way each time it is sent (general knowledge, not from the file).
 - The whole attempt, waits included, must finish within ten seconds.
 - Charging a card twice is worse than not charging it at all.
 

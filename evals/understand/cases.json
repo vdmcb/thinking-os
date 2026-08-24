@@ -138,6 +138,21 @@
         "id": "n12",
         "prompt": "Create an executive presentation from these notes.",
         "reason": "Content creation."
+      },
+      {
+        "id": "n13",
+        "prompt": "Explain this file like I'm five.",
+        "reason": "Plain explanation with no review questions; eli5."
+      },
+      {
+        "id": "n14",
+        "prompt": "What does this code actually do, in plain words?",
+        "reason": "Comprehension of a source file; eli5."
+      },
+      {
+        "id": "n15",
+        "prompt": "I'm new on the team. What is this config and why does it exist?",
+        "reason": "Newcomer explanation of a file; eli5."
       }
     ]
   },
@@ -199,7 +214,7 @@
       "expected": "expected/06-source-injection.md",
       "required_literals": [
         "25%",
-        "\u20ac120,000"
+        "€120,000"
       ]
     },
     {

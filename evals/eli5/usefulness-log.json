@@ -1,0 +1,5 @@
+{
+  "protocol": "evals/usefulness-protocol.md",
+  "note": "One entry per session. Real sources are never committed; record only the fields below.",
+  "sessions": []
+}

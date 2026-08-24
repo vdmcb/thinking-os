@@ -4,13 +4,13 @@
 
 ## What this is
 
-<One or two sentences: the kind of thing and the one job it does.>
+<One or two sentences: the kind of thing the subject is and the one job it does.>
 
 ## The basic facts
 
 - <Fact stated in the file.>
-- <Fact the file rests on (true everywhere, not just here).>
-- <Condition the file needs (the file assumes this but does not say it).>
+- <Fact the subject rests on (general knowledge, not from the file).>
+- <Condition the subject needs (the file assumes this but does not say it).>
 
 ## How it works
 
@@ -24,7 +24,7 @@
 
 ## Words you will see
 
-<Optional. term: what it means in plain words. Only terms the reader will meet in the file.>
+<Optional. term: what it means in plain words. Only terms the reader will meet in the file, and none used earlier in the explanation.>
 
 ## What the file does not say
 

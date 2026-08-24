@@ -38,7 +38,7 @@ It is not a generic summarizer. It does not recommend a decision, rewrite the so
 `ELI5` is the second Thinking OS skill. It explains a file to someone with no background, from first principles:
 
 - what the thing is, in one sentence;
-- the two to five basic facts everything else rests on, each marked as stated in the file, true everywhere, or assumed by the file;
+- the two to five basic facts everything else rests on, each marked as stated in the file, general knowledge, or assumed by the file;
 - how it works, as numbered steps where each step rests only on earlier ones;
 - why it is this way, reporting only the file's own reasons and saying plainly when the file does not say;
 - the few words the reader will meet in the file and must recognize.
@@ -53,7 +53,9 @@ Every skill is a lens on a shared core in `core/`: how a source is read and what
 
 The run is part of the product. A skill announces once what it will read, reads silently with the file reader, and returns the output. It does not print the source, run diagnostics unless the read came back empty, or draft in public. Follow-up requests are answered from the analysis already done; a review brief names what it held, a plain explanation simply answers when asked.
 
-The release gate is the human usefulness protocol in `evals/usefulness-protocol.md`: a reader who has not seen the source reads the output, repeats it back, opens the source, and counts surprises. Lints and rubrics diagnose failures; the session decides.
+The release gate is the human usefulness protocol in `evals/usefulness-protocol.md`: a reader who has not seen the source reads the output, repeats it back, opens the source, and counts surprises. Sessions are logged in `evals/<skill>/usefulness-log.json` and the checker reports the count. Lints and rubrics diagnose failures; the session decides.
+
+Two more checks keep the framework honest with itself. `scripts/check-eli5-evals.py` measures the instruction text a skill always loads and fails when it exceeds its ceiling, so the reader-burden rule applies to the contracts too. `scripts/audit-run.py TRANSCRIPT.jsonl` reads a Claude Code transcript and flags every call the execution contract forbids: printing the source, diagnostics before reading, scratch drafts, lint runs. `evals/activation-crosscheck.json` holds prompts that must activate exactly one skill when both are installed.
 
 ## Install
 
@@ -123,6 +125,15 @@ The default output is a short explanation in the conversation, budgeted by the n
    - extraction limitations.
 5. Confirm the result explains the source without independently recommending approval, rejection, or another strategy.
 
+## Five-minute smoke test for ELI5
+
+1. Install the skill.
+2. Open Claude Code or Codex in a directory containing a config file, a source file, or a short document.
+3. Invoke `eli5` with the file path.
+4. Confirm the run shows one line saying what will be read, then the explanation, and nothing else.
+5. Confirm the result has `What this is`, `The basic facts` with two to five bullets, `How it works`, and `Why it is this way`, and that every "why" is attributed to the file or says the file does not say.
+6. Ask a follow-up ("what did you leave out of step 3?") and confirm it is answered without re-reading the file.
+
 ## Supported sources
 
 The skill accepts pasted text, Markdown, plain text, DOC/DOCX, PPT/PPTX, PDF, CSV, XLS/XLSX, OpenDocument, RTF, and EPUB when the host can access them.
@@ -158,7 +169,7 @@ skills/eli5/             Portable skill package: ELI5 (core copied in)
 evals/usefulness-protocol.md   The human usefulness gate shared by every skill
 evals/understand/        Activation and quality evaluation definitions for Understand
 evals/eli5/              Activation and quality evaluation definitions for ELI5
-scripts/                 Repository validation and core sync
+scripts/                 Validation, core sync, cross-skill activation check, run audit
 tests/                   Extraction helper tests
 ```
 

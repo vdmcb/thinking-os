@@ -6,7 +6,7 @@ A small store that remembers up to a fixed number of things. When it is full and
 
 ## The basic facts
 
-- Memory is limited, so a store cannot keep everything (true everywhere, not just here).
+- Memory is limited, so a store cannot keep everything (general knowledge, not from the file).
 - The store may hold at most a fixed number of items, chosen when it is created, and that number must be at least one.
 - Things asked for recently tend to be asked for again soon (the file assumes this but does not say it).
 

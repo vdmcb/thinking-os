@@ -1,6 +1,6 @@
 # Writing for a human reader
 
-Every Thinking OS skill exists because a human is carrying a burden they cannot discharge by reading the source. Output that costs as much attention as the source has failed regardless of how faithful it is. These rules bind every skill's output.
+Every Thinking OS skill exists because a human is carrying a burden they cannot discharge by reading the source. Output that costs as much attention as the source has failed, however faithful. These rules bind every skill's output.
 
 ## Reader burden is the binding constraint
 
@@ -29,14 +29,10 @@ Do not use filler: "in order to" (write "to"), "due to the fact that" (write "be
 
 ## Patterns from live review
 
-- No document personification. A deck does not count, believe, assume, want, or hope. Write what it presents, shows, states, or fails to show.
-- No inherited shorthand. The source's internal vocabulary gets one plain introduction before any use, or gets replaced with a description. The reader may never open the source.
-- No confirmations of the expected. Passed checks and things working as they should earn no words.
-- No preamble that announces content ("Let's look at", "Here's what you need to know"). State the fact.
-- No fake-depth openers ("At its core", "The real question is", "The key insight is").
-- No heading restated as the first sentence under it.
-- No generic endings ("The future looks bright", "Now you know"). End on the last concrete fact.
-- No defending against objections nobody raised.
+- No document personification: a deck does not count, believe, or want. Write what it presents, states, or fails to show.
+- No inherited shorthand: the source's vocabulary gets one plain introduction or a description. The reader may never open the source.
+- No confirmations of the expected: passed checks earn no words.
+- No preamble ("Let's look at"), no fake-depth openers ("At its core"), no heading restated as its first sentence, no generic endings ("Now you know"). End on the last concrete fact.
 
 ## Typography
 

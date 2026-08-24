@@ -6,7 +6,7 @@ A note describing a job that copies two database tables to a safe place every ni
 
 ## The basic facts
 
-- Data can be lost, so a copy kept somewhere else is useful (true everywhere, not just here).
+- Data can be lost, so a copy kept somewhere else is useful (general knowledge, not from the file).
 - Two tables are copied: orders and customers.
 - Copies are kept for 30 days.
 
@@ -14,7 +14,7 @@ A note describing a job that copies two database tables to a safe place every ni
 
 1. At two in the morning the job starts.
 2. It reads the two tables from a copy of the database, not the main one.
-3. It writes them to the archive bucket, the place where copies are kept.
+3. It writes them to the place where copies are kept.
 4. It deletes any copy there that is older than 30 days.
 5. It sends one email to the ops address when it is done.
 6. If any table failed to copy, it sends a second email saying so.

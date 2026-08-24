@@ -6,8 +6,8 @@ A set of instructions for GitHub. Every time someone sends new code to this proj
 
 ## The basic facts
 
-- Code can break without the person who changed it noticing (true everywhere, not just here).
-- GitHub can start a temporary computer and run commands on it when code arrives (true everywhere, not just here).
+- Code can break without the person who changed it noticing (general knowledge, not from the file).
+- GitHub can start a temporary computer and run commands on it when code arrives (general knowledge, not from the file).
 - The project keeps its checks in one script, scripts/validate.sh.
 
 ## How it works
@@ -21,7 +21,7 @@ A set of instructions for GitHub. Every time someone sends new code to this proj
 
 ## Why it is this way
 
-The file does not say why the checks run on every push, why the limit is 15 minutes, or why Node.js 20 is needed. The file does not say what the check script does.
+The file does not say why the checks run every time code arrives, why the limit is 15 minutes, or why Node.js 20 is needed. The file does not say what the check script does.
 
 ## Words you will see
 
