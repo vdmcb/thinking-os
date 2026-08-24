@@ -1,0 +1,6 @@
+interface:
+  display_name: "ELI5"
+  short_description: "Explain a file from first principles in plain words anyone can repeat back"
+  default_prompt: "Use $eli5 to explain the file I provide as if I had no background: what it is, what it rests on, how it works, and why."
+policy:
+  allow_implicit_invocation: false

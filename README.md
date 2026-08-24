@@ -33,6 +33,20 @@ Understand applies the review perspectives relevant to the source, such as decis
 
 It is not a generic summarizer. It does not recommend a decision, rewrite the source, invent missing logic, judge the author, or try to detect whether AI wrote the material.
 
+## ELI5
+
+`ELI5` is the second Thinking OS skill. It explains a file to someone with no background, from first principles:
+
+- what the thing is, in one sentence;
+- the two to five basic facts everything else rests on, each marked as stated in the file, true everywhere, or assumed by the file;
+- how it works, as numbered steps where each step rests only on earlier ones;
+- why it is this way, reporting only the file's own reasons and saying plainly when the file does not say;
+- the few words the reader will meet in the file and must recognize.
+
+"Five years old" describes the reader's background, not the tone. The explanation uses short common words and concrete steps, without baby talk, cheer, or analogies that replace the mechanism. It works on documents, source code, config files, specs, and policies.
+
+It is not a summary, a rewrite, or a review. It does not judge the file, recommend a change, or invent a reason the file does not give. For claim-linked review questions, use `understand`.
+
 ## Install
 
 This repository is private. Installation currently requires GitHub access to `vdmcb/thinking-os`.
@@ -41,6 +55,7 @@ This repository is private. Installation currently requires GitHub access to `vd
 
 ```bash
 npx skills add vdmcb/thinking-os --skill understand -g -a claude-code -a codex -y
+npx skills add vdmcb/thinking-os --skill eli5 -g -a claude-code -a codex -y
 ```
 
 Install for only one agent by removing the other `-a` value.
@@ -50,6 +65,8 @@ Install for only one agent by removing the other `-a` value.
 ```bash
 cp -R skills/understand ~/.claude/skills/understand
 cp -R skills/understand ~/.agents/skills/understand
+cp -R skills/eli5 ~/.claude/skills/eli5
+cp -R skills/eli5 ~/.agents/skills/eli5
 ```
 
 ## Use
@@ -69,6 +86,18 @@ $understand path/to/proposal.pdf
 You can also invoke the skill and paste source material directly. Explicit invocation is recommended during the internal pilot.
 
 The default output is an **Understanding Packet** in the current conversation. The source is never modified. A Markdown result is written only when explicitly requested.
+
+ELI5 is invoked the same way:
+
+```text
+/eli5 path/to/config.yaml
+```
+
+```text
+$eli5 path/to/config.yaml
+```
+
+The default output is a short explanation in the conversation, under 400 words. The source is never modified. A Markdown result is written only when explicitly requested. Office documents the host cannot read fall back to the `understand` extraction helper when that skill is installed alongside.
 
 ## Five-minute smoke test
 
@@ -115,10 +144,12 @@ AnyDoc does not OCR scanned or image-only PDFs. In those cases, the agent may us
 ## Repository structure
 
 ```text
-skills/understand/       Portable skill package
-evals/understand/        Activation and quality evaluation definitions
-scripts/               Repository validation
-tests/                 Extraction helper tests
+skills/understand/       Portable skill package: Understand
+skills/eli5/             Portable skill package: ELI5
+evals/understand/        Activation and quality evaluation definitions for Understand
+evals/eli5/              Activation and quality evaluation definitions for ELI5
+scripts/                 Repository validation
+tests/                   Extraction helper tests
 ```
 
 ## Validate
@@ -135,4 +166,4 @@ This private preview is currently **unlicensed for redistribution**. All rights 
 
 ## Acknowledgments
 
-The human-voice writing rules in the `understand` skill draw on [blader/humanizer](https://github.com/blader/humanizer) and Wikipedia's "Signs of AI writing".
+The human-voice writing rules in the `understand` and `eli5` skills draw on [blader/humanizer](https://github.com/blader/humanizer) and Wikipedia's "Signs of AI writing".

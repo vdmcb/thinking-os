@@ -6,6 +6,7 @@ cd "$repo_root"
 
 printf '%s\n' '== Agent Skills structure =='
 npx -y skills-ref@0.1.5 validate skills/understand
+npx -y skills-ref@0.1.5 validate skills/eli5
 
 printf '\n%s\n' '== Skill discovery =='
 npx -y skills@1.5.23 add "$repo_root" --list
@@ -15,7 +16,7 @@ for script in skills/understand/scripts/*.sh tests/*.sh scripts/*.sh; do
   bash -n "$script"
   printf 'OK: %s\n' "$script"
 done
-python3 -m py_compile scripts/check-evals.py tests/generate-document-fixtures.py
+python3 -m py_compile scripts/check-evals.py scripts/check-eli5-evals.py tests/generate-document-fixtures.py
 printf 'OK: Python syntax\n'
 
 if command -v shellcheck >/dev/null 2>&1; then
@@ -27,6 +28,7 @@ fi
 
 printf '\n%s\n' '== Deterministic eval checks =='
 python3 scripts/check-evals.py
+python3 scripts/check-eli5-evals.py
 
 printf '\n%s\n' '== Extraction tests =='
 tests/test-extract-document.sh
