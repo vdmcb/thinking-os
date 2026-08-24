@@ -12,8 +12,10 @@ if [[ "${1:-}" == "--check" ]]; then
 fi
 
 status=0
+synced=()
 for skill_dir in skills/*/; do
   skill="${skill_dir%/}"
+  synced+=("$skill")
   for src in core/references/*.md; do
     dest="$skill/references/core/$(basename "$src")"
     if [[ "$mode" == "check" ]]; then
@@ -47,4 +49,4 @@ if [[ "$mode" == "check" ]]; then
   exit "$status"
 fi
 
-printf 'Core synced into %s\n' "$(ls -d skills/*/ | tr '\n' ' ')"
+printf 'Core synced into %s\n' "${synced[*]}"
