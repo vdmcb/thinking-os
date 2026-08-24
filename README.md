@@ -4,7 +4,16 @@
 
 Thinking OS adds disciplined reasoning procedures to existing agent runtimes instead of building another chat application. Claude Code and Codex provide the model, conversation, local file access, permissions, and tools. Thinking OS provides the behavior contract.
 
-> **Status:** Private internal preview. This repository is being used for experimentation and is not open source yet. Public release is planned after the behavior has been validated on real work.
+## Project supporter
+
+The main supporter of Thinking OS is [RebelDot](https://www.rebeldot.com/).
+
+<a href="https://www.rebeldot.com/">
+  <img src="assets/rebeldot-logo.svg" alt="RebelDot" width="220">
+</a>
+
+RebelDot supports the internal experimentation and practical validation of agent-native ways of working. RebelDot does not imply endorsement of every experimental result or future public release.
+
 
 ## Understand
 
@@ -23,16 +32,6 @@ It is for anyone carrying the cost of reviewing polished or AI-generated materia
 Understand applies the review perspectives relevant to the source, such as decision and commitment, technical correctness, implementation feasibility, security, operations, evidence, and accountability. It does not force every source into an executive-summary format.
 
 It is not a generic summarizer. It does not recommend a decision, rewrite the source, invent missing logic, judge the author, or try to detect whether AI wrote the material.
-
-## Project supporter
-
-The main supporter of Thinking OS is [RebelDot](https://www.rebeldot.com/).
-
-<a href="https://www.rebeldot.com/">
-  <img src="assets/rebeldot-logo.svg" alt="RebelDot" width="220">
-</a>
-
-RebelDot supports the internal experimentation and practical validation of agent-native ways of working. RebelDot does not imply endorsement of every experimental result or future public release.
 
 ## Install
 
@@ -129,11 +128,6 @@ tests/                 Extraction helper tests
 ```
 
 The validation suite checks Agent Skills structure, shell syntax, extraction behavior, and deterministic evaluation metadata. Semantic quality still requires human-reviewed runs in Claude Code and Codex. This private preview is not a validated public release.
-
-
-## Website
-
-[https://vadim.software](https://vadim.software)
 
 ## License
 
