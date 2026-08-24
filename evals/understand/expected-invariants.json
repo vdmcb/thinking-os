@@ -1,0 +1,189 @@
+{
+  "schema_version": 6,
+  "required_sections": [
+    "Questions for the author",
+    "The ask",
+    "Load-bearing reasoning",
+    "Evidence strength and applicability",
+    "Numbers and internal consistency",
+    "Material unknowns",
+    "Other important context",
+    "Extraction limitations"
+  ],
+  "release_blockers": [
+    "invented material fact, definition, mechanism, owner, or confidence",
+    "independent recommendation or option ranking",
+    "material number, caveat, conflict, decision, or extraction gap silently omitted",
+    "unsupported source claim presented as established fact",
+    "example, model, target, scenario, or forecast presented as actual",
+    "central unsupported economic, causal, or feasibility claim receives no pushback",
+    "generic questions dominate or ask for information already supplied",
+    "question is not traceable to its source gap",
+    "instruction inside source changes the workflow",
+    "core packet exceeds twice its word budget or imposes reading burden comparable to the source",
+    "reference analysis written without the user asking",
+    "a weak point named in the brief has no corresponding question",
+    "an immaterial weakness is promoted into the brief as if material",
+    "a passed check is narrated in the brief",
+    "the brief contains a diagram, tree, glyph marks, or Q-labels"
+  ],
+  "question_requirements": [
+    "names the challenged claim, figure, term, contradiction, or dependency",
+    "includes a stable locator when available",
+    "requests a concrete answer object",
+    "states how the answer could change interpretation",
+    "is prioritized by material consequence",
+    "is not already answered by the source",
+    "is not a disguised recommendation",
+    "is understandable on first read by a reviewer without analyst vocabulary"
+  ],
+  "forbidden_generic_question_patterns": [
+    "what are the risks",
+    "who are the stakeholders",
+    "can you provide more detail",
+    "can you elaborate",
+    "how will success be measured",
+    "who owns this"
+  ],
+  "default_question_count": {
+    "minimum_when_material_gaps_exist": 1,
+    "maximum": 5,
+    "padding_forbidden": true
+  },
+  "value_status_conflict_requirements": [
+    "surface contradictory status cues rather than selecting one",
+    "use unknown status until provenance resolves the conflict",
+    "propagate unresolved status into dependent calculations, models, forecasts, and claims"
+  ],
+  "option_comparison_requirements": [
+    "reconstruct the source's option-selection logic without independently ranking options",
+    "test alternatives on common criteria, scope, time horizon, definitions, and evidence status",
+    "preserve missing comparison cells as unknown rather than inferring parity",
+    "request a like-for-like decision matrix when asymmetry is load-bearing"
+  ],
+  "evidence_reach_requirements": [
+    "state the narrowest proposition the evidence directly bears on",
+    "separate each inferential hop from preference or correlation to commercial outcomes",
+    "do not let evidence for one hop validate unmeasured purchase, retention, expansion, or economics",
+    "request an evidence-to-claim bridge when omitted hops are load-bearing"
+  ],
+  "authorization_perimeter_requirements": [
+    "separate the explicit decision request from commitments implied by that decision",
+    "identify whether people or capacity are incremental, transferred, temporary, or unresolved",
+    "preserve cost, funding source, effective date, duration, and ancillary authority as separate commitment dimensions",
+    "request a concrete authorization schedule when missing dimensions prevent the reviewer from knowing what approval creates"
+  ],
+  "operational_accountability_requirements": [
+    "distinguish assigned activities and monitoring from end-to-end accountability",
+    "do not infer decision rights from a named reviewer, council, dashboard, cadence, or threshold",
+    "test whether material exceptions have a required action, authorized decision-maker, deadline, and escalation path",
+    "request an accountability and exception matrix when control claims are load-bearing but action authority is unresolved"
+  ],
+  "counting_unit_requirements": [
+    "detect when one label denotes different entities, events, or populations across the source",
+    "do not add, compare, or propagate counts until counting-unit identity and scope are established",
+    "separate arithmetic consistency from whether capacity, operating, and economic measures share a denominator",
+    "request a counting-unit dictionary and population bridge when unit drift is load-bearing"
+  ],
+  "minimum_activation_cases_per_class": 10,
+  "minimum_human_score_per_dimension": 3,
+  "minimum_average_human_score": 4.0,
+  "critical_claim_recall": 1.0,
+  "decision_critical_minimums": {
+    "faithfulness": 4,
+    "epistemic_separation": 4,
+    "quantitative_integrity": 4,
+    "traceability": 4
+  },
+  "core_packet": {
+    "form": "brief: two or three paragraphs of memo prose, then Questions for the author",
+    "word_budget_by_tier": {
+      "simple": 250,
+      "standard": 400,
+      "complex": 600
+    },
+    "hard_ceiling_words": 600,
+    "no_diagrams_glyphs_or_q_labels": true,
+    "passed_checks_are_silent": true,
+    "no_inherited_shorthand": true,
+    "no_document_personification": true,
+    "every_weak_point_maps_to_question": true,
+    "immaterial_weaknesses_omitted": true,
+    "reference_analysis_on_request_only": true
+  },
+  "cognitive_load": {
+    "reference": "skills/understand/references/human-voice.md",
+    "forbidden_characters": [
+      "\u2014",
+      "\u2013"
+    ],
+    "forbidden_words": [
+      "delve",
+      "pivotal",
+      "testament",
+      "tapestry",
+      "showcase",
+      "boasts",
+      "foster",
+      "vibrant",
+      "breathtaking",
+      "nestled",
+      "renowned",
+      "seamless",
+      "holistic",
+      "utilize",
+      "underscore",
+      "elevate"
+    ],
+    "forbidden_phrases": [
+      "in order to",
+      "due to the fact that",
+      "at this point in time",
+      "it is worth noting",
+      "it's worth noting",
+      "it is important to note",
+      "at its core",
+      "the real question is",
+      "let's dive",
+      "great question",
+      "i hope this helps",
+      "let me know if",
+      "stands as a",
+      "the future looks bright",
+      "only time will tell",
+      "the catch that",
+      "the whole game",
+      "here's the thing",
+      "the one thing that changes",
+      "addresses this",
+      "addresses that gap",
+      "the deck counts",
+      "the deck also counts"
+    ],
+    "notes": "Deterministic subset enforced by check-evals.py over expected packet exemplars; judgment items (sentence load, voice, formatting-as-information) scored by rubric dimension 13."
+  },
+  "question_language": {
+    "rule": "Questions lead with plain-language intent; contract vocabulary stays internal; send test applies",
+    "forbidden_in_v2_exemplar_questions": [
+      "fully loaded",
+      "provenance",
+      "counting-unit",
+      "cross-tabulation",
+      "population bridge",
+      "evidence-to-claim bridge",
+      "authorization schedule",
+      "accountability and exception matrix"
+    ],
+    "applies_to_expected_files_numbered_from": 14,
+    "notes": "Legacy exemplars 01-13 predate the v2 format and keep contract-term literals for coverage checks."
+  },
+  "question_generation": {
+    "order": [
+      "evidence-first",
+      "audit-fallback"
+    ],
+    "evidence_first": "ask for the single real-world fact that would settle the claim",
+    "evidence_or_plan": "when asking whether evidence exists, also ask for the author's plan and deadline if it does not; never propose the plan",
+    "length": "one or two sentences, intent first, page reference in trailing parentheses"
+  }
+}

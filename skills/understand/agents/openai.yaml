@@ -1,0 +1,6 @@
+interface:
+  display_name: "Understand"
+  short_description: "Expose a source's ideas, reasoning, evidence, assumptions, and unknowns"
+  default_prompt: "Use $understand to build a faithful Understanding Packet for the source I provide."
+policy:
+  allow_implicit_invocation: false

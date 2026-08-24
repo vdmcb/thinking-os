@@ -1,0 +1,19 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+node_modules/
+*.log
+*.tmp
+*.temp
+coverage/
+dist/
+.tmp/
+.cache/
+__pycache__/
+*.pyc
+
+# Local agent installations and evaluation outputs
+.claude/
+.codex/
+evals/**/runs/

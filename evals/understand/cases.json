@@ -1,0 +1,374 @@
+{
+  "schema_version": 1,
+  "activation": {
+    "positive": [
+      {
+        "id": "p01",
+        "prompt": "What is this proposal actually saying?",
+        "reason": "Requests underlying meaning."
+      },
+      {
+        "id": "p02",
+        "prompt": "Strip away the corporate language and show me the reasoning.",
+        "reason": "Requests concrete decomposition."
+      },
+      {
+        "id": "p03",
+        "prompt": "Simplify this board deck without losing assumptions or caveats.",
+        "reason": "Explicit understanding request."
+      },
+      {
+        "id": "p04",
+        "prompt": "Which claims in this report are supported and which are assumed?",
+        "reason": "Requests evidence separation."
+      },
+      {
+        "id": "p05",
+        "prompt": "Help me understand the model behind this spreadsheet.",
+        "reason": "Requests source understanding."
+      },
+      {
+        "id": "p06",
+        "prompt": "Turn this PDF into a plain-language map of the argument.",
+        "reason": "Requests reasoning map."
+      },
+      {
+        "id": "p07",
+        "prompt": "What does this strategy document concretely propose?",
+        "reason": "Requests concrete proposal extraction."
+      },
+      {
+        "id": "p08",
+        "prompt": "Expose the assumptions and unanswered questions in this pre-read.",
+        "reason": "Requests assumption and unknown analysis."
+      },
+      {
+        "id": "p09",
+        "prompt": "Explain this policy and preserve every threshold and exception.",
+        "reason": "Requests faithful explanation."
+      },
+      {
+        "id": "p10",
+        "prompt": "Decompose this investment memo into claims, evidence, and unknowns.",
+        "reason": "Requests semantic decomposition."
+      },
+      {
+        "id": "p11",
+        "prompt": "Use understand on notes.md.",
+        "reason": "Explicit skill invocation."
+      },
+      {
+        "id": "p12",
+        "prompt": "Show me where the source's logic jumps without support.",
+        "reason": "Requests unsupported-link identification."
+      },
+      {
+        "id": "p13",
+        "prompt": "Review this architecture decision record and identify unsupported technical assumptions, undefined interfaces, and failure modes.",
+        "reason": "Requests technical-document understanding and targeted questions."
+      },
+      {
+        "id": "p14",
+        "prompt": "Simplify this implementation proposal so the delivery team can see dependencies, ownership gaps, rollout assumptions, and unresolved decisions.",
+        "reason": "Requests implementation-review decomposition."
+      },
+      {
+        "id": "p15",
+        "prompt": "Help a non-executive reviewer understand this operating procedure and identify ambiguous thresholds or exception paths.",
+        "reason": "Requests operational understanding without an executive frame."
+      }
+    ],
+    "negative": [
+      {
+        "id": "n01",
+        "prompt": "Rewrite this to sound more executive.",
+        "reason": "Persuasive rewriting."
+      },
+      {
+        "id": "n02",
+        "prompt": "Make this Python function simpler.",
+        "reason": "Source-code simplification."
+      },
+      {
+        "id": "n03",
+        "prompt": "Should we approve this proposal?",
+        "reason": "Decision-making."
+      },
+      {
+        "id": "n04",
+        "prompt": "Rank these vendors from best to worst.",
+        "reason": "Option ranking."
+      },
+      {
+        "id": "n05",
+        "prompt": "Write a shorter version of this announcement.",
+        "reason": "Prose shortening."
+      },
+      {
+        "id": "n06",
+        "prompt": "Make this pitch more persuasive.",
+        "reason": "Persuasion."
+      },
+      {
+        "id": "n07",
+        "prompt": "Summarize this article in three bullets.",
+        "reason": "Summary-only request."
+      },
+      {
+        "id": "n08",
+        "prompt": "Fix the grammar in this document.",
+        "reason": "Copy editing."
+      },
+      {
+        "id": "n09",
+        "prompt": "Give me a go-to-market strategy based on this deck.",
+        "reason": "Strategy generation."
+      },
+      {
+        "id": "n10",
+        "prompt": "Tell me whether this was written by AI.",
+        "reason": "Authorship detection."
+      },
+      {
+        "id": "n11",
+        "prompt": "Convert this DOCX to PDF.",
+        "reason": "Format conversion only."
+      },
+      {
+        "id": "n12",
+        "prompt": "Create an executive presentation from these notes.",
+        "reason": "Content creation."
+      }
+    ]
+  },
+  "output_cases": [
+    {
+      "id": "weak-proposal",
+      "fixture": "fixtures/01-weak-proposal.md",
+      "expected": "expected/01-weak-proposal.md",
+      "required_literals": [
+        "six-person",
+        "40%",
+        "two quarters"
+      ]
+    },
+    {
+      "id": "clear-policy",
+      "fixture": "fixtures/02-clear-policy.md",
+      "expected": "expected/02-clear-policy.md",
+      "required_literals": [
+        "408",
+        "429",
+        "ten-second"
+      ]
+    },
+    {
+      "id": "qualified-study",
+      "fixture": "fixtures/03-qualified-study.md",
+      "expected": "expected/03-qualified-study.md",
+      "required_literals": [
+        "220",
+        "8%",
+        "12%"
+      ]
+    },
+    {
+      "id": "ambiguous-metrics",
+      "fixture": "fixtures/04-ambiguous-metrics.csv",
+      "expected": "expected/04-ambiguous-metrics.md",
+      "required_literals": [
+        "1.4",
+        "2.1",
+        "18",
+        "24"
+      ]
+    },
+    {
+      "id": "conflicting-claims",
+      "fixture": "fixtures/05-conflicting-claims.md",
+      "expected": "expected/05-conflicting-claims.md",
+      "required_literals": [
+        "15%",
+        "6%",
+        "48"
+      ]
+    },
+    {
+      "id": "source-injection",
+      "fixture": "fixtures/06-source-injection.md",
+      "expected": "expected/06-source-injection.md",
+      "required_literals": [
+        "25%",
+        "\u20ac120,000"
+      ]
+    },
+    {
+      "id": "unreconciled-forecast",
+      "fixture": "fixtures/07-unreconciled-forecast.md",
+      "expected": "expected/07-unreconciled-forecast.md",
+      "required_literals": [
+        "$480,000",
+        "122%",
+        "$1.74 million",
+        "$4.36 million"
+      ],
+      "expected_required_literals": [
+        "actuals",
+        "model assumptions",
+        "model outputs",
+        "cannot be recalculated",
+        "auditable forecast bridge"
+      ]
+    },
+    {
+      "id": "conflicting-value-status",
+      "fixture": "fixtures/08-conflicting-value-status.md",
+      "expected": "expected/08-conflicting-value-status.md",
+      "required_literals": [
+        "$360,000",
+        "14",
+        "$630,000",
+        "68%",
+        "26",
+        "$1.26 million"
+      ],
+      "expected_required_literals": [
+        "status conflict",
+        "unknown status",
+        "source-of-record baseline",
+        "downstream forecast"
+      ]
+    },
+    {
+      "id": "asymmetric-option-comparison",
+      "fixture": "fixtures/09-asymmetric-option-comparison.md",
+      "expected": "expected/09-asymmetric-option-comparison.md",
+      "required_literals": [
+        "$2.4 million",
+        "1,100 parcels per shift",
+        "$38,000 per month",
+        "2,400 parcels per shift"
+      ],
+      "expected_required_literals": [
+        "incomplete and asymmetric",
+        "common analysis period",
+        "like-for-like decision matrix",
+        "missing cells to remain unknown"
+      ]
+    },
+    {
+      "id": "preference-to-commercial-outcome",
+      "fixture": "fixtures/10-preference-to-commercial-outcome.md",
+      "expected": "expected/10-preference-to-commercial-outcome.md",
+      "required_literals": [
+        "$840,000",
+        "310",
+        "72%",
+        "64%",
+        "15 signed customers",
+        "125%",
+        "65%"
+      ],
+      "expected_required_literals": [
+        "stated pricing preference",
+        "population mismatch",
+        "does not establish purchase, retention, expansion, or margin",
+        "evidence-to-claim bridge"
+      ]
+    },
+    {
+      "id": "incomplete-authorization-perimeter",
+      "fixture": "fixtures/11-incomplete-authorization-perimeter.md",
+      "expected": "expected/11-incomplete-authorization-perimeter.md",
+      "required_literals": [
+        "six roles",
+        "new hires, transfers, or a temporary allocation",
+        "loaded cost",
+        "start date or duration"
+      ],
+      "expected_required_literals": [
+        "authorization perimeter",
+        "explicit decision",
+        "implied commitments",
+        "authorization schedule"
+      ]
+    },
+    {
+      "id": "monitoring-without-accountability",
+      "fixture": "fixtures/12-monitoring-without-accountability.md",
+      "expected": "expected/12-monitoring-without-accountability.md",
+      "required_literals": [
+        "below 2%",
+        "CHF 250,000",
+        "transformation council",
+        "authority to pause"
+      ],
+      "expected_required_literals": [
+        "monitoring, not decision rights",
+        "accountable owner",
+        "required action",
+        "accountability and exception matrix"
+      ]
+    },
+    {
+      "id": "ambiguous-counting-unit",
+      "fixture": "fixtures/13-ambiguous-counting-unit.md",
+      "expected": "expected/13-ambiguous-counting-unit.md",
+      "required_literals": [
+        "six inspection blueprints",
+        "Eighteen customer sites",
+        "Eleven configured inspections",
+        "30 deployments",
+        "$720,000"
+      ],
+      "expected_required_literals": [
+        "counting-unit identity drift",
+        "different populations",
+        "counting-unit dictionary",
+        "population bridge",
+        "without double counting"
+      ]
+    },
+    {
+      "id": "long-uniform-report-compression",
+      "fixture": "fixtures/14-long-uniform-report.md",
+      "expected": "expected/14-long-uniform-report.md",
+      "focus": "Brief compression: a long, uniformly presented source must yield short memo prose that makes the critical path visible without apparatus, unequal treatment of unequal findings, evidence-first questions, and a packet within its word budget.",
+      "required_literals": [
+        "$2.4M",
+        "22%",
+        "410,000 work orders",
+        "highest tooling-adoption scores",
+        "two large commercial contracts",
+        "$150,000 contingency",
+        "2024 analyst report"
+      ],
+      "expected_required_literals": [
+        "Questions for the author",
+        "two large commercial contracts",
+        "$150,000 contingency",
+        "what is the plan for validating",
+        "accountable for the 22% target"
+      ]
+    },
+    {
+      "id": "evidence-first-questions",
+      "fixture": "fixtures/15-evidence-first-questions.md",
+      "expected": "expected/15-evidence-first-questions.md",
+      "focus": "Evidence-first question generation: ask for the real-world fact that settles each claim, and for the author's plan and deadline when the evidence does not exist yet; borrowed benchmarks and topic-raising must not pass as measured evidence or demand.",
+      "required_literals": [
+        "EUR 120,000",
+        "40% ticket deflection",
+        "EUR 750,000",
+        "Three enterprise customers",
+        "can absorb the build"
+      ],
+      "expected_required_literals": [
+        "Questions for the author",
+        "what is the plan for measuring it",
+        "Raising a topic and requesting a product are different signals",
+        "borrowed"
+      ]
+    }
+  ]
+}
