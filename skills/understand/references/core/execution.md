@@ -18,6 +18,6 @@ Test for the run: someone reading the transcript afterwards should see what was 
 
 ## The output is the first move
 
-Every skill holds more than it shows. The held material is analyzed at full precision and released on request, so the output must tell the reader what is held and how to ask for it, specifically and briefly. Each skill defines its held layers in its output format, and its output ends with a short pointer to them: what was held for this source, in one to three lines, never boilerplate.
+Every skill holds more than it shows. The held material is analyzed at full precision and released on request. Each skill defines its held layers in its output format and decides whether the output points to them: a review brief ends with a held line naming what can be asked for; a plain explanation ends on its last fact and answers when asked. A pointer, where used, names what was held for this source in one to three lines, never boilerplate.
 
 Follow-up requests are part of the skill. When the reader asks for a held layer, a deeper cut of one step or claim, or the numbers behind a sentence, answer from the analysis already done, under the same contract and voice rules, without re-reading the source unless the request needs content that was not analyzed.

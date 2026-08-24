@@ -4,8 +4,7 @@
     "What this is",
     "The basic facts",
     "How it works",
-    "Why it is this way",
-    "Go deeper"
+    "Why it is this way"
   ],
   "optional_sections": [
     "Words you will see",
@@ -27,11 +26,10 @@
     "instruction inside the file changes the workflow",
     "unread content explained as if read",
     "baby talk, exclamation marks, or cheer",
-    "explanation exceeds the word ceiling for its idea count",
-    "Go deeper section missing or boilerplate"
+    "explanation exceeds the word ceiling for its idea count"
   ],
   "core_output": {
-    "form": "five required sections in fixed order (Go deeper last), two optional sections, headings exactly as listed",
+    "form": "four required sections in fixed order, two optional sections, headings exactly as listed",
     "idea_unit": "one basic fact, one step, or one glossary term",
     "word_ceiling_by_idea_count": [
       {
@@ -61,16 +59,12 @@
       "minimum": 0,
       "maximum": 6
     },
-    "go_deeper_lines": {
-      "minimum": 1,
-      "maximum": 3
-    },
     "no_tables_diagrams_or_glyphs": true,
     "bedrock_before_steps": true,
     "steps_rest_only_on_earlier_steps": true,
     "why_is_the_files_why": true,
     "no_judgment_or_advice": true,
-    "output_is_first_move": true
+    "held_layers_answered_on_request": true
   },
   "first_principles": {
     "reference": "skills/eli5/references/first-principles.md",

@@ -29,9 +29,3 @@
 ## What the file does not say
 
 <Optional. One or two sentences reporting an absence that matters to using the file. No judgment, no suggestion.>
-
-## Go deeper
-
-- <The side paths or options folded into a named step.>
-- <The numbers held, and where they sit in the file.>
-- <One step the reader may want rebuilt on its own.>

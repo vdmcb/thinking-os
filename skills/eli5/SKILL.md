@@ -80,17 +80,13 @@ Load [references/output-format.md](references/output-format.md). The budget foll
 
 Return the explanation in the conversation by default. Write `<source-name> - ELI5.md` only when the user explicitly asks to save it. Never overwrite the source.
 
-### 8. Name what is held
-
-End with the **Go deeper** section: one to three lines naming, for this file, what was held and can be asked for: the side paths and options left out of the main path, every number with where it sits in the file, or one step rebuilt on its own bedrock. Name the specific things, never the categories.
-
-### 9. Check
+### 8. Check
 
 Reread once as the reader. Cut every sentence that does not add a fact the reader needs. Run the repeat-back test: for each section, could the reader say it back in their own words after one read? If not, the sentence is too long, the word is too hard, or a step skipped something. Fix the cause. Finish with the [references/core/writing.md](references/core/writing.md) check.
 
 ## Follow-up
 
-The explanation is the first move. When the reader asks for a held layer, a step rebuilt in more detail, or the numbers behind a sentence, answer from the reading already done, under the same contract and voice rules, without re-reading the file unless the request needs content that was not analyzed.
+The explanation ends on its last fact; it does not advertise what was held. When the reader asks for a side path, a step rebuilt in more detail, or the numbers behind a sentence, answer from the reading already done, under the same contract and voice rules, without re-reading the file unless the request needs content that was not analyzed.
 
 ## Final boundary check
 
@@ -106,7 +102,6 @@ Before responding, verify:
 - No analogy replaced the real mechanism, and every analogy says where it breaks.
 - No baby talk, no exclamation marks, no cheer.
 - The idea count and the word count are within the chosen tier.
-- The Go deeper section names specific held things.
 - Anything unread is disclosed at the top.
 
 If any check fails, correct the explanation before returning it.

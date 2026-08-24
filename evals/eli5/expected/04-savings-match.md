@@ -28,8 +28,3 @@ The file says the match exists to encourage saving for the long term and to rewa
 
 - vests: becomes the employee's to keep.
 - forfeits: loses.
-
-## Go deeper
-
-- Steps 4 to 6 as a worked example with a salary of your choice.
-- The unmatched contributions above 4%: what the file says happens to that money.

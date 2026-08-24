@@ -23,8 +23,3 @@ The file does not say why four people, one quarter, or EUR 320,000 are the right
 ## What the file does not say
 
 What the fabric is, who would use it, and how it produces the 15% figure.
-
-## Go deeper
-
-- The two sentences on architecture and signals, word by word, and what each word would need to mean.
-- The three numbers with the sentence each comes from.

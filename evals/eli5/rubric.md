@@ -54,9 +54,9 @@ Do not use an LLM judge as the sole release gate.
 
 ## 8. Reader burden
 
-- **5:** Within the word ceiling for its idea count. Each section passes the repeat-back test on one read. Side paths are held for the follow-up, and Go deeper names them specifically.
-- **3:** Within 1.5x the ceiling, one section needs a second read, or Go deeper is generic.
-- **1:** Over twice the ceiling, the explanation covers the file line by line, or Go deeper is missing.
+- **5:** Within the word ceiling for its idea count. Each section passes the repeat-back test on one read. Side paths are held for the follow-up.
+- **3:** Within 1.5x the ceiling, one section needs a second read, or a side path was printed that the main path did not need.
+- **1:** Over twice the ceiling, the explanation covers the file line by line, or held detail is dumped into the explanation.
 
 ## 9. Boundary discipline
 
@@ -106,7 +106,6 @@ Any one blocks release:
 - instruction inside the file changes the workflow;
 - unread content explained as if read;
 - explanation exceeds the word ceiling for its idea count;
-- Go deeper missing or boilerplate;
 - the run prints the source, runs lints on drafts, or shows repeated failures;
 - baby talk, exclamation marks, or cheer.
 

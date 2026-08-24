@@ -103,7 +103,6 @@ def check_exemplar(path: Path, invariants: dict) -> None:
         require(section in headings, f"{name}: missing required section '{section}' (structure lint)")
     positions = [headings.index(section) for section in required]
     require(positions == sorted(positions), f"{name}: required sections are out of order (structure lint)")
-    require(headings[-1] == "Go deeper", f"{name}: 'Go deeper' must be the last section (structure lint)")
     for heading in headings:
         require(
             heading in required or heading in optional,
@@ -124,9 +123,8 @@ def check_exemplar(path: Path, invariants: dict) -> None:
     facts = bullet_lines(section_body("The basic facts"))
     steps = numbered_lines(section_body("How it works"))
     terms = bullet_lines(section_body("Words you will see"))
-    deeper = bullet_lines(section_body("Go deeper"))
     for label, items, key in (("basic facts", facts, "basic_facts_count"), ("steps", steps, "steps_count"),
-                              ("terms", terms, "terms_count"), ("Go deeper lines", deeper, "go_deeper_lines")):
+                              ("terms", terms, "terms_count")):
         limits = core[key]
         require(
             limits["minimum"] <= len(items) <= limits["maximum"],
@@ -206,7 +204,7 @@ def check_skill_documentation(invariants: dict) -> None:
     for literal in ("Announce once", "file reader", "No scratch drafts", "first move"):
         require(literal in execution_doc, f"Execution contract is undocumented: {literal}")
     require("core/execution.md" in skill, "SKILL.md must load the execution contract")
-    require("Go deeper" in skill, "SKILL.md must document the Go deeper section")
+    require("Follow-up" in skill, "SKILL.md must document the follow-up")
     gate = invariants["usefulness_gate"]
     require((ROOT / gate["protocol"]).is_file(), f"Missing usefulness protocol: {gate['protocol']}")
     require("Ideas" in output_format or "ideas" in output_format, "Output format must tie the budget to ideas")

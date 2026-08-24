@@ -51,7 +51,7 @@ It is not a summary, a rewrite, or a review. It does not judge the file, recomme
 
 Every skill is a lens on a shared core in `core/`: how a source is read and what may be claimed about it (`reading.md`), how output is written for a tired human and how budgets follow ideas rather than pages (`writing.md`), and what the visible run looks like and how the output opens a follow-up (`execution.md`). The core is copied into each skill package by `./scripts/sync-core.sh` so that packages stay self-contained; validation fails on drift.
 
-The run is part of the product. A skill announces once what it will read, reads silently with the file reader, and returns the output. It does not print the source, run diagnostics unless the read came back empty, or draft in public. Every output ends by naming what was held for follow-up, and follow-up requests are answered from the analysis already done.
+The run is part of the product. A skill announces once what it will read, reads silently with the file reader, and returns the output. It does not print the source, run diagnostics unless the read came back empty, or draft in public. Follow-up requests are answered from the analysis already done; a review brief names what it held, a plain explanation simply answers when asked.
 
 The release gate is the human usefulness protocol in `evals/usefulness-protocol.md`: a reader who has not seen the source reads the output, repeats it back, opens the source, and counts surprises. Lints and rubrics diagnose failures; the session decides.
 
@@ -105,7 +105,7 @@ ELI5 is invoked the same way:
 $eli5 path/to/config.yaml
 ```
 
-The default output is a short explanation in the conversation, budgeted by the number of ideas the reader must hold (at most 500 words), ending with a Go deeper section that names what was held. The source is never modified. A Markdown result is written only when explicitly requested.
+The default output is a short explanation in the conversation, budgeted by the number of ideas the reader must hold (at most 500 words). The source is never modified. A Markdown result is written only when explicitly requested.
 
 ## Five-minute smoke test
 

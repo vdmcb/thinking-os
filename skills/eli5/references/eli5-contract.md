@@ -69,6 +69,6 @@ Never explain content you did not read. If part of the file was unreadable, say 
 
 The "why" section reports the file's reasons. It is not a request to reveal private chain of thought. The bedrock is a reconstruction of what the file rests on, written as plain facts, not as a narrative of how they were found.
 
-## The output is the first move
+## Follow-up
 
-Understanding is rarely finished in one turn. The explanation ends by naming what was held for this file (side paths, the numbers and where they sit, any step in more detail) so the reader can ask for it. Follow-up answers are written under this same contract.
+Understanding is rarely finished in one turn. Side paths, the numbers and where they sit, and any step in more detail are held, not printed, and answered when the reader asks. Follow-up answers are written under this same contract.

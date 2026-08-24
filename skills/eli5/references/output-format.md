@@ -1,6 +1,6 @@
 # ELI5 explanation format
 
-One artifact: a short explanation the reader can repeat back, ending with what is held for follow-up.
+One artifact: a short explanation the reader can repeat back. It ends on its last fact. Side paths, the numbers with their locations, and any step in more detail are held and answered on request.
 
 ## Budget follows ideas
 
@@ -24,7 +24,7 @@ Only when you could not read the whole file, the explanation begins:
 
 # The explanation
 
-Five required sections, two optional, in this order. Headings exactly as written, sentence case. No other headings, no tables, no diagrams, no glyphs.
+Four required sections, two optional, in this order. Headings exactly as written, sentence case. No other headings, no tables, no diagrams, no glyphs.
 
 ## What this is
 
@@ -49,16 +49,6 @@ Optional. Include only when the reader will open the file and meet a term they m
 ## What the file does not say
 
 Optional. Include only when a reader would reasonably expect something the file leaves out and its absence matters to using the file. One or two sentences. This reports an absence; it does not judge it or suggest what should be there.
-
-## Go deeper
-
-Required, last. One to three bullet lines naming what was held for this file and can be asked for. The held layers are:
-
-- the side paths, options, and edge cases left out of the main path;
-- every number in the file with where it sits (page, slide, sheet, or line);
-- any single step rebuilt on its own bedrock, in as much detail as the reader wants.
-
-Name the specific things held for this file ("the three billing modes I folded into step 6", "the twelve numbers on the cost slide"), never the categories. This section is the first move in the follow-up, not a sign-off.
 
 ---
 
@@ -96,5 +86,4 @@ Reread once as the reader, then:
 - confirm every number matches the file exactly;
 - cut every sentence that adds no fact the reader needs;
 - confirm the idea count and word count sit inside the chosen tier;
-- confirm Go deeper names specific held things;
 - run the [core/writing.md](core/writing.md) check.

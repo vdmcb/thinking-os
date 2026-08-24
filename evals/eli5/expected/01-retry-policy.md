@@ -29,8 +29,3 @@ The file says the charge request is never retried because a double charge is wor
 
 - HTTP 400-499: answer codes that mean the request itself had a mistake in it.
 - POST /charges: the request that takes money from a card.
-
-## Go deeper
-
-- The exact wait rule for the two retries, and how the ten seconds is counted.
-- Which of the 400 to 499 codes exist and what each means; the file only names the range and two exceptions.
