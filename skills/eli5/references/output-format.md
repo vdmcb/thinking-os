@@ -1,18 +1,18 @@
 # ELI5 explanation format
 
-One artifact: a short explanation the reader can repeat back. Hard ceiling **400 words**.
+One artifact: a short explanation the reader can repeat back, ending with what is held for follow-up.
 
-## Word budgets
+## Budget follows ideas
 
-Ceilings, not targets. Pick the tier from how many ideas the reader must hold, never from file length.
+An idea is one thing the reader must hold: one basic fact, one step, or one term in the glossary. Count them before writing and pick the ceiling from the count, never from the length of the file.
 
-| Source | Ceiling |
+| Ideas the reader must hold | Word ceiling |
 | --- | --- |
-| One mechanism or short file | 150 words |
-| A file with one main path and a few options | 250 words |
-| A file with several parts that depend on each other | 400 words |
+| up to 9 | 250 words |
+| up to 14 | 375 words |
+| up to 19 | 500 words |
 
-If the explanation does not fit, cut side paths and options before cutting bedrock or steps. Never raise the ceiling silently.
+Structural caps: 2 to 5 basic facts, 3 to 8 steps, 0 to 6 terms. 500 words is the hard ceiling. If the explanation does not fit, cut in this order: terms the reader could live without, side paths inside steps, the "What the file does not say" section. Never cut a basic fact, a number, or a "the file does not say why". Never raise the ceiling silently.
 
 ## Status line
 
@@ -24,7 +24,7 @@ Only when you could not read the whole file, the explanation begins:
 
 # The explanation
 
-Four required sections, two optional, in this order. Headings exactly as written, sentence case. No other headings, no tables, no diagrams, no glyphs.
+Five required sections, two optional, in this order. Headings exactly as written, sentence case. No other headings, no tables, no diagrams, no glyphs.
 
 ## What this is
 
@@ -36,7 +36,7 @@ Two to five short bullets: the bedrock from the first-principles procedure. Each
 
 ## How it works
 
-Numbered steps, one sentence each, in an order where every step rests only on the basic facts and the steps before it. Usually three to eight steps. Follow the file's main path from its input to its result. Mention that other paths exist only when leaving them out would mislead.
+Numbered steps, one sentence each, in an order where every step rests only on the basic facts and the steps before it. Three to eight steps. Follow the file's main path from its input to its result. Side paths and options are held for the follow-up; mention that they exist only when leaving them out would mislead.
 
 ## Why it is this way
 
@@ -50,6 +50,16 @@ Optional. Include only when the reader will open the file and meet a term they m
 
 Optional. Include only when a reader would reasonably expect something the file leaves out and its absence matters to using the file. One or two sentences. This reports an absence; it does not judge it or suggest what should be there.
 
+## Go deeper
+
+Required, last. One to three bullet lines naming what was held for this file and can be asked for. The held layers are:
+
+- the side paths, options, and edge cases left out of the main path;
+- every number in the file with where it sits (page, slide, sheet, or line);
+- any single step rebuilt on its own bedrock, in as much detail as the reader wants.
+
+Name the specific things held for this file ("the three billing modes I folded into step 6", "the twelve numbers on the cost slide"), never the categories. This section is the first move in the follow-up, not a sign-off.
+
 ---
 
 ## Rules that bind every section
@@ -60,7 +70,7 @@ Optional. Include only when a reader would reasonably expect something the file 
 - **Numbers stay exact**, with their unit and what they count.
 - **Analogies** are allowed after the plain statement, never instead of it, and always say where they stop matching in the same sentence or the next.
 - **No judgment, no advice, no fix.**
-- **No baby talk.** No exclamation marks, no pet names, no "imagine", no story frame, no rhetorical questions, no cheer.
+- **No baby talk.** The reader has no background; they are not a child. No exclamation marks, no pet names ("kiddo", "buddy"), no "imagine you have", no "picture this", no "think of it like a magic box", no story frames ("once upon a time"), no rhetorical questions, no cheer ("cool, right?", "great job"), no "so basically".
 
 ## Typography
 
@@ -69,7 +79,7 @@ Optional. Include only when a reader would reasonably expect something the file 
 - Bold only in the status line. Never for emphasis.
 - Straight quotes.
 
-The full writing rules live in [human-voice.md](human-voice.md). Load them before drafting.
+The full writing rules live in [core/writing.md](core/writing.md). Load them before drafting.
 
 ## Optional saved artifact
 
@@ -79,11 +89,12 @@ When the user asks to save, write `<source base name> - ELI5.md`. Never overwrit
 
 Reread once as the reader, then:
 
-- for each paragraph, confirm the reader could say it back after one read;
+- for each section, confirm the reader could say it back after one read;
 - confirm no term appears before it is introduced;
 - confirm every step rests on an earlier step or a basic fact;
 - confirm every "why" is the file's or says the file does not say;
 - confirm every number matches the file exactly;
 - cut every sentence that adds no fact the reader needs;
-- recount the words;
-- run the [human-voice.md](human-voice.md) check.
+- confirm the idea count and word count sit inside the chosen tier;
+- confirm Go deeper names specific held things;
+- run the [core/writing.md](core/writing.md) check.

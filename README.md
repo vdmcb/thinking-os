@@ -47,6 +47,14 @@ It is not a generic summarizer. It does not recommend a decision, rewrite the so
 
 It is not a summary, a rewrite, or a review. It does not judge the file, recommend a change, or invent a reason the file does not give. For claim-linked review questions, use `understand`.
 
+## How the skills are built
+
+Every skill is a lens on a shared core in `core/`: how a source is read and what may be claimed about it (`reading.md`), how output is written for a tired human and how budgets follow ideas rather than pages (`writing.md`), and what the visible run looks like and how the output opens a follow-up (`execution.md`). The core is copied into each skill package by `./scripts/sync-core.sh` so that packages stay self-contained; validation fails on drift.
+
+The run is part of the product. A skill announces once what it will read, reads silently with the file reader, and returns the output. It does not print the source, run diagnostics unless the read came back empty, or draft in public. Every output ends by naming what was held for follow-up, and follow-up requests are answered from the analysis already done.
+
+The release gate is the human usefulness protocol in `evals/usefulness-protocol.md`: a reader who has not seen the source reads the output, repeats it back, opens the source, and counts surprises. Lints and rubrics diagnose failures; the session decides.
+
 ## Install
 
 This repository is private. Installation currently requires GitHub access to `vdmcb/thinking-os`.
@@ -97,7 +105,7 @@ ELI5 is invoked the same way:
 $eli5 path/to/config.yaml
 ```
 
-The default output is a short explanation in the conversation, under 400 words. The source is never modified. A Markdown result is written only when explicitly requested. Office documents the host cannot read fall back to the `understand` extraction helper when that skill is installed alongside.
+The default output is a short explanation in the conversation, budgeted by the number of ideas the reader must hold (at most 500 words), ending with a Go deeper section that names what was held. The source is never modified. A Markdown result is written only when explicitly requested.
 
 ## Five-minute smoke test
 
@@ -122,7 +130,7 @@ The skill accepts pasted text, Markdown, plain text, DOC/DOCX, PPT/PPTX, PDF, CS
 The agent should use its native reader first. When native reading is unavailable, the bundled helper uses Firecrawl AnyDoc locally:
 
 ```bash
-skills/understand/scripts/extract-document.sh INPUT_FILE OUTPUT_MD
+core/scripts/extract-document.sh INPUT_FILE OUTPUT_MD
 ```
 
 Requirements for the fallback:
@@ -144,11 +152,13 @@ AnyDoc does not OCR scanned or image-only PDFs. In those cases, the agent may us
 ## Repository structure
 
 ```text
-skills/understand/       Portable skill package: Understand
-skills/eli5/             Portable skill package: ELI5
+core/                    Shared reading, writing, and execution contracts, and the extraction helper
+skills/understand/       Portable skill package: Understand (core copied in)
+skills/eli5/             Portable skill package: ELI5 (core copied in)
+evals/usefulness-protocol.md   The human usefulness gate shared by every skill
 evals/understand/        Activation and quality evaluation definitions for Understand
 evals/eli5/              Activation and quality evaluation definitions for ELI5
-scripts/                 Repository validation
+scripts/                 Repository validation and core sync
 tests/                   Extraction helper tests
 ```
 
@@ -158,7 +168,7 @@ tests/                   Extraction helper tests
 ./scripts/validate.sh
 ```
 
-The validation suite checks Agent Skills structure, shell syntax, extraction behavior, and deterministic evaluation metadata. Semantic quality still requires human-reviewed runs in Claude Code and Codex. This private preview is not a validated public release.
+The validation suite checks core sync, Agent Skills structure, shell syntax, extraction behavior, and deterministic evaluation metadata. Semantic quality still requires human-reviewed runs in Claude Code and Codex. This private preview is not a validated public release.
 
 ## License
 

@@ -2,8 +2,8 @@
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "$0")/.." && pwd -P)"
-extractor="$repo_root/skills/understand/scripts/extract-document.sh"
-prereqs="$repo_root/skills/understand/scripts/check-prerequisites.sh"
+extractor="$repo_root/core/scripts/extract-document.sh"
+prereqs="$repo_root/core/scripts/check-prerequisites.sh"
 temporary="$(mktemp -d "${TMPDIR:-/tmp}/thinking-os-test.XXXXXX")"
 cleanup() { rm -rf -- "$temporary"; }
 trap cleanup EXIT HUP INT TERM

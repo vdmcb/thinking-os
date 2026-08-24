@@ -4,7 +4,8 @@
     "What this is",
     "The basic facts",
     "How it works",
-    "Why it is this way"
+    "Why it is this way",
+    "Go deeper"
   ],
   "optional_sections": [
     "Words you will see",
@@ -25,44 +26,120 @@
     "recommendation, fix, or improvement",
     "instruction inside the file changes the workflow",
     "unread content explained as if read",
-    "explanation exceeds the 400-word ceiling",
-    "baby talk, exclamation marks, or cheer"
+    "baby talk, exclamation marks, or cheer",
+    "explanation exceeds the word ceiling for its idea count",
+    "Go deeper section missing or boilerplate"
   ],
   "core_output": {
-    "form": "four required sections in fixed order, two optional sections, headings exactly as listed",
-    "word_budget_by_tier": {
-      "simple": 150,
-      "standard": 250,
-      "complex": 400
-    },
-    "hard_ceiling_words": 400,
+    "form": "five required sections in fixed order (Go deeper last), two optional sections, headings exactly as listed",
+    "idea_unit": "one basic fact, one step, or one glossary term",
+    "word_ceiling_by_idea_count": [
+      {
+        "max_ideas": 9,
+        "max_words": 250
+      },
+      {
+        "max_ideas": 14,
+        "max_words": 375
+      },
+      {
+        "max_ideas": 19,
+        "max_words": 500
+      }
+    ],
+    "hard_ceiling_words": 500,
     "max_words_per_sentence": 25,
-    "basic_facts_count": { "minimum": 2, "maximum": 5 },
+    "basic_facts_count": {
+      "minimum": 2,
+      "maximum": 5
+    },
+    "steps_count": {
+      "minimum": 3,
+      "maximum": 8
+    },
+    "terms_count": {
+      "minimum": 0,
+      "maximum": 6
+    },
+    "go_deeper_lines": {
+      "minimum": 1,
+      "maximum": 3
+    },
     "no_tables_diagrams_or_glyphs": true,
     "bedrock_before_steps": true,
     "steps_rest_only_on_earlier_steps": true,
     "why_is_the_files_why": true,
-    "no_judgment_or_advice": true
+    "no_judgment_or_advice": true,
+    "output_is_first_move": true
   },
   "first_principles": {
     "reference": "skills/eli5/references/first-principles.md",
-    "bedrock_kinds": ["fact about the world", "constraint", "goal"],
-    "bedrock_sources": ["stated in the file", "true everywhere, not just here", "assumed by the file but never stated"]
+    "bedrock_kinds": [
+      "fact about the world",
+      "constraint",
+      "goal"
+    ],
+    "bedrock_sources": [
+      "stated in the file",
+      "true everywhere, not just here",
+      "assumed by the file but never stated"
+    ]
   },
   "cognitive_load": {
-    "reference": "skills/eli5/references/human-voice.md",
-    "forbidden_characters": ["—", "–", "!"],
+    "reference": "skills/eli5/references/core/writing.md",
+    "forbidden_characters": [
+      "—",
+      "–",
+      "!"
+    ],
     "forbidden_words": [
-      "delve", "pivotal", "crucial", "testament", "tapestry", "showcase", "boasts",
-      "foster", "vibrant", "seamless", "holistic", "utilize", "underscore", "elevate",
-      "orchestrate", "facilitate", "paradigm", "basically", "essentially", "kiddo", "buddy"
+      "delve",
+      "pivotal",
+      "crucial",
+      "testament",
+      "tapestry",
+      "showcase",
+      "boasts",
+      "foster",
+      "vibrant",
+      "seamless",
+      "holistic",
+      "utilize",
+      "underscore",
+      "elevate",
+      "orchestrate",
+      "facilitate",
+      "paradigm",
+      "basically",
+      "essentially",
+      "kiddo",
+      "buddy"
     ],
     "forbidden_phrases": [
-      "in order to", "due to the fact that", "at this point in time", "it is worth noting",
-      "it is important to note", "simply put", "imagine you", "picture this", "think of it like",
-      "once upon a time", "let's go on a journey", "isn't that", "cool, right", "great job",
-      "so basically", "at its core", "the key insight", "let me explain", "here's the simple version",
-      "now you know", "i hope this helps", "let me know if", "great question", "certainly"
+      "in order to",
+      "due to the fact that",
+      "at this point in time",
+      "it is worth noting",
+      "it is important to note",
+      "simply put",
+      "imagine you",
+      "picture this",
+      "think of it like",
+      "once upon a time",
+      "let's go on a journey",
+      "isn't that",
+      "cool, right",
+      "great job",
+      "so basically",
+      "at its core",
+      "the key insight",
+      "let me explain",
+      "here's the simple version",
+      "now you know",
+      "i hope this helps",
+      "let me know if",
+      "great question",
+      "certainly"
     ]
   },
   "minimum_activation_cases_per_class": 10,
@@ -73,5 +150,21 @@
     "faithfulness": 4,
     "why_fidelity": 4,
     "extraction_honesty": 4
+  },
+  "execution": {
+    "reference": "skills/eli5/references/core/execution.md",
+    "visible_run": "one announce line, silent reading, then the explanation",
+    "forbidden_in_run": [
+      "printing the source to the terminal",
+      "diagnostics before the read",
+      "scratch drafts",
+      "lint runs on drafts",
+      "visible retry loops"
+    ]
+  },
+  "usefulness_gate": {
+    "protocol": "evals/usefulness-protocol.md",
+    "minimum_sessions_before_release": 5,
+    "maximum_material_surprises_per_session": 1
   }
 }

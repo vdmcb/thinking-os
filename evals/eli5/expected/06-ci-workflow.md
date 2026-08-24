@@ -29,3 +29,8 @@ The file does not say why the checks run on every push, why the limit is 15 minu
 - pull_request: asking for code to be merged into the project.
 - ubuntu-latest: the kind of computer GitHub starts.
 - actions/checkout: the step that downloads the project.
+
+## Go deeper
+
+- Each of the three steps rebuilt against the lines in the file that set it up.
+- The permissions line and what "read" allows and forbids.

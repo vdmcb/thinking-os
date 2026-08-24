@@ -59,6 +59,10 @@ If none are needed:
 
 > No material follow-up questions are required to understand and test the source's stated case.
 
+## The held line
+
+The brief ends with one plain line, no heading, naming what is held for this source and can be asked for: the reference analysis, the arithmetic behind a named number, the evidence behind a named claim, or the page map. Name the specific objects, not the categories. Example: "Held: the arithmetic behind the EUR 300,000 saving, the vendor case study the 40% rate comes from, and the page map. Ask for any of them."
+
 ---
 
 # The reference analysis (on request only)
@@ -82,7 +86,7 @@ Packets are read by tired humans. Write plain.
 - Bold and italics only where they carry information the reader needs to find again. Never bold for emphasis alone.
 - Prefer short sentences over stacked clauses.
 
-The full writing rules live in [human-voice.md](human-voice.md). Load them before drafting; they are part of the output contract, not advice.
+The full writing rules live in [core/writing.md](core/writing.md). Load them before drafting; they are part of the output contract, not advice.
 
 ## Optional saved artifact
 
@@ -100,4 +104,4 @@ Reread the brief once as the reader, then:
 - recount the words after cutting; a draft that was over budget before the pass usually still is.
 - confirm every question passes the genericity, responsiveness, and send tests;
 - confirm the brief is within budget and no material caveat, number, conflict, or dissent was lost getting there;
-- run the [human-voice.md](human-voice.md) check.
+- run the [core/writing.md](core/writing.md) check.

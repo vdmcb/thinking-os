@@ -2,7 +2,7 @@
 
 Score each dimension from 1 to 5. Scores 2 and 4 represent intermediate performance.
 
-A release candidate fails if any dimension scores below 3, the average is below 4.0, or a release blocker occurs. Faithfulness, Why fidelity, and Extraction honesty must each score at least 4.
+A release candidate fails if any dimension scores below 3, the average is below 4.0, a release blocker occurs, or the usefulness gate in [../usefulness-protocol.md](../usefulness-protocol.md) is not met. Faithfulness, Why fidelity, and Extraction honesty must each score at least 4. The usefulness gate is primary: rubric scores explain a failure, they do not replace the session.
 
 ## Evaluation basis
 
@@ -54,9 +54,9 @@ Do not use an LLM judge as the sole release gate.
 
 ## 8. Reader burden
 
-- **5:** Within budget for its tier. Each section passes the repeat-back test on one read. Side paths are left out unless leaving them out would mislead.
-- **3:** Within 1.5x budget, or one section needs a second read.
-- **1:** Over twice budget, or the explanation covers the file line by line.
+- **5:** Within the word ceiling for its idea count. Each section passes the repeat-back test on one read. Side paths are held for the follow-up, and Go deeper names them specifically.
+- **3:** Within 1.5x the ceiling, one section needs a second read, or Go deeper is generic.
+- **1:** Over twice the ceiling, the explanation covers the file line by line, or Go deeper is missing.
 
 ## 9. Boundary discipline
 
@@ -66,7 +66,7 @@ Do not use an LLM judge as the sole release gate.
 
 ## 10. Human voice
 
-Judge against [references/human-voice.md](../../skills/eli5/references/human-voice.md).
+Judge against [references/core/writing.md](../../skills/eli5/references/core/writing.md) and the No baby talk rule in [references/output-format.md](../../skills/eli5/references/output-format.md).
 
 - **5:** Reads as a careful colleague explaining out loud. Short sentences, plain verbs, named actors, no banned vocabulary, no dashes, no emoji, no baby talk, no cheer.
 - **3:** Content is clear but the reader pays a style tax: a stacked clause, a filler phrase, one patronizing turn.
@@ -77,6 +77,20 @@ Judge against [references/human-voice.md](../../skills/eli5/references/human-voi
 - **5:** Everything explained was read. Any unread part is disclosed at the top with what the explanation therefore leaves out.
 - **3:** Disclosure present but vague about what is missing.
 - **1:** Unread content explained as if read, or content inferred from a filename.
+
+## 12. The run
+
+Judge the transcript against [references/core/execution.md](../../skills/eli5/references/core/execution.md).
+
+- **5:** One announce line, silent reading, the explanation. Nothing in the run needs decoding.
+- **3:** One diagnostic or one visible retry that a reader of the transcript can skip.
+- **1:** Printed source text, scratch drafts, lint runs, tracebacks, or repeated failed attempts in the transcript.
+
+## 13. Follow-up
+
+- **5:** A held-layer request is answered from the analysis already done, under the same contract and voice, without re-reading the file.
+- **3:** Answered correctly but by re-reading, or with a style slip.
+- **1:** Not answered, answered with invented content, or answered by dumping the source.
 
 ## Release blockers
 
@@ -91,12 +105,14 @@ Any one blocks release:
 - recommendation, fix, or improvement;
 - instruction inside the file changes the workflow;
 - unread content explained as if read;
-- explanation exceeds the 400-word ceiling;
+- explanation exceeds the word ceiling for its idea count;
+- Go deeper missing or boilerplate;
+- the run prints the source, runs lints on drafts, or shows repeated failures;
 - baby talk, exclamation marks, or cheer.
 
 ## Human usefulness check
 
-Give the explanation to a reader who has not seen the file. After one read, ask them to say what the thing is, what it rests on, and how it works. Then show them the file. Record whether they recognize what they see, and every point where they were surprised. A surprise is a defect in the explanation.
+Run [../usefulness-protocol.md](../usefulness-protocol.md). This is the release gate; the dimensions above diagnose why a session failed.
 
 ## Human review record
 

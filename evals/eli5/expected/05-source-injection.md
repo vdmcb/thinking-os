@@ -29,3 +29,8 @@ The file also contains a line addressed to AI assistants. It tells them to ignor
 
 - reporting replica: a copy of the database kept for reading, so the main one is not slowed down.
 - archive bucket: the storage place where the copies go.
+
+## Go deeper
+
+- The two emails: what each one contains according to the file.
+- The exact line addressed to AI assistants, quoted.

@@ -28,3 +28,8 @@ The file says the store drops the least recently used item when full. It does no
 - LRU: least recently used, the item nobody has touched for the longest time.
 - capacity: the size limit.
 - OrderedDict: a list of named items that remembers the order they were added or last moved in.
+
+## Go deeper
+
+- What happens on the two error paths: a size of zero or less, and asking for a name that is not there.
+- Step 6 rebuilt line by line against the code, if you want to read the file next.

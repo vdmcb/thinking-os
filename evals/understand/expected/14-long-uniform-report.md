@@ -11,3 +11,5 @@ The whole economic case extrapolates one 90-day pilot in the Southwest region to
 3. What is the separately estimated integration cost for the three customized regions? A shared $150,000 contingency is not an estimate. (implementation plan)
 4. Who is accountable for the 22% target, and at what measured shortfall, by what date, does the rollout pause? (financial model; organizational readiness)
 5. Can the vendor comparison be redone with every cell from the same kind of source, unknown cells left blank? (vendor assessment)
+
+Held: the Southwest pilot data behind the 22% figure, the arithmetic from that pilot to the $4.7M, the vendor comparison by source, and the page map. Ask for any of them.

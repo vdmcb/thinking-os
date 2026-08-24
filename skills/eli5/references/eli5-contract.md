@@ -14,7 +14,7 @@ Three rules follow:
 
 1. **One thing at a time.** A sentence carries one fact. A step uses only what came before it. A term appears only after it is introduced.
 2. **Bedrock first.** The explanation starts from the smallest true things and builds up. It does not start from the file's own headings, its jargon, or its conclusion.
-3. **Short.** Hard ceiling 400 words. Most files need far fewer. Coverage the reader cannot keep is not coverage.
+3. **Short.** The budget follows the number of ideas the reader must hold, never the length of the file, with a hard ceiling of 500 words. Coverage the reader cannot keep is not coverage; what does not fit is held for the follow-up, not dropped.
 
 ## What "five years old" means
 
@@ -68,3 +68,7 @@ Never explain content you did not read. If part of the file was unreadable, say 
 ## Source reasoning versus private reasoning
 
 The "why" section reports the file's reasons. It is not a request to reveal private chain of thought. The bedrock is a reconstruction of what the file rests on, written as plain facts, not as a narrative of how they were found.
+
+## The output is the first move
+
+Understanding is rarely finished in one turn. The explanation ends by naming what was held for this file (side paths, the numbers and where they sit, any step in more detail) so the reader can ask for it. Follow-up answers are written under this same contract.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic checks for ELI5 evaluation metadata and exemplars."""
+"""Deterministic checks for ELI5 evaluation metadata, exemplars, and contract documentation."""
 
 from __future__ import annotations
 
@@ -103,16 +103,48 @@ def check_exemplar(path: Path, invariants: dict) -> None:
         require(section in headings, f"{name}: missing required section '{section}' (structure lint)")
     positions = [headings.index(section) for section in required]
     require(positions == sorted(positions), f"{name}: required sections are out of order (structure lint)")
+    require(headings[-1] == "Go deeper", f"{name}: 'Go deeper' must be the last section (structure lint)")
     for heading in headings:
         require(
             heading in required or heading in optional,
             f"{name}: unexpected section '{heading}' (structure lint)",
         )
 
-    # Budget.
+    # Structural counts: the idea unit is one fact, one step, or one term.
+    def section_body(title: str) -> str:
+        match = re.search(rf"^## {re.escape(title)}\n(.*?)(?=^## |\Z)", text, flags=re.MULTILINE | re.DOTALL)
+        return match.group(1) if match else ""
+
+    def bullet_lines(body: str) -> list[str]:
+        return [line for line in body.splitlines() if line.strip().startswith("- ")]
+
+    def numbered_lines(body: str) -> list[str]:
+        return [line for line in body.splitlines() if re.match(r"\s*\d+\.\s", line)]
+
+    facts = bullet_lines(section_body("The basic facts"))
+    steps = numbered_lines(section_body("How it works"))
+    terms = bullet_lines(section_body("Words you will see"))
+    deeper = bullet_lines(section_body("Go deeper"))
+    for label, items, key in (("basic facts", facts, "basic_facts_count"), ("steps", steps, "steps_count"),
+                              ("terms", terms, "terms_count"), ("Go deeper lines", deeper, "go_deeper_lines")):
+        limits = core[key]
+        require(
+            limits["minimum"] <= len(items) <= limits["maximum"],
+            f"{name}: {len(items)} {label}, expected {limits['minimum']}-{limits['maximum']} (structure lint)",
+        )
+
+    # Budget follows ideas, not pages.
+    ideas = len(facts) + len(steps) + len(terms)
     words = len(text.split())
     ceiling = core["hard_ceiling_words"]
-    require(words <= ceiling, f"{name}: {words} words exceeds the {ceiling}-word ceiling (budget lint)")
+    for tier in core["word_ceiling_by_idea_count"]:
+        if ideas <= tier["max_ideas"]:
+            ceiling = tier["max_words"]
+            break
+    require(
+        words <= ceiling,
+        f"{name}: {words} words exceeds the {ceiling}-word ceiling for {ideas} ideas (budget lint)",
+    )
 
     # Sentence length.
     max_sentence = core["max_words_per_sentence"]
@@ -122,16 +154,6 @@ def check_exemplar(path: Path, invariants: dict) -> None:
             count <= max_sentence,
             f"{name}: sentence of {count} words exceeds {max_sentence}: {sentence[:60]!r} (sentence lint)",
         )
-
-    # Basic facts count.
-    facts_block = re.search(r"^## The basic facts\n(.*?)(?=^## )", text, flags=re.MULTILINE | re.DOTALL)
-    require(facts_block is not None, f"{name}: cannot locate 'The basic facts' section body (structure lint)")
-    bullets = [line for line in facts_block.group(1).splitlines() if line.strip().startswith("- ")]
-    limits = core["basic_facts_count"]
-    require(
-        limits["minimum"] <= len(bullets) <= limits["maximum"],
-        f"{name}: {len(bullets)} basic facts, expected {limits['minimum']}-{limits['maximum']} (bedrock lint)",
-    )
 
     # Cognitive-load lint: dashes, exclamation marks, emoji, banned words and phrases.
     for ch in voice["forbidden_characters"]:
@@ -173,15 +195,31 @@ def check_skill_documentation(invariants: dict) -> None:
         )
     ceiling = invariants["core_output"]["hard_ceiling_words"]
     require(f"{ceiling} words" in output_format, f"Output format must state the {ceiling}-word ceiling")
-    require(f"{ceiling} words" in skill, f"SKILL.md must state the {ceiling}-word ceiling")
+    require(str(ceiling) in skill, f"SKILL.md must state the {ceiling}-word ceiling")
+    for tier in invariants["core_output"]["word_ceiling_by_idea_count"]:
+        require(
+            f"up to {tier['max_ideas']}" in output_format and f"{tier['max_words']} words" in output_format,
+            f"Output format must document the {tier['max_words']}-word tier for up to {tier['max_ideas']} ideas",
+        )
+    execution = invariants["execution"]
+    execution_doc = read(ROOT / execution["reference"])
+    for literal in ("Announce once", "file reader", "No scratch drafts", "first move"):
+        require(literal in execution_doc, f"Execution contract is undocumented: {literal}")
+    require("core/execution.md" in skill, "SKILL.md must load the execution contract")
+    require("Go deeper" in skill, "SKILL.md must document the Go deeper section")
+    gate = invariants["usefulness_gate"]
+    require((ROOT / gate["protocol"]).is_file(), f"Missing usefulness protocol: {gate['protocol']}")
+    require("Ideas" in output_format or "ideas" in output_format, "Output format must tie the budget to ideas")
     for literal in ("bedrock", "first principles", "repeat-back", "The file does not say why"):
         require(literal.lower() in skill.lower(), f"SKILL.md does not document: {literal}")
     for kind in invariants["first_principles"]["bedrock_kinds"]:
         require(kind in first_principles.lower(), f"First-principles reference does not name bedrock kind: {kind}")
     for source in invariants["first_principles"]["bedrock_sources"]:
         require(source in first_principles, f"First-principles reference does not name bedrock source: {source}")
-    for literal in ("repeat-back test", "One idea per sentence", "chatbot residue", "No baby talk"):
-        require(literal in voice_text, f"Human-voice rule is undocumented: {literal}")
+    for literal in ("read-aloud test", "One idea per sentence", "chatbot residue", "Budgets follow ideas"):
+        require(literal in voice_text, f"Writing rule is undocumented in the core: {literal}")
+    for literal in ("No baby talk", "repeat-back pass"):
+        require(literal in output_format, f"ELI5 writing rule is undocumented: {literal}")
     require("untrusted" in skill.lower(), "SKILL.md must treat source content as untrusted")
     require(
         (SKILL_DIR / "LICENSE").is_file() and (SKILL_DIR / "LICENSE").stat().st_size > 0,

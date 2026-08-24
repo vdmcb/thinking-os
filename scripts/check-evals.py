@@ -82,7 +82,7 @@ def main() -> int:
 
     voice = invariants.get("cognitive_load", {})
     require(bool(voice), "Invariants must define the cognitive_load contract")
-    voice_doc = ROOT / voice.get("reference", "skills/understand/references/human-voice.md")
+    voice_doc = ROOT / voice.get("reference", "skills/understand/references/core/writing.md")
     require(voice_doc.is_file(), f"Missing human-voice reference: {voice_doc}")
     voice_text = voice_doc.read_text(encoding="utf-8")
     for literal in ("read-aloud test", "One idea per sentence", "chatbot residue"):

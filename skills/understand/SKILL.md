@@ -15,7 +15,7 @@ license: Proprietary internal preview; see LICENSE
 compatibility: Requires local file access. Document fallback requires Node.js 20+ and npx.
 metadata:
   author: thinking-os
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Understand
@@ -59,43 +59,9 @@ If multiple files form one logical source, inventory each and preserve per-file 
 
 ### 2. Read with the safest reliable path
 
-Resolve `<skill-root>` as the directory containing this `SKILL.md`. Do not assume the caller is inside the Thinking OS repository; installed skills commonly live under `.claude/skills/understand` or `.agents/skills/understand`.
+Follow [references/core/reading.md](references/core/reading.md): native reader for text and code, a page-preserving `pdftotext` for PDFs, the bundled extraction helper for office formats the host cannot read, and page rendering only when a chart's value-to-label mapping is load-bearing and not unambiguous in the text. Locators come from the page-preserving read; the helper's Markdown carries none.
 
-**Paginated sources need a page-preserving read.** The output format requires stable locators, and a reader that discards page boundaries cannot supply them. For PDFs, prefer a page-preserving text extraction and split on the form feed (`\f`) that separates pages:
-
-```bash
-pdftotext -layout INPUT.pdf OUT.txt   # -layout keeps spatial columns; \f separates pages
-```
-
-`extract-document.sh` produces cleaner prose and better tables for word-processor and presentation formats, but its Markdown output carries **no page boundaries**. Use it for prose fidelity, not for locators, and never as the sole read of a paginated source whose claims need citing.
-
-Use this order:
-
-1. Use the host agent's native attachment or file reader when it exposes the complete source reliably *and* preserves page or slide boundaries.
-2. For a PDF, run a page-preserving text extraction first and keep the page index. If the text layer is absent or empty, treat the source as scanned and go to step 5.
-3. For other machine-readable documents the host cannot read, run:
-
-   ```bash
-   "<skill-root>/scripts/check-prerequisites.sh"
-   "<skill-root>/scripts/extract-document.sh" INPUT_FILE TEMPORARY_OUTPUT.md
-   ```
-
-   Read the resulting Markdown, then delete it unless the user asked to preserve it. When it is used on a paginated source, reconcile it against a page-preserving read before assigning any locator.
-4. **Check for visually encoded content, whatever the text layer says.** A born-digital PDF can have a perfect text layer and still be unreadable, because charts store values and labels as independent text objects with no association between them. Extraction then yields every number and every label in an order that looks clean but carries no mapping. Suspect this whenever a page contains a chart, a stacked bar, a matrix, a multi-series comparison, or a figure whose numbers arrive detached from their categories.
-
-   When a value-to-label mapping is load-bearing and not unambiguous in the text, render that page as an image and read it directly:
-
-   ```bash
-   pdftoppm -png -r 70 -f PAGE -l PAGE INPUT.pdf OUTPREFIX
-   ```
-
-   Label the result as vision-derived. Do not reconstruct a chart from adjacency in extracted text and present it as read.
-5. For scanned or image-only sources, use reliable host-native PDF or vision capabilities when available and label OCR- or vision-derived content.
-6. If charts, diagrams, images, annotations, formulas, notes, or pages remain unreadable, do not make claims that depend on them. Mark the result incomplete when the gap could change understanding.
-
-Cross-source arithmetic reconciliation is a useful check on a reconstructed table: if a segment breakdown reproduces the aggregate it was drawn from, the reconstruction is probably right. It is a consistency check, not visual confirmation; say which one you did.
-
-The extraction helper is a fallback, not evidence that extraction is complete.
+Follow [references/core/execution.md](references/core/execution.md) for the visible run: announce once, read with the file reader, one extraction command at most, no diagnostics unless the read came back empty, no scratch drafts, then the brief.
 
 ### 3. Check completeness
 
@@ -205,7 +171,7 @@ Perform the full evidentiary workup (steps 4-6) at full precision, but do not wr
 
 Then reread the brief once as the reviewer and cut: remove any sentence that does not change what the reviewer understands or asks; merge duplicates; verify the budget; verify no material caveat, number, conflict, or dissent was lost. When brevity and a material caveat genuinely conflict, keep the caveat.
 
-Finish with the [references/human-voice.md](references/human-voice.md) check. The packet must read as if a careful colleague wrote it: no AI-patterned vocabulary, constructions, or typography. Style noise is cognitive load.
+Finish with the [references/core/writing.md](references/core/writing.md) check and the [references/question-language.md](references/question-language.md) send test. The packet must read as if a careful colleague wrote it: no AI-patterned vocabulary, constructions, or typography. Style noise is cognitive load.
 
 A packet that costs as much to read as the source has failed regardless of how faithful it is.
 
@@ -230,6 +196,7 @@ Before responding, verify:
 - The brief is within its word budget, and no material content was dropped to get there.
 - No claim, number, or gap is stated in more than one place.
 - The reference analysis was held, not written, unless the user asked for it.
+- The brief ends with one plain line naming what is held for this source.
 
 If any check fails, correct the packet before returning it.
 
@@ -237,10 +204,17 @@ If any check fails, correct the packet before returning it.
 
 Stop rather than bluff when the source cannot be accessed, extraction cannot establish the central account, a critical visual cannot be read, or the requested operation is actually rewriting or decision-making. Explain what succeeded, what failed, and what is required to continue.
 
+## Follow-up
+
+The brief is the first move. When the reader asks for the reference analysis, the numbers behind a sentence, or a deeper cut of one claim, answer from the analysis already done under the same contract and voice rules, as [references/core/execution.md](references/core/execution.md) describes.
+
 ## Progressive references
 
+- [references/core/reading.md](references/core/reading.md): how the source is read and what may be claimed about it. Load before step 2.
+- [references/core/execution.md](references/core/execution.md): the visible run and the follow-up. Load before step 2.
+- [references/core/writing.md](references/core/writing.md): reader burden and human-voice rules. Load before producing output.
+- [references/question-language.md](references/question-language.md): how questions are phrased for the reviewer and the author. Load before step 7.
 - [references/understanding-contract.md](references/understanding-contract.md): normative transformations and boundaries. Always load.
 - [references/output-format.md](references/output-format.md): required Understanding Packet structure. Load before output.
 - [references/large-documents.md](references/large-documents.md): coverage-ledger workflow. Load for large or multi-part sources.
-- [references/human-voice.md](references/human-voice.md): writing rules that keep packets human and low-load. Load before producing output.
 - [references/examples.md](references/examples.md): good and bad patterns. Load when behavior is ambiguous or when evaluating output quality.
