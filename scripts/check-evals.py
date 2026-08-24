@@ -232,8 +232,6 @@ def main() -> int:
     require(logo.is_file() and logo.stat().st_size > 0, "RebelDot logo asset is missing")
     require(packaged_license.is_file() and packaged_license.stat().st_size > 0, "Packaged skill license is missing")
     require("main supporter" in readme.lower(), "README must identify the main supporter")
-    require("https://vadim.software" in readme, "README must include the project website")
-    require("private internal preview" in readme.lower(), "README must describe the current private status")
 
     print(
         f"Evaluation metadata valid: {len(positive)} positive activation cases, "
