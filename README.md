@@ -138,3 +138,7 @@ The validation suite checks Agent Skills structure, shell syntax, extraction beh
 ## License
 
 This private preview is currently **unlicensed for redistribution**. All rights are reserved. An open-source license will be selected before a public release.
+
+## Acknowledgments
+
+The human-voice writing rules in the `understand` skill draw on [blader/humanizer](https://github.com/blader/humanizer) and Wikipedia's "Signs of AI writing".
