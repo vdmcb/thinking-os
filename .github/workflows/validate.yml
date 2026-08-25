@@ -29,5 +29,8 @@ jobs:
       - name: Install ShellCheck
         run: sudo apt-get update && sudo apt-get install -y shellcheck
 
+      - name: Install Claude Code CLI
+        run: npm install -g @anthropic-ai/claude-code@2.1.250
+
       - name: Validate repository
         run: ./scripts/validate.sh

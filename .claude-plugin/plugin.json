@@ -1,0 +1,21 @@
+{
+  "name": "thinking-os",
+  "displayName": "Thinking OS",
+  "version": "0.1.0",
+  "description": "Portable cognitive skills for capable AI agents: Understand turns polished or AI-generated documents into a faithful plain-language model with claim-linked review questions; ELI5 explains a file from first principles for a reader with no background.",
+  "author": {
+    "name": "vdmcb",
+    "url": "https://github.com/vdmcb"
+  },
+  "homepage": "https://github.com/vdmcb/thinking-os",
+  "repository": "https://github.com/vdmcb/thinking-os",
+  "license": "Proprietary internal preview; see LICENSE",
+  "keywords": [
+    "reasoning",
+    "document-review",
+    "understanding",
+    "eli5",
+    "first-principles"
+  ],
+  "skills": "./skills/"
+}
