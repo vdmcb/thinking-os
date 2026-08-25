@@ -1,5 +1,14 @@
 # Evaluation status
 
+## v1.1.0 internal preview: shared core and the follow-up
+
+- The skill now sits on the shared core (`core/`): reading, writing, and execution contracts are copied into the package by `scripts/sync-core.sh` and drift-checked in CI. `references/human-voice.md` is replaced by `references/core/writing.md`; the question-phrasing rules moved to `references/question-language.md`. Behavior is unchanged.
+- Execution contract (core/execution.md): one announce line, silent reading with the file reader, no diagnostics unless the read is empty, no scratch drafts.
+- The brief ends with one held line naming what can be asked for (reference analysis, arithmetic behind a named number, evidence behind a named claim, page map). Exemplars 14 and 15 carry it.
+- Human usefulness protocol (evals/usefulness-protocol.md) is now the release gate; rubric dimension 14 scores the run and the follow-up. Sessions are logged in evals/understand/usefulness-log.json. Usefulness sessions completed: 0 of 5.
+- Steps 1 and 3 and the large-document procedure now delegate to core/reading.md; `references/large-documents.md` is removed. The description excludes plain explanation for a reader with no background (eli5), and three eli5-shaped prompts were added as negative activation cases. Cross-skill boundary cases live in evals/activation-crosscheck.json.
+- Lint word lists come from core/lint.json plus this skill's additions. Always-loaded instruction text is 7,316 words, reported by the eli5 checker but not gated; reducing it is open work.
+
 ## v0.6.0 internal preview: the brief (format v3)
 
 Format v3, shaped by an annotated review of five candidate structures on a live 31-page deck (artifact "Four Packet Shapes"). The default output is now a brief: two or three paragraphs of memo prose that carry the critical path, then "Questions for the author", under a 600-word hard ceiling. No claim-map diagram, no glyph marks, no Q-labels (they read as fiscal quarters), no printed question metadata. Rules added from the review: passed checks are silent; no inherited source shorthand; no document personification; no dramatic reveals; questions are evidence-first ("what real-world fact settles this?") and ask for the author's validation plan and deadline when the evidence does not exist yet.

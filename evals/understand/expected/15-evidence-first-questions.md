@@ -10,3 +10,5 @@ Both load-bearing numbers come from outside the company. The 40% deflection rate
 2. What exactly did the three customers ask for? Raising a topic and requesting a product are different signals. (Demand)
 3. What does the EUR 300,000 saving assume happens to support staffing: reduced hiring, reassignment, or something else? (Savings)
 4. What current commitments does the platform team drop or delay to absorb this build? (Delivery)
+
+Held: the arithmetic from the EUR 750,000 support budget to the EUR 300,000 saving, the vendor case study the 40% rate comes from, and the page map. Ask for any of them.

@@ -112,7 +112,7 @@
     "reference_analysis_on_request_only": true
   },
   "cognitive_load": {
-    "reference": "skills/understand/references/human-voice.md",
+    "reference": "skills/understand/references/core/writing.md",
     "forbidden_characters": [
       "\u2014",
       "\u2013"

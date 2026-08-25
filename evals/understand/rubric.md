@@ -2,7 +2,7 @@
 
 Score each dimension from 1 to 5. Scores 2 and 4 represent intermediate performance.
 
-A release candidate fails if any dimension scores below 3, the average is below 4.0, or a release blocker occurs. On a decision-critical document, Faithfulness, Epistemic separation, Quantitative integrity, and Traceability must each score at least 4. Critical-claim recall must be 100%.
+A release candidate fails if any dimension scores below 3, the average is below 4.0, a release blocker occurs, or the usefulness gate in [../usefulness-protocol.md](../usefulness-protocol.md) is not met. The usefulness gate is primary: rubric scores explain a failure, they do not replace the session. On a decision-critical document, Faithfulness, Epistemic separation, Quantitative integrity, and Traceability must each score at least 4. Critical-claim recall must be 100%.
 
 ## Evaluation basis
 
@@ -95,13 +95,21 @@ A yes requires revision or omission.
 
 ## 13. Cognitive load and human voice
 
-The packet must cost the reader as little attention as its content allows. Style noise is load: the reader spends effort decoding the writing instead of the claims. Judge against [references/human-voice.md](../../skills/understand/references/human-voice.md).
+The packet must cost the reader as little attention as its content allows. Style noise is load: the reader spends effort decoding the writing instead of the claims. Judge against [references/core/writing.md](../../skills/understand/references/core/writing.md).
 
 - **5:** Reads as if a careful colleague wrote it. One idea per sentence; plain verbs; active voice with named actors; no banned vocabulary, filler, dashes, emoji, or decorative formatting; nothing needs re-reading; formatting appears only where it carries information. A reviewer can absorb the packet in one pass.
 - **3:** Content is clear but the reader pays a style tax: some stacked clauses, an occasional AI-patterned construction or filler phrase, or emphasis formatting that carries no information.
 - **1:** The prose itself is work. Dense bold grids, hedging stacks, "not X but Y" scaffolding, banned vocabulary, or sentences that need re-reading. The packet may be faithful and within budget and still fail here.
 
 Two tests: read a paragraph aloud, and check whether any phrase could appear unchanged in a packet about a different document. A pause or a portable phrase costs a point.
+
+## 14. The run and the follow-up
+
+Judge the transcript against [references/core/execution.md](../../skills/understand/references/core/execution.md).
+
+- **5:** One announce line, silent reading, the brief ending with its held line. A request for the reference analysis or the numbers behind a sentence is answered from the analysis already done, without re-reading.
+- **3:** One diagnostic or visible retry a reader of the transcript can skip; a follow-up answered by re-reading.
+- **1:** Printed source text, scratch drafts, or repeated failures in the transcript; a follow-up not answered or answered by dumping the source.
 
 ## Release blockers
 
@@ -123,7 +131,7 @@ Any one blocks release:
 
 ## Human usefulness check
 
-In a timed review, verify whether a human can quickly state:
+Run [../usefulness-protocol.md](../usefulness-protocol.md). This is the release gate; the dimensions above diagnose why a session failed. In the repeat-back step, verify whether the reader can state:
 
 - the source's purpose and the response or commitment sought;
 - the load-bearing claim chain;

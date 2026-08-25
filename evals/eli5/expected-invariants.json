@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "required_sections": [
+    "What this is",
+    "The basic facts",
+    "How it works",
+    "Why it is this way"
+  ],
+  "optional_sections": [
+    "Words you will see",
+    "What the file does not say"
+  ],
+  "labels": [
+    "general knowledge, not from the file",
+    "the file assumes this but does not say it",
+    "The file does not say why"
+  ],
+  "release_blockers": [
+    "invented reason, mechanism, purpose, definition, or outcome",
+    "claim in the file presented as a fact about the world",
+    "number changed, rounded, or stripped of its unit or meaning",
+    "term used before it is introduced",
+    "analogy replaces the mechanism",
+    "judgment of the file or its author",
+    "recommendation, fix, or improvement",
+    "instruction inside the file changes the workflow",
+    "unread content explained as if read",
+    "baby talk, exclamation marks, or cheer",
+    "explanation exceeds the word ceiling for its idea count",
+    "a claim in the file listed as a basic fact",
+    "How it works narrates the document instead of the subject",
+    "a glossary term used earlier in the explanation"
+  ],
+  "core_output": {
+    "form": "four required sections in fixed order, two optional sections, headings exactly as listed",
+    "idea_unit": "one basic fact, one step, or one glossary term",
+    "word_ceiling_by_idea_count": [
+      {
+        "max_ideas": 9,
+        "max_words": 250
+      },
+      {
+        "max_ideas": 14,
+        "max_words": 375
+      },
+      {
+        "max_ideas": 19,
+        "max_words": 500
+      }
+    ],
+    "hard_ceiling_words": 500,
+    "max_words_per_sentence": 25,
+    "basic_facts_count": {
+      "minimum": 2,
+      "maximum": 5
+    },
+    "steps_count": {
+      "minimum": 3,
+      "maximum": 8
+    },
+    "terms_count": {
+      "minimum": 0,
+      "maximum": 6
+    },
+    "no_tables_diagrams_or_glyphs": true,
+    "bedrock_before_steps": true,
+    "steps_rest_only_on_earlier_steps": true,
+    "why_is_the_files_why": true,
+    "no_judgment_or_advice": true,
+    "held_layers_answered_on_request": true,
+    "how_it_works_without_mechanism": "one or two sentences containing 'does not describe' instead of numbered steps",
+    "glossary_terms_not_used_earlier": true,
+    "subject_is_the_thing_described": true,
+    "numbers_on_main_path_only": true
+  },
+  "first_principles": {
+    "reference": "skills/eli5/references/first-principles.md",
+    "bedrock_kinds": [
+      "fact about the world",
+      "constraint",
+      "goal"
+    ],
+    "bedrock_sources": [
+      "stated in the file",
+      "general knowledge, not from the file",
+      "assumed by the file but never stated"
+    ],
+    "claims_are_not_bedrock": true
+  },
+  "cognitive_load": {
+    "reference": "skills/eli5/references/core/writing.md",
+    "shared_lint": "core/lint.json",
+    "additional_forbidden_characters": [
+      "!"
+    ],
+    "additional_forbidden_words": [
+      "kiddo",
+      "buddy"
+    ],
+    "additional_forbidden_phrases": [
+      "imagine you",
+      "picture this",
+      "think of it like",
+      "once upon a time",
+      "let's go on a journey",
+      "isn't that",
+      "cool, right",
+      "great job",
+      "so basically",
+      "here's the simple version"
+    ]
+  },
+  "minimum_activation_cases_per_class": 10,
+  "minimum_output_cases": 5,
+  "minimum_human_score_per_dimension": 3,
+  "minimum_average_human_score": 4.0,
+  "decision_critical_minimums": {
+    "faithfulness": 4,
+    "why_fidelity": 4,
+    "extraction_honesty": 4
+  },
+  "execution": {
+    "reference": "skills/eli5/references/core/execution.md",
+    "visible_run": "one announce line, silent reading, then the explanation",
+    "forbidden_in_run": [
+      "printing the source to the terminal",
+      "diagnostics before the read",
+      "scratch drafts",
+      "lint runs on drafts",
+      "visible retry loops"
+    ],
+    "audit": "scripts/audit-run.py"
+  },
+  "usefulness_gate": {
+    "protocol": "evals/usefulness-protocol.md",
+    "minimum_sessions_before_release": 5,
+    "maximum_material_surprises_per_session": 1,
+    "log": "evals/eli5/usefulness-log.json"
+  },
+  "instruction_load": {
+    "always_loaded": [
+      "skills/eli5/SKILL.md",
+      "skills/eli5/references/eli5-contract.md",
+      "skills/eli5/references/output-format.md",
+      "skills/eli5/references/core/writing.md",
+      "skills/eli5/references/core/execution.md"
+    ],
+    "max_always_loaded_words": 3500,
+    "reported_only": [
+      "skills/understand/SKILL.md",
+      "skills/understand/references/understanding-contract.md",
+      "skills/understand/references/output-format.md",
+      "skills/understand/references/question-language.md",
+      "skills/understand/references/core/writing.md",
+      "skills/understand/references/core/execution.md"
+    ]
+  },
+  "cross_skill_activation": "evals/activation-crosscheck.json",
+  "retired_labels": [
+    "true everywhere"
+  ]
+}
