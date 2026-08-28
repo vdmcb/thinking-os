@@ -1,6 +1,24 @@
 # Evaluation status
 
-## v1.1.0 internal preview: shared core and the follow-up
+## v2.1.0 internal preview: three stakeholder questions, audited (format v4)
+
+The default output is a scoped Positive, Negative, or Mixed stance on a named object; three answered questions labelled Q1 (state), Q2 (decision), and Q3 (resources or first change); a "Follow-up questions" header with exactly three numbered questions; an "Audited:" line printed only when true; and one source-specific held line for follow-up. The 600-word ceiling stays. The Q-labels that v0.6.0 removed are back on purpose: in a blind trial on four documents (a performance report, a methodology paper, a migration proposal, and a product briefing; sources and outputs not committed), the three-question format was picked 4 of 4 over a question-first format and a Heilmeier catechism, and nothing in the trial showed the labels being read as fiscal quarters.
+
+Changes in 2.1.0, each traced to a defect an independent auditor caught during the trial:
+
+- The audit in step 9 is mandatory and uses an independent agent when the host has one (skills/understand/references/audit-prompt.md). A self-audit passed a correct figure with a reversed causal verb three times; the independent agent caught it.
+- Three rules in step 7: no evaluative adjectives or adverbs (the stance carries the judgement); no "current", "deployed", or "in production" unless the source states it; "recommends" stays a recommendation, and every qualifier and scope word travels with its figure.
+- PDFs are read twice, layout for locators and tables and raw for reading order, after the layout read interleaved a two-column paper mid-sentence. A visibly clipped source is disclosed in the stance line.
+- Inside quotation marks the source's characters win; the dash lint in check-evals.py skips quoted spans.
+
+Evaluation alignment:
+
+- Exemplars 14 and 15 are the format references. Exemplars 01-13 remain contract-behavior references (labels, injection resistance, value-status conflicts).
+- Deterministic lints for exemplars 14 and up: 600-word ceiling; "Stance:", "Q1:", "Q2:", "Q3:", and "## Follow-up questions" with exactly three numbered items; a source-specific "Held:" line; no analyst jargon in questions; no dashes outside quotes; no emoji, banned vocabulary, or dramatic-reveal phrases. expected-invariants.json (schema 8) separates the five default sections from the seven reference-analysis headers.
+- Live trial of the 2.1.0 skill on the four documents above: completed; sources and outputs remain private and are not committed.
+- Still model-judged: materiality of omissions, question fairness, adjective discipline, personification.
+
+## v1.1.0 internal preview: shared core and the follow-up (foundation inherited by v2.1.0)
 
 - The skill now sits on the shared core (`core/`): reading, writing, and execution contracts are copied into the package by `scripts/sync-core.sh` and drift-checked in CI. `references/human-voice.md` is replaced by `references/core/writing.md`; the question-phrasing rules moved to `references/question-language.md`. Behavior is unchanged.
 - Execution contract (core/execution.md): one announce line, silent reading with the file reader, no diagnostics unless the read is empty, no scratch drafts.
@@ -9,7 +27,7 @@
 - Steps 1 and 3 and the large-document procedure now delegate to core/reading.md; `references/large-documents.md` is removed. The description excludes plain explanation for a reader with no background (eli5), and three eli5-shaped prompts were added as negative activation cases. Cross-skill boundary cases live in evals/activation-crosscheck.json.
 - Lint word lists come from core/lint.json plus this skill's additions. Always-loaded instruction text is 7,316 words, reported by the eli5 checker but not gated; reducing it is open work.
 
-## v0.6.0 internal preview: the brief (format v3)
+## v0.6.0 internal preview: the brief (format v3, superseded)
 
 Format v3, shaped by an annotated review of five candidate structures on a live 31-page deck (artifact "Four Packet Shapes"). The default output is now a brief: two or three paragraphs of memo prose that carry the critical path, then "Questions for the author", under a 600-word hard ceiling. No claim-map diagram, no glyph marks, no Q-labels (they read as fiscal quarters), no printed question metadata. Rules added from the review: passed checks are silent; no inherited source shorthand; no document personification; no dramatic reveals; questions are evidence-first ("what real-world fact settles this?") and ask for the author's validation plan and deadline when the evidence does not exist yet.
 

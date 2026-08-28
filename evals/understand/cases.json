@@ -348,7 +348,7 @@
       "id": "long-uniform-report-compression",
       "fixture": "fixtures/14-long-uniform-report.md",
       "expected": "expected/14-long-uniform-report.md",
-      "focus": "Brief compression: a long, uniformly presented source must yield short memo prose that makes the critical path visible without apparatus, unequal treatment of unequal findings, evidence-first questions, and a packet within its word budget.",
+      "focus": "Stakeholder compression: a long, uniformly presented source must yield a scoped stance, three answered stakeholder questions, and three source-specific evidence-first follow-ups within the word budget.",
       "required_literals": [
         "$2.4M",
         "22%",
@@ -359,10 +359,10 @@
         "2024 analyst report"
       ],
       "expected_required_literals": [
-        "Questions for the author",
+        "Follow-up questions",
         "two large commercial contracts",
         "$150,000 contingency",
-        "what is the plan for validating",
+        "validation plan and deadline",
         "accountable for the 22% target"
       ]
     },
@@ -379,10 +379,10 @@
         "can absorb the build"
       ],
       "expected_required_literals": [
-        "Questions for the author",
-        "what is the plan for measuring it",
-        "Raising a topic and requesting a product are different signals",
-        "borrowed"
+        "Follow-up questions",
+        "measurement plan and deadline",
+        "What exactly did the three customers ask for",
+        "vendor case study"
       ]
     }
   ]

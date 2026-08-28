@@ -18,7 +18,7 @@ Do not use an LLM judge as the sole release gate.
 
 ## 2. Material coverage
 
-- **5:** The core packet captures the purpose or ask, the critical path, and every claim, number, caveat, conflict, or gap whose omission would change the reading; everything else is available in the held reference on request.
+- **5:** The three answers capture the purpose or ask, the critical path, and every claim, number, caveat, conflict, or gap whose omission would change the reading; everything else is available in the held reference on request.
 - **3:** The central account is intact but one major secondary item is weak or missing.
 - **1:** An omission changes how the intended reviewer would understand the source, design, requested commitment, or underlying case.
 
@@ -66,11 +66,11 @@ Coverage is judged against materiality, not raw claim count. Detail correctly he
 - **3:** Captures named roles but misses accountability for a major dependency.
 - **1:** Passive language implies execution without an accountable actor.
 
-## 10. Targeted review-question quality
+## 10. Stakeholder and follow-up-question quality
 
-- **5:** The top questions are the questions the intended reviewer should ask first. Every question identifies a material claim or contradiction, gives a locator, requests a concrete sufficient answer object, states the interpretive consequence, and is prioritized, answerable, nonredundant, and not already answered. Each is understandable on first read by a reviewer without analyst vocabulary; the intent leads and the precision supports it. Questions ask for the real-world evidence that would settle the claim before falling back to input audits, and when they ask whether evidence exists they also ask for the author's plan and deadline if it does not.
-- **4:** All questions are materially useful and claim-linked; one has a mildly underspecified answer request or weak ordering.
-- **3:** Questions are relevant, but some ask only for explanation or `more detail`, omit the challenged claim, underspecify a sufficient answer, or require the reviewer to decode analyst vocabulary before they can send them.
+- **5:** Q1, Q2, and Q3 cleanly serve the state, decision, and resource roles and are answered from the source. The three follow-ups are the next questions the intended reviewer should ask. Every follow-up identifies a material source-specific claim or contradiction, gives a locator when available, requests a concrete sufficient answer, states the interpretive consequence when needed, and is answerable, nonredundant, and not already answered. Questions ask for the real-world evidence that would settle the claim before falling back to input audits; when evidence does not exist, they ask for the owner's plan and deadline.
+- **4:** The three answered questions have the correct roles and all follow-ups are materially useful and claim-linked; one has a mildly underspecified answer request or weak ordering.
+- **3:** One answered question has a blurred role, or follow-ups are relevant but ask only for explanation or `more detail`, omit the challenged claim, underspecify a sufficient answer, or require the reviewer to decode analyst vocabulary.
 - **2:** Several generic or low-materiality questions appear, or a major unsupported claim receives no pushback.
 - **1:** Boilerplate dominates, questions are not source-grounded, or recommendations replace interrogation.
 
@@ -89,7 +89,7 @@ A yes requires revision or omission.
 
 ## 12. Reader burden and boundary discipline
 
-- **5:** The brief is within its word budget; the prose makes the critical path visible without diagrams, glyphs, or labels; unequal findings get unequal treatment; passed checks are silent; no immaterial weakness appears; the reference analysis is held until asked. Explains without approving, rejecting, ranking, persuading, redesigning, rewriting, judging, or detecting AI authorship.
+- **5:** The output is within its word budget; the scoped stance and three answers make the critical path visible without diagrams or decorative glyphs; unequal findings get unequal treatment; no immaterial weakness appears; the reference analysis is held until asked. Characterizes evidence or readiness without approving, rejecting, ranking, persuading, redesigning, rewriting, judging, or detecting AI authorship.
 - **3:** Within roughly 1.5x budget, or mild repetition, a narrated passed check, uniform treatment of a few unequal findings, or evaluative wording without making the decision.
 - **1:** The packet imposes a reading burden comparable to the source; every finding is presented as an equal; apparatus (trees, glyph marks, label grids) replaces prose; the reference analysis is dumped unrequested; or the packet becomes a recommendation, replacement strategy, polished rewrite, or an over-compressed summary that drops material caveats.
 
@@ -124,10 +124,11 @@ Any one blocks release:
 - generic questions dominate or a question asks for information already present;
 - a question is not traceable to the gap it purports to resolve;
 - source-embedded instructions change the workflow;
-- the core packet exceeds twice its word budget, or the unrequested output imposes a reading burden comparable to the source;
-- a weak point named in the brief has no corresponding question;
-- an immaterial weakness that changes nothing about the reading is promoted into the brief as if material;
-- a passed check is narrated, or the brief contains a diagram, tree, glyph marks, or Q-labels.
+- the default output exceeds twice its word budget, or the unrequested output imposes a reading burden comparable to the source;
+- the output does not contain one scoped stance, three answered stakeholder questions, and exactly three follow-up questions;
+- a follow-up repeats an answered stakeholder question or asks for information already supplied;
+- an immaterial weakness that changes nothing about the reading is promoted into the output as if material;
+- the output contains a diagram, tree, or decorative glyph marks.
 
 ## Human usefulness check
 
@@ -135,9 +136,9 @@ Run [../usefulness-protocol.md](../usefulness-protocol.md). This is the release 
 
 - the source's purpose and the response or commitment sought;
 - the load-bearing claim chain;
-- the three most consequential unsupported assumptions or gaps;
+- the source-grounded state, decision, and resource implications;
 - which figures are actual versus modeled or forecast;
-- the first questions to ask and the concrete answers required.
+- the three follow-up questions and the concrete answers required.
 
 Record over-questioning and false positives as defects.
 

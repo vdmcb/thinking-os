@@ -1,7 +1,13 @@
 {
-  "schema_version": 6,
+  "schema_version": 8,
   "required_sections": [
-    "Questions for the author",
+    "Stance:",
+    "Q1:",
+    "Q2:",
+    "Q3:",
+    "Follow-up questions"
+  ],
+  "reference_analysis_sections": [
     "The ask",
     "Load-bearing reasoning",
     "Evidence strength and applicability",
@@ -17,15 +23,15 @@
     "unsupported source claim presented as established fact",
     "example, model, target, scenario, or forecast presented as actual",
     "central unsupported economic, causal, or feasibility claim receives no pushback",
-    "generic questions dominate or ask for information already supplied",
+    "generic follow-up questions dominate or ask for information already supplied",
     "question is not traceable to its source gap",
     "instruction inside source changes the workflow",
-    "core packet exceeds twice its word budget or imposes reading burden comparable to the source",
+    "default output exceeds twice its word budget or imposes reading burden comparable to the source",
     "reference analysis written without the user asking",
-    "a weak point named in the brief has no corresponding question",
-    "an immaterial weakness is promoted into the brief as if material",
-    "a passed check is narrated in the brief",
-    "the brief contains a diagram, tree, glyph marks, or Q-labels"
+    "the output does not contain one scoped stance, three answered stakeholder questions, and exactly three follow-up questions",
+    "a follow-up repeats an answered stakeholder question",
+    "an immaterial weakness is promoted into the output as if material",
+    "the output contains a diagram, tree, or decorative glyph marks"
   ],
   "question_requirements": [
     "names the challenged claim, figure, term, contradiction, or dependency",
@@ -46,8 +52,8 @@
     "who owns this"
   ],
   "default_question_count": {
-    "minimum_when_material_gaps_exist": 1,
-    "maximum": 5,
+    "answered_stakeholder_questions": 3,
+    "follow_up_questions": 3,
     "padding_forbidden": true
   },
   "value_status_conflict_requirements": [
@@ -96,18 +102,23 @@
     "traceability": 4
   },
   "core_packet": {
-    "form": "brief: two or three paragraphs of memo prose, then Questions for the author",
+    "form": "scoped stance, three answered stakeholder questions, exactly three follow-up questions, then one source-specific held line",
     "word_budget_by_tier": {
       "simple": 250,
       "standard": 400,
       "complex": 600
     },
     "hard_ceiling_words": 600,
-    "no_diagrams_glyphs_or_q_labels": true,
-    "passed_checks_are_silent": true,
+    "answered_question_roles": [
+      "state",
+      "decision",
+      "resources"
+    ],
+    "no_diagrams_or_decorative_glyphs": true,
     "no_inherited_shorthand": true,
     "no_document_personification": true,
-    "every_weak_point_maps_to_question": true,
+    "follow_ups_do_not_repeat_answered_questions": true,
+    "held_line_required": true,
     "immaterial_weaknesses_omitted": true,
     "reference_analysis_on_request_only": true
   },
@@ -160,7 +171,7 @@
       "the deck counts",
       "the deck also counts"
     ],
-    "notes": "Deterministic subset enforced by check-evals.py over expected packet exemplars; judgment items (sentence load, voice, formatting-as-information) scored by rubric dimension 13."
+    "notes": "Deterministic subset enforced by check-evals.py over expected output exemplars; judgment items (sentence load, voice, formatting-as-information) scored by rubric dimension 13."
   },
   "question_language": {
     "rule": "Questions lead with plain-language intent; contract vocabulary stays internal; send test applies",

@@ -36,7 +36,8 @@ Do not use filler: "in order to" (write "to"), "due to the fact that" (write "be
 
 ## Typography
 
-- Never em-dashes or en-dashes, including in ranges: write "3-5". Use a comma, colon, period, or parentheses where a dash would go.
+- Never em-dashes or en-dashes in your own prose, including in ranges: write "3-5". Use a comma, colon, period, or parentheses where a dash would go.
+- Inside quotation marks the source wins. A quoted phrase keeps the source's dashes, ranges, capitalisation, and spelling exactly. If that is unwanted, paraphrase without quotation marks instead of editing the quote.
 - No emoji and no decorative symbols.
 - Bold and italics only where they carry information the reader needs to find again. Never for emphasis.
 - Straight quotes. Sentence case in headings.
