@@ -114,7 +114,8 @@ def main() -> int:
     audit = invariants.get("audit", {})
     require(audit.get("independent_agent_required") is True, "Invariants must require an independent audit agent")
     require(audit.get("max_rounds") == 3, "Audit rounds must be capped at three")
-    for literal in ("after the third round",):
+    ordinal = {1: "first", 2: "second", 3: "third"}[audit["max_rounds"]]
+    for literal in (f"after the {ordinal} round", "deletion"):
         require(literal in skill, f"Audit round cap is undocumented in SKILL.md: {literal}")
         require(literal in audit_text, f"Audit round cap is undocumented in audit-prompt.md: {literal}")
 

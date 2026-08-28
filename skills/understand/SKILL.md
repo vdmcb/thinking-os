@@ -147,7 +147,7 @@ The audit checks:
 - all three follow-up questions for materiality, specificity, answerability, and non-duplication;
 - the stance for a named scope and source-grounded support.
 
-Fix every unsupported statement, misquote, stretch, direction error, dropped qualifier, caveat omission, evaluative word, and invented status. After any fix, audit the corrected draft again. Stop when a round returns no findings, or after the third round: a strict auditor can always find one more qualifier, and in trials an uncapped loop ran nine rounds without converging. After the third round, fix what it found, print the `Audited:` line with that round's counts, and do not claim a clean round.
+Fix every unsupported statement, misquote, stretch, direction error, dropped qualifier, caveat omission, evaluative word, and invented status. After any fix, audit the corrected draft again. Stop when a round returns no findings, or after the third round: a strict auditor can always find one more qualifier, and in trials an uncapped loop ran nine rounds without converging. In the third round the only permitted fixes are deletion and downgrade: cut the sentence, or replace the claim with `Not stated`; do not re-source or rewrite it. The output ships only when the final round reports zero unsupported statements and zero misquotes, and the `Audited:` line carries that round's counts.
 
 ### 10. Produce the output
 

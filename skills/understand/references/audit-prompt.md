@@ -49,6 +49,6 @@ Be strict. Prefer a false alarm to a missed error.
 
 ## After the audit
 
-Fix every item in categories 1 through 10. Re-check every quoted phrase by searching the whitespace-collapsed source. Then run the audit again on the corrected draft. Stop when a round returns no items in categories 1 through 9, or after the third round. Run at most three rounds: if the third still returns items, fix them and print the `Audited:` line with the third round's counts rather than running a fourth. Category 10 items must be removed, quoted, or attributed.
+Fix every item in categories 1 through 10. Re-check every quoted phrase by searching the whitespace-collapsed source. Then run the audit again on the corrected draft. Stop when a round returns no items in categories 1 through 9, or after the third round. Run at most three rounds. In the third round resolve every remaining item by deletion or downgrade only (cut the sentence, or replace the claim with "Not stated"); do not re-source or rewrite. The output ships only when the final round reports zero items in categories 1 and 2, and the `Audited:` line carries that round's counts; never run a fourth round. Category 10 items must be removed, quoted, or attributed.
 
 Print the `Audited:` line in the output only with the counts from the final round.
