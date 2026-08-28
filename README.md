@@ -63,6 +63,23 @@ Two more checks keep the framework honest with itself. `scripts/check-eli5-evals
 
 This repository is private. Installation currently requires GitHub access to `vdmcb/thinking-os`.
 
+### Claude Cowork and Claude Code (plugin marketplace)
+
+The repository is a plugin marketplace: `.claude-plugin/marketplace.json` serves a single `thinking-os` plugin that bundles both skills.
+
+In Claude Cowork, open **Customize → Plugins → Add marketplace** and enter `vdmcb/thinking-os`, then install the **Thinking OS** plugin. Click **Update** on the marketplace to pull new releases.
+
+Team and Enterprise organizations can instead sync the marketplace for everyone: an owner adds the repository under **Organization settings → Plugins → Add plugins → GitHub** (the Claude GitHub App must be installed on the repository). With "Sync automatically" enabled, the marketplace re-syncs when a pull request that bumps the plugin version merges to `main`; see `CHANGELOG.md` for the release procedure.
+
+In Claude Code:
+
+```text
+/plugin marketplace add vdmcb/thinking-os
+/plugin install thinking-os@thinking-os
+```
+
+Plugin-installed skills are namespaced, e.g. `/thinking-os:understand`; description-based activation is unchanged.
+
 ### Claude Code and Codex
 
 ```bash
@@ -164,6 +181,7 @@ AnyDoc does not OCR scanned or image-only PDFs. In those cases, the agent may us
 ## Repository structure
 
 ```text
+.claude-plugin/          Plugin marketplace and plugin manifests (Claude Cowork and Claude Code)
 core/                    Shared reading, writing, and execution contracts, and the extraction helper
 skills/understand/       Portable skill package: Understand (core copied in)
 skills/eli5/             Portable skill package: ELI5 (core copied in)

@@ -1,0 +1,16 @@
+{
+  "name": "thinking-os",
+  "description": "Thinking OS marketplace: disciplined reasoning skills packaged as a single plugin, synced from the vdmcb/thinking-os repository.",
+  "owner": {
+    "name": "vdmcb",
+    "url": "https://github.com/vdmcb"
+  },
+  "plugins": [
+    {
+      "name": "thinking-os",
+      "source": "./",
+      "description": "Portable cognitive skills for capable AI agents: Understand 2.1 (audited stakeholder brief) and ELI5 0.3 (first-principles explanation).",
+      "version": "0.1.0"
+    }
+  ]
+}
