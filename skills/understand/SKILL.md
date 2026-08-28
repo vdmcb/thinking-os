@@ -12,7 +12,7 @@ description: >-
 license: Proprietary internal preview; see LICENSE
 metadata:
   author: thinking-os
-  version: "2.0.0"
+  version: "2.1.0"
 ---
 
 # Understand
@@ -48,13 +48,14 @@ Identify the source type, title, visible structure, and stable locators. Confirm
 
 Resolve `<skill-root>` as the directory containing this `SKILL.md`. Do not assume the caller is inside the Thinking OS repository.
 
-For PDFs, preserve physical pages:
+For PDFs, read the text twice:
 
 ```bash
-pdftotext -layout INPUT.pdf OUT.txt
+pdftotext -layout INPUT.pdf OUT-layout.txt
+pdftotext INPUT.pdf OUT-raw.txt
 ```
 
-The form feed separates pages. If a load-bearing chart, matrix, diagram, or multi-series figure does not retain an unambiguous value-to-label mapping, render the affected page and inspect it directly:
+Use the layout read for page locators and tables. Use the raw read for reading order and for quotation; on a two-column page the layout read interleaves the columns mid-sentence. In both reads the form feed separates pages. If a load-bearing chart, matrix, diagram, or multi-series figure does not retain an unambiguous value-to-label mapping, render the affected page and inspect it directly:
 
 ```bash
 pdftoppm -png -r 70 -f PAGE -l PAGE INPUT.pdf OUTPREFIX
@@ -76,6 +77,8 @@ For scanned or image-only sources, use reliable host-native OCR or vision when a
 Compare the read content with the source inventory. Look for absent sections, skipped pages, missing notes, incoherent tables, charts without mapped values, spreadsheet formulas without displayed values or units, abrupt endings, parser warnings, or truncation.
 
 For a source too large to read safely in one pass, follow [references/large-documents.md](references/large-documents.md). Never silently truncate.
+
+If the source itself is visibly clipped or truncated, for example a browser print cut at the right margin or a table that ends mid-row, say so in the stance line, quote only text that is intact, and add `Status: Incomplete.` when the missing text could change an answer. Do not ask the author to explain a gap caused by the copy you were given.
 
 ### 3. Build a fact and evidence ledger
 
@@ -122,15 +125,17 @@ Choose **Positive**, **Negative**, or **Mixed** on a named object.
 
 ### 7. Answer from the source
 
-Answer each of the three stakeholder questions with the smallest set of facts needed to make the answer auditable.
+Answer each of the three stakeholder questions with the smallest set of facts needed to make the answer auditable. For each figure and claim, find the source sentence and carry its verb, its subject and object, and its qualifiers into the answer together; do not reassemble them from memory.
 
 1. Every factual statement, number, comparative, and quoted phrase must exist in the source or be a transparent calculation from visible inputs.
-2. Carry every qualifier and scope word. Preserve whether a measure applies to one environment, population, model, condition, or period.
-3. Preserve causal verbs and direction of effect. `Closes`, `accounts for`, `causes`, `improves`, and `correlates with` are not interchangeable.
+2. Carry every qualifier and scope word: `about`, `partly`, `only`, `directly`, `in practice`, `typical`, and which environment, population, model, batch, condition, or period a measure applies to. A figure without its qualifier is a different claim.
+3. Preserve causal verbs and direction of effect. `Closes`, `accounts for`, `causes`, `improves`, and `correlates with` are not interchangeable. Keep the subject, object, and sign of every causal or comparative claim: X reduces Y is not Y reduces X, A outperforms B is not B outperforms A, and an increase is not a decrease.
 4. Use `Not stated`, `Not measured`, or `Unresolved` when appropriate.
 5. Preserve caveats attached to a negative finding or proposed action.
-6. Attribute recommendations to the source. Do not turn them into your own recommendation.
+6. Attribute recommendations to the source. Do not turn them into your own recommendation, and do not turn `recommends` into a mandate: `the source recommends X` is not `X must happen`.
 7. Do not repeat the same claim, number, or gap across answers unless the repeated fact is necessary to understand two different decisions.
+8. No evaluative adjectives or adverbs of your own in the answers. The stance label carries the judgement; the answers carry facts. `Invalid`, `proven`, `fine`, `strong`, `clearly`, and `significant` are out unless they are quoted from the source or attributed to it (`the paper calls the gain substantial`). Comparatives are allowed only where the source measures them.
+9. Deployment and adoption status comes from the source or is not stated, in both directions. Do not upgrade an experiment to something `current`, `deployed`, `live`, or `in production`; do not downgrade a stated deployment to a proposal; keep the source's own hedge (`is piloting`, `plans to`). Where the source is silent, write `release status not stated`.
 
 ### 8. Generate exactly three follow-up questions
 
@@ -153,11 +158,11 @@ Generate evidence-first: ask for the real-world fact that would settle the claim
 
 The section always contains three questions. For a source with no material defect, use the most consequential unresolved boundary, generalization limit, or next validation question rather than inventing a weakness.
 
-### 9. Audit in a separate pass
+### 9. Audit with an independent agent
 
-Reread the source against the draft line by line. When an independent agent is available and appropriate, it may perform this audit; otherwise do it as a distinct self-audit.
+The audit is not optional. When the host can spawn a subagent, spawn one with [references/audit-prompt.md](references/audit-prompt.md), the complete source, and the draft. The author of a draft does not see its own dropped qualifiers: in trials, a self-audit passed a correct figure with a reversed causal verb three times and the independent agent caught it on the first pass. Only when no subagent is available, run the same prompt yourself as a separate pass that rereads the source against the draft line by line.
 
-Check:
+The audit checks:
 
 - every factual statement and number for support, scope, and qualifiers;
 - every quoted phrase for exact wording after whitespace normalization;
@@ -165,10 +170,12 @@ Check:
 - question fairness and whether the source actually bears on each question;
 - every `Not stated`, `Not measured`, and `Unresolved` claim in both directions;
 - every proposed stop, start, release, or resource change for an omitted caveat;
+- every adjective or adverb that judges instead of reports;
+- every `current`, `deployed`, or `in production` for source support, and every required action for a source that only recommends it;
 - all three follow-up questions for materiality, specificity, answerability, and non-duplication;
 - the stance for a named scope and source-grounded support.
 
-Fix every unsupported statement, misquote, stretch, direction error, dropped qualifier, and caveat omission. If the first audit finds an error, audit the corrected draft again.
+Fix every unsupported statement, misquote, stretch, direction error, dropped qualifier, caveat omission, evaluative word, and invented status. After any fix, audit the corrected draft again; stop only when a round returns no findings.
 
 ### 10. Produce the output
 
@@ -187,6 +194,8 @@ Before responding, verify:
 - The stance is Positive, Negative, or Mixed on a named object and does not make the user's decision.
 - Q1, Q2, and Q3 serve the state, decision, and resource roles.
 - Each answer comes from the source and preserves material numbers, qualifiers, caveats, and conflicts.
+- No adjective or adverb judges what the stance already labels, and no release or deployment status appears that the source does not state.
+- The audit ran with an independent agent, or the fallback self-audit is the reason it did not.
 - The output contains exactly three follow-up questions.
 - Each follow-up is source-specific, material, concrete, locatable when possible, and not already answered.
 - No missing fact, mechanism, owner, confidence, or conclusion was invented.
@@ -203,17 +212,11 @@ The brief is the first move. When the reader asks for the reference analysis, th
 
 ## Progressive references
 
-<<<<<<< HEAD
 - [references/core/reading.md](references/core/reading.md): how the source is read and what may be claimed about it. Load before step 2.
 - [references/core/execution.md](references/core/execution.md): the visible run and the follow-up. Load before step 2.
 - [references/core/writing.md](references/core/writing.md): reader burden and human-voice rules. Load before producing output.
 - [references/question-language.md](references/question-language.md): how questions are phrased for the reviewer and the author. Load before step 7.
 - [references/understanding-contract.md](references/understanding-contract.md): normative transformations and boundaries. Always load.
 - [references/output-format.md](references/output-format.md): required Understanding Packet structure. Load before output.
-=======
-- [references/understanding-contract.md](references/understanding-contract.md): normative transformations and truth boundaries. Always load.
-- [references/output-format.md](references/output-format.md): exact default and optional output structures. Load before output.
-- [references/large-documents.md](references/large-documents.md): coverage-ledger workflow. Load for large or multi-part sources.
-- [references/human-voice.md](references/human-voice.md): writing rules. Load before producing output.
->>>>>>> 89ffb0b (understand: v2.0.0 three-stakeholder-questions format)
+- [references/audit-prompt.md](references/audit-prompt.md): the prompt for the independent audit agent. Load at step 9.
 - [references/examples.md](references/examples.md): good and bad patterns. Load when behavior is ambiguous or when evaluating output quality.
