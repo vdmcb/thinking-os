@@ -1,11 +1,13 @@
 {
-  "schema_version": 7,
+  "schema_version": 8,
   "required_sections": [
     "Stance:",
     "Q1:",
     "Q2:",
     "Q3:",
-    "Follow-up questions",
+    "Follow-up questions"
+  ],
+  "reference_analysis_sections": [
     "The ask",
     "Load-bearing reasoning",
     "Evidence strength and applicability",

@@ -62,14 +62,28 @@ def main() -> int:
             )
 
     required_sections = invariants.get("required_sections", [])
-    require(len(required_sections) >= 8, "Understand must define the default and reference sections")
+    require(
+        len(required_sections) >= 5,
+        "required_sections must define the five default-output sections",
+    )
 
     skill = (ROOT / "skills" / "understand" / "SKILL.md").read_text(encoding="utf-8")
     output_format = (ROOT / "skills" / "understand" / "references" / "output-format.md").read_text(encoding="utf-8")
     for section in required_sections:
         require(
             section in skill or section in output_format,
-            f"Required section is undocumented: {section}",
+            f"required_sections entry is undocumented: {section}",
+        )
+
+    reference_analysis_sections = invariants.get("reference_analysis_sections", [])
+    require(
+        len(reference_analysis_sections) >= 7,
+        "reference_analysis_sections must define the seven optional reference-analysis headers",
+    )
+    for section in reference_analysis_sections:
+        require(
+            section in output_format,
+            f"reference_analysis_sections entry is undocumented in output-format.md: {section}",
         )
 
     question_requirements = invariants.get("question_requirements", [])
@@ -88,6 +102,14 @@ def main() -> int:
     for literal in ("read-aloud test", "One idea per sentence", "chatbot residue"):
         require(literal in voice_text, f"Human-voice rule is undocumented: {literal}")
 
+    audit_prompt = ROOT / "skills" / "understand" / "references" / "audit-prompt.md"
+    require(audit_prompt.is_file(), f"Missing audit-prompt reference: {audit_prompt}")
+    audit_text = audit_prompt.read_text(encoding="utf-8")
+    for literal in ("SUPPORTED", "UNSUPPORTED", "STRETCH", "MISQUOTE", "direction"):
+        require(literal in audit_text, f"Audit verdict vocabulary is undocumented: {literal}")
+    for literal in ("audit-prompt.md", "evaluative", "in production"):
+        require(literal in skill, f"Audit stage is undocumented in SKILL.md: {literal}")
+
     # Deterministic cognitive-load lint over every expected output exemplar.
     # Exemplars teach the format; an AI-patterned exemplar would teach the
     # pattern. Fixtures are exempt: they simulate the documents under review
@@ -103,8 +125,14 @@ def main() -> int:
     for exemplar in sorted((EVAL / "expected").glob("*.md")):
         text = exemplar.read_text(encoding="utf-8")
         low = text.lower()
+        # Quoted source text is verbatim by contract (see references/human-voice.md),
+        # so forbidden characters are exempt inside straight double-quoted spans.
+        outside_quotes = re.sub(r'"[^"\n]*?"', "", text)
         for ch in forbidden_chars:
-            require(ch not in text, f"{exemplar.name}: forbidden character {ch!r} (cognitive-load lint)")
+            require(
+                ch not in outside_quotes,
+                f"{exemplar.name}: forbidden character {ch!r} outside quoted text (cognitive-load lint)",
+            )
         for word in forbidden_words:
             require(
                 not re.search(rf"\b{re.escape(word)}\b", low),
@@ -112,9 +140,8 @@ def main() -> int:
             )
         for phrase in forbidden_phrases:
             require(phrase not in low, f"{exemplar.name}: forbidden phrase {phrase!r} (cognitive-load lint)")
-        stripped = text.replace("\u2713", "")  # the claim map's functional check mark is allowed
         require(
-            not emoji_re.search(stripped),
+            not emoji_re.search(text),
             f"{exemplar.name}: emoji or decorative symbol (cognitive-load lint)",
         )
 
