@@ -16,6 +16,7 @@ npx -y skills@1.5.23 add "$repo_root" --list
 
 printf '\n%s\n' '== Plugin marketplace =='
 python3 scripts/check-plugin.py
+python3 tests/test-check-plugin.py
 if command -v claude >/dev/null 2>&1; then
   claude plugin validate . --strict
   # The repo root doubles as the plugin root, so the CLI warns that CLAUDE.md is
@@ -43,7 +44,7 @@ for script in core/scripts/*.sh skills/*/scripts/*.sh tests/*.sh scripts/*.sh; d
   bash -n "$script"
   printf 'OK: %s\n' "$script"
 done
-python3 -m py_compile scripts/check-evals.py scripts/check-eli5-evals.py scripts/check-activation.py scripts/check-plugin.py scripts/audit-run.py tests/generate-document-fixtures.py
+python3 -m py_compile scripts/check-evals.py scripts/check-eli5-evals.py scripts/check-activation.py scripts/check-plugin.py scripts/audit-run.py tests/generate-document-fixtures.py tests/test-check-plugin.py
 printf 'OK: Python syntax\n'
 
 if command -v shellcheck >/dev/null 2>&1; then

@@ -14,15 +14,18 @@ NAME_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+$")
 RESERVED_NAMES = {
     "claude-code-marketplace",
+    "claude-code-plugins",
     "claude-plugins-official",
     "anthropic-marketplace",
     "anthropic-plugins",
     "agent-skills",
+    "knowledge-work-plugins",
+    "life-sciences",
     "first-party-plugins",
 }
 
 
-def load(path: Path) -> dict:
+def load(path: Path) -> object:
     try:
         return json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
@@ -34,14 +37,15 @@ def require(condition: bool, message: str) -> None:
         raise SystemExit(message)
 
 
-def field(obj: dict, key: str, context: str):
+def field(obj: dict, key: str, context: str) -> object:
     value = obj.get(key)
     require(value is not None, f"{context}: missing required field {key!r}")
     return value
 
 
-def check_name(name: str, context: str) -> None:
-    require(bool(NAME_RE.match(name)), f"{context}: name {name!r} must be lowercase kebab-case")
+def check_name(name: object, context: str) -> None:
+    require(isinstance(name, str), f"{context}: name must be a string")
+    require(bool(NAME_RE.fullmatch(name)), f"{context}: name {name!r} must be lowercase kebab-case")
     require(len(name) <= 64, f"{context}: name {name!r} exceeds 64 characters")
     require(name not in RESERVED_NAMES, f"{context}: name {name!r} is reserved by Anthropic")
 
@@ -52,14 +56,21 @@ def main() -> int:
     require(isinstance(plugin, dict), "plugin.json: must be a JSON object")
     require(isinstance(marketplace, dict), "marketplace.json: must be a JSON object")
 
-    check_name(field(plugin, "name", "plugin.json"), "plugin.json")
-    require(SEMVER_RE.match(plugin.get("version", "")) is not None,
+    plugin_name = field(plugin, "name", "plugin.json")
+    check_name(plugin_name, "plugin.json")
+    plugin_version = field(plugin, "version", "plugin.json")
+    require(isinstance(plugin_version, str) and SEMVER_RE.fullmatch(plugin_version) is not None,
             "plugin.json: version must be plain semver (MAJOR.MINOR.PATCH)")
-    require(bool(plugin.get("description", "").strip()), "plugin.json: needs a description")
+    plugin_description = field(plugin, "description", "plugin.json")
+    require(isinstance(plugin_description, str) and bool(plugin_description.strip()),
+            "plugin.json: description must be a non-empty string")
 
     check_name(field(marketplace, "name", "marketplace.json"), "marketplace.json")
-    require(bool(marketplace.get("owner", {}).get("name", "").strip()),
-            "marketplace.json: owner.name is required")
+    owner = field(marketplace, "owner", "marketplace.json")
+    require(isinstance(owner, dict), "marketplace.json: owner must be an object")
+    owner_name = field(owner, "name", "marketplace.json owner")
+    require(isinstance(owner_name, str) and bool(owner_name.strip()),
+            "marketplace.json: owner.name must be a non-empty string")
     entries = field(marketplace, "plugins", "marketplace.json")
     require(isinstance(entries, list) and all(isinstance(e, dict) for e in entries),
             "marketplace.json: plugins must be an array of objects")
@@ -81,10 +92,13 @@ def main() -> int:
         manifest = plugin_root / ".claude-plugin" / "plugin.json"
         require(manifest.is_file(), f"{name}: no plugin manifest at {manifest.relative_to(ROOT)}")
         manifest_data = load(manifest)
+        require(isinstance(manifest_data, dict), f"{name}: plugin manifest must be a JSON object")
         require(manifest_data.get("name") == name,
                 f"{name}: marketplace entry name does not match plugin.json name {manifest_data.get('name')!r}")
         if "version" in entry:
             manifest_version = manifest_data.get("version")
+            require(isinstance(entry["version"], str) and SEMVER_RE.fullmatch(entry["version"]) is not None,
+                    f"{name}: marketplace version must be plain semver (MAJOR.MINOR.PATCH)")
             require(entry["version"] == manifest_version,
                     f"{name}: marketplace version {entry['version']!r} drifted from plugin.json {manifest_version!r}; "
                     "Cowork auto-sync fires on version bumps, so both must move together")
@@ -100,8 +114,8 @@ def main() -> int:
     stray = sorted(d.name for d in skills_dir.iterdir() if d.is_dir() and not (d / "SKILL.md").is_file())
     require(not stray, f"skills/ contains directories without SKILL.md that would ship broken: {stray}")
 
-    print(f"OK: marketplace {marketplace['name']!r} serves plugin {plugin['name']!r} "
-          f"v{plugin['version']} with skills: {', '.join(shipped)}")
+    print(f"OK: marketplace {marketplace['name']!r} serves plugin {plugin_name!r} "
+          f"v{plugin_version} with skills: {', '.join(shipped)}")
     return 0
 
 
