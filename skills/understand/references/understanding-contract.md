@@ -4,7 +4,7 @@ This contract defines what Understand may and may not do.
 
 ## Objective
 
-Construct a faithful, plain-language model of the source's meaning, purpose or requested response, and load-bearing reasoning. Reduce presentation complexity without reducing epistemic honesty. Give the reviewer precise information requests that make material claims understandable and testable without deciding or designing for them.
+Construct a faithful, plain-language account of the source through the three questions a stakeholder needs answered first: the state of the matter, the decision it bears on, and the resource or first-change implication. Add three precise follow-up questions that make the most consequential unresolved claims understandable and testable. Reduce presentation complexity without reducing epistemic honesty or making the user's decision.
 
 ## The binding constraint: reader burden
 
@@ -15,7 +15,7 @@ Two rules follow, and they bind every other instruction in this skill:
 1. **The packet must cost materially less to read than the source.** If a reviewer would need roughly as long to absorb the packet as to read the source, the packet is a defect. Coverage that no one reads protects nobody.
 2. **Materiality ranking is part of faithfulness.** A source's findings are not equally consequential. Presenting a minor observation with the same prominence, structure, and word count as a decisive one misrepresents the source just as surely as omitting a caveat does. Uniform treatment of unequal findings is an epistemic error, not a stylistic one.
 
-Write for a reviewer who will stop reading the moment they have enough. The core packet carries the critical path of understanding (the claim structure that, if not understood, makes everything else fall apart) and routes every material unclarity into a question. Supporting detail (evidence tables, reconciliations, full epistemic labeling) is analyzed at full precision but **held**: produce it only when the user asks. Held is not hidden: material incompleteness, caveats, and conflicts that change the reading always surface in the core packet.
+Write for a reviewer who will stop reading the moment they have enough. The default output carries the critical path of understanding through the scoped stance and three answered questions, then routes the three most consequential unresolved items into follow-ups. Supporting detail (evidence tables, reconciliations, full epistemic labeling) is analyzed at full precision but **held**: produce it only when the user asks. Held is not hidden: material incompleteness, caveats, and conflicts that change the reading always surface in the default output.
 
 Compression is not achieved by deleting caveats, numbers, conflicts, or uncertainty. It is achieved by ranking, consolidating, tabulating, and refusing to elaborate on what does not change the reader's understanding. When a genuine conflict arises between brevity and a material caveat, keep the caveat and cut elsewhere.
 
@@ -34,6 +34,7 @@ Understand is for any human carrying the review burden created by polished or AI
 - Identify ambiguity, undefined terms, missing causal links, non-comparable alternatives, ownership gaps, and unanswered questions.
 - Convert material source gaps into claim-linked requests for concrete information needed to test the source's meaning or reasoning.
 - Quote or paraphrase a source recommendation as an attributed source claim.
+- Assign a scoped Positive, Negative, or Mixed stance to the source-grounded state of evidence, performance, readiness, or completeness without converting that stance into approval, rejection, or advice.
 
 ## Prohibited transformations
 
@@ -152,9 +153,9 @@ Preserve when material:
 
 Preservation is an obligation about content, not about word count. A caveat preserved in a compressed table is preserved. Meeting these rules by expanding the packet rather than by ranking and consolidating is a failure of this contract, not compliance with it.
 
-## Review-question boundary
+## Follow-up-question boundary
 
-Targeted questioning is allowed only to resolve or test the source's own meaning and reasoning. Depending on the material, this can include executive commitments, technical correctness, interfaces, failure modes, security, delivery feasibility, operational ownership, evidence, or policy interpretation. It must:
+The default output contains exactly three targeted follow-up questions. They are allowed only to resolve or test the source's own meaning and reasoning. Depending on the material, this can include executive commitments, technical correctness, interfaces, failure modes, security, delivery feasibility, operational ownership, evidence, or policy interpretation. Each must:
 
 - challenge a named material claim, number, contradiction, term, or dependency;
 - request a concrete and inspectable answer object;
@@ -162,6 +163,8 @@ Targeted questioning is allowed only to resolve or test the source's own meaning
 - avoid recommending a remedy or preferred decision.
 
 A question such as `Shouldn't the team run a smaller pilot?` is a disguised recommendation. A valid alternative asks for the evidence, threshold, or model required to understand the source's current pilot claim.
+
+The three follow-ups must not repeat the state, decision, and resource questions already answered in the default output. If the source has no material defect, use its most consequential unresolved boundary, generalization limit, or next validation question rather than inventing a weakness.
 
 ## Source reasoning versus private reasoning
 

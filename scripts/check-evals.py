@@ -62,14 +62,30 @@ def main() -> int:
             )
 
     required_sections = invariants.get("required_sections", [])
-    require(len(required_sections) >= 8, "Understanding Packet must define at least eight required sections")
+    require(
+        len(required_sections) >= 5,
+        "required_sections must define the five default-output sections",
+    )
 
     skill = (ROOT / "skills" / "understand" / "SKILL.md").read_text(encoding="utf-8")
     output_format = (ROOT / "skills" / "understand" / "references" / "output-format.md").read_text(encoding="utf-8")
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    examples = (ROOT / "skills" / "understand" / "references" / "examples.md").read_text(encoding="utf-8")
     for section in required_sections:
         require(
             section in skill or section in output_format,
-            f"Required section is undocumented: {section}",
+            f"required_sections entry is undocumented: {section}",
+        )
+
+    reference_analysis_sections = invariants.get("reference_analysis_sections", [])
+    require(
+        len(reference_analysis_sections) >= 7,
+        "reference_analysis_sections must define the seven optional reference-analysis headers",
+    )
+    for section in reference_analysis_sections:
+        require(
+            section in output_format,
+            f"reference_analysis_sections entry is undocumented in output-format.md: {section}",
         )
 
     question_requirements = invariants.get("question_requirements", [])
@@ -88,7 +104,15 @@ def main() -> int:
     for literal in ("read-aloud test", "One idea per sentence", "chatbot residue"):
         require(literal in voice_text, f"Human-voice rule is undocumented: {literal}")
 
-    # Deterministic cognitive-load lint over every expected packet exemplar.
+    audit_prompt = ROOT / "skills" / "understand" / "references" / "audit-prompt.md"
+    require(audit_prompt.is_file(), f"Missing audit-prompt reference: {audit_prompt}")
+    audit_text = audit_prompt.read_text(encoding="utf-8")
+    for literal in ("SUPPORTED", "UNSUPPORTED", "STRETCH", "MISQUOTE", "direction"):
+        require(literal in audit_text, f"Audit verdict vocabulary is undocumented: {literal}")
+    for literal in ("audit-prompt.md", "evaluative", "in production"):
+        require(literal in skill, f"Audit stage is undocumented in SKILL.md: {literal}")
+
+    # Deterministic cognitive-load lint over every expected output exemplar.
     # Exemplars teach the format; an AI-patterned exemplar would teach the
     # pattern. Fixtures are exempt: they simulate the documents under review
     # and may legitimately contain every pattern we ban.
@@ -103,8 +127,14 @@ def main() -> int:
     for exemplar in sorted((EVAL / "expected").glob("*.md")):
         text = exemplar.read_text(encoding="utf-8")
         low = text.lower()
+        # Quoted source text is verbatim by contract (see references/core/writing.md),
+        # so forbidden characters are exempt inside straight double-quoted spans.
+        outside_quotes = re.sub(r'"[^"\n]*?"', "", text)
         for ch in forbidden_chars:
-            require(ch not in text, f"{exemplar.name}: forbidden character {ch!r} (cognitive-load lint)")
+            require(
+                ch not in outside_quotes,
+                f"{exemplar.name}: forbidden character {ch!r} outside quoted text (cognitive-load lint)",
+            )
         for word in forbidden_words:
             require(
                 not re.search(rf"\b{re.escape(word)}\b", low),
@@ -112,9 +142,8 @@ def main() -> int:
             )
         for phrase in forbidden_phrases:
             require(phrase not in low, f"{exemplar.name}: forbidden phrase {phrase!r} (cognitive-load lint)")
-        stripped = text.replace("\u2713", "")  # the claim map's functional check mark is allowed
         require(
-            not emoji_re.search(stripped),
+            not emoji_re.search(text),
             f"{exemplar.name}: emoji or decorative symbol (cognitive-load lint)",
         )
 
@@ -137,25 +166,49 @@ def main() -> int:
         words = len(text.split())
         require(
             words <= ceiling,
-            f"{exemplar.name}: {words} words exceeds the {ceiling}-word brief ceiling (budget lint)",
+            f"{exemplar.name}: {words} words exceeds the {ceiling}-word default-output ceiling (budget lint)",
         )
+        for literal in ("Stance:", "Q1:", "Q2:", "Q3:", "## Follow-up questions"):
+            require(literal in text, f"{exemplar.name}: missing {literal!r} (structure lint)")
+        require("\nHeld: " in text, f"{exemplar.name}: missing source-specific held line (structure lint)")
+        followups = text.split("## Follow-up questions", 1)[1]
+        numbered = re.findall(r"(?m)^[123]\. ", followups)
         require(
-            "Questions for the author" in text,
-            f"{exemplar.name}: missing the 'Questions for the author' section (structure lint)",
+            len(numbered) == 3,
+            f"{exemplar.name}: expected exactly three numbered follow-up questions",
         )
 
     core = invariants.get("core_packet", {})
     require(bool(core), "Invariants must define the core_packet contract")
-    require(core.get("hard_ceiling_words") == 600, "Brief hard ceiling must be 600 words")
-    require(core.get("passed_checks_are_silent") is True, "Passed checks must be silent in the brief")
+    require(core.get("hard_ceiling_words") == 600, "Default output hard ceiling must be 600 words")
+    require(
+        core.get("answered_question_roles") == ["state", "decision", "resources"],
+        "Answered questions must cover state, decision, and resources",
+    )
+    require(
+        core.get("follow_ups_do_not_repeat_answered_questions") is True,
+        "Follow-up questions must not repeat answered questions",
+    )
+    require(core.get("held_line_required") is True, "Default output must end with a held line")
     require(core.get("reference_analysis_on_request_only") is True, "Reference analysis must be on-request only")
-    for literal in ("600 words", "materiality filter", "Do not write it unless the user asks",
-                    "Questions for the author", "Passed checks are silent", "No inherited shorthand",
-                    "No document personification", "Ask for the evidence, not the audit",
-                    "Evidence, or the plan to get it"):
-        require(literal in output_format, f"Brief contract is undocumented in output format: {literal}")
-    for literal in ("critical path", "materiality filter", "evidence first"):
-        require(literal in skill.lower(), f"Brief workflow is undocumented in SKILL.md: {literal}")
+    understand_summary = readme.split("## Understand", 1)[1].split("## ELI5", 1)[0]
+    understand_use = readme.split("## Use", 1)[1].split("## Five-minute smoke test", 1)[0]
+    understand_smoke = readme.split("## Five-minute smoke test", 1)[1].split(
+        "## Five-minute smoke test for ELI5", 1
+    )[0]
+    good_output_example = examples.split("### Good output shape", 1)[1].split("### Bad output", 1)[0]
+    for section_name, section in (
+        ("Understand summary", understand_summary),
+        ("Understand use section", understand_use),
+        ("Understand smoke test", understand_smoke),
+    ):
+        require("`Held:`" in section, f"README {section_name} must document the final `Held:` line")
+    require("\nHeld: " in good_output_example, "Good output example must include the final Held: line")
+    for literal in ("600 words", "Follow-up questions", "Stance:", "Q1:", "Q2:", "Q3:",
+                    "Evidence-first", "Responsiveness", "Genericity"):
+        require(literal in output_format, f"Default output contract is undocumented: {literal}")
+    for literal in ("first principles", "evidence-first", "separate pass"):
+        require(literal in skill.lower(), f"Understand workflow is undocumented in SKILL.md: {literal}")
 
     qgen = invariants.get("question_generation", {})
     require(bool(qgen), "Invariants must define the question_generation contract")

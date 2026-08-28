@@ -17,3 +17,6 @@ __pycache__/
 .claude/
 .codex/
 evals/**/runs/
+
+# Private trial documents and outputs: never committed
+evals/understand/private/
