@@ -96,7 +96,7 @@ Produce this only when the user asks for the full analysis, evidence ledger, cal
 - One idea per sentence.
 - Use plain verbs and concrete actors.
 - Use straight quotes.
-- Do not use em dashes, en dashes, emoji, decorative symbols, or ASCII diagrams.
+- Do not use em dashes, en dashes, emoji, decorative symbols, or ASCII diagrams outside quoted source text.
 - Do not personify a document.
 - Do not repeat the same fact or gap across answers and follow-ups.
 - Preserve source shorthand only after introducing it in plain language.
