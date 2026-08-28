@@ -24,9 +24,11 @@ A: Six people for two quarters. Cost, role mix, scope, dependencies, and ownersh
 1. Which current processing-cost baseline and calculation produce the 40% reduction?
 2. What functions are included in the "platform," and which six roles deliver them within two quarters?
 3. What observable condition would make the claimed strategic advantage durable rather than reproducible by competitors?
+
+Held: the claim chain behind the six-person, two-quarter plan, the evidence gap behind the 40% reduction, and the strategic-advantage premise. Ask for any of them.
 ```
 
-Why it works: the stance is scoped, the three answers preserve the source's silence, and each follow-up requests something specific.
+Why it works: the stance is scoped, the three answers preserve the source's silence, each follow-up requests something specific, and the held line names the deeper analysis available on request.
 
 ### Bad output
 

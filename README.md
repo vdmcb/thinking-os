@@ -26,6 +26,7 @@ Status: Private internal preview.
 - a Positive, Negative, or Mixed stance on a named result, proposal, or state of readiness;
 - three answered questions about the current state, the decision, and the resource or first-change implication;
 - exactly three source-specific follow-up questions;
+- a final `Held:` line naming source-specific analysis available for follow-up;
 - important evidence, numbers, constraints, caveats, disagreements, and extraction limits carried inside those answers.
 
 It is for anyone carrying the cost of reviewing polished or AI-generated material. It can review proposals, reports, ideas, and strategies from an executive perspective, but it is not limited to executives or business documents. It also handles technical designs, architecture notes, implementation proposals, operating procedures, policies, research, and other material where a human needs to expose the actual logic and ask targeted questions.
@@ -96,7 +97,7 @@ $understand path/to/proposal.pdf
 
 You can also invoke the skill and paste source material directly. Explicit invocation is recommended during the internal pilot.
 
-The default output is a compact stakeholder readout in the current conversation: a scoped stance, three answered questions about state, decision, and resources, followed by three important follow-up questions. The source is never modified. A Markdown result is written only when explicitly requested.
+The default output is a compact stakeholder readout in the current conversation: a scoped stance, three answered questions about state, decision, and resources, three important follow-up questions, and a final `Held:` line naming source-specific analysis available on request. The source is never modified. A Markdown result is written only when explicitly requested.
 
 ELI5 is invoked the same way:
 
@@ -121,6 +122,7 @@ The default output is a short explanation in the conversation, budgeted by the n
    - `Q2` and an answer about the decision;
    - `Q3` and an answer about resources or the first change;
    - exactly three source-specific questions under `Follow-up questions`;
+   - a final `Held:` line naming source-specific analysis available for follow-up;
    - material numbers, qualifiers, caveats, and extraction limits.
 5. Confirm the result characterizes the source without independently recommending approval, rejection, or another strategy.
 

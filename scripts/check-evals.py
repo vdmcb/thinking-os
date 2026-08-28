@@ -69,6 +69,8 @@ def main() -> int:
 
     skill = (ROOT / "skills" / "understand" / "SKILL.md").read_text(encoding="utf-8")
     output_format = (ROOT / "skills" / "understand" / "references" / "output-format.md").read_text(encoding="utf-8")
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    examples = (ROOT / "skills" / "understand" / "references" / "examples.md").read_text(encoding="utf-8")
     for section in required_sections:
         require(
             section in skill or section in output_format,
@@ -189,6 +191,19 @@ def main() -> int:
     )
     require(core.get("held_line_required") is True, "Default output must end with a held line")
     require(core.get("reference_analysis_on_request_only") is True, "Reference analysis must be on-request only")
+    understand_summary = readme.split("## Understand", 1)[1].split("## ELI5", 1)[0]
+    understand_use = readme.split("## Use", 1)[1].split("## Five-minute smoke test", 1)[0]
+    understand_smoke = readme.split("## Five-minute smoke test", 1)[1].split(
+        "## Five-minute smoke test for ELI5", 1
+    )[0]
+    good_output_example = examples.split("### Good output shape", 1)[1].split("### Bad output", 1)[0]
+    for section_name, section in (
+        ("Understand summary", understand_summary),
+        ("Understand use section", understand_use),
+        ("Understand smoke test", understand_smoke),
+    ):
+        require("`Held:`" in section, f"README {section_name} must document the final `Held:` line")
+    require("\nHeld: " in good_output_example, "Good output example must include the final Held: line")
     for literal in ("600 words", "Follow-up questions", "Stance:", "Q1:", "Q2:", "Q3:",
                     "Evidence-first", "Responsiveness", "Genericity"):
         require(literal in output_format, f"Default output contract is undocumented: {literal}")
