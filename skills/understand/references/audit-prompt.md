@@ -26,7 +26,7 @@ STATUS: for every "current", "deployed", "live", "in production", "released", "r
 
 RECOMMENDATIONS: for every action the DRAFT presents as required, confirm the source does not merely recommend, propose, or suggest it.
 
-QUESTIONS: for the three answered questions, does the source actually bear on each question as asked, or does the question presuppose something the source does not say? For the three follow-up questions, is each one about a specific claim, figure, or term in the source; not already answered by the source; not a repeat of an answered question; and not a disguised recommendation?
+QUESTIONS: for the three answered questions, does the source actually bear on each question as asked, or does the question presuppose something the source does not say? For the three follow-up questions, is each one about a specific claim, figure, or term in the source; not already answered by the source; not a repeat of an answered question; and not a disguised recommendation? A closing sentence that asks for the owner's plan and deadline when the evidence does not exist is the format's permitted fallback, not a recommendation.
 
 ADJECTIVES: list every evaluative adjective or adverb in the DRAFT answers (invalid, proven, fine, strong, weak, clearly, significant, and the like). The stance label is allowed. The source's own measured comparatives are allowed. Blunt wording inside the questions is allowed.
 
@@ -49,6 +49,6 @@ Be strict. Prefer a false alarm to a missed error.
 
 ## After the audit
 
-Fix every item in categories 1 through 10. Re-check every quoted phrase by searching the whitespace-collapsed source. Then run the audit again on the corrected draft. Stop when a round returns no items in categories 1 through 9; category 10 items must be removed, quoted, or attributed.
+Fix every item in categories 1 through 10. Re-check every quoted phrase by searching the whitespace-collapsed source. Then run the audit again on the corrected draft. Stop when a round returns no items in categories 1 through 9, or after the third round. Run at most three rounds: if the third still returns items, fix them and print the `Audited:` line with the third round's counts rather than running a fourth. Category 10 items must be removed, quoted, or attributed.
 
 Print the `Audited:` line in the output only with the counts from the final round.

@@ -111,6 +111,12 @@ def main() -> int:
         require(literal in audit_text, f"Audit verdict vocabulary is undocumented: {literal}")
     for literal in ("audit-prompt.md", "evaluative", "in production"):
         require(literal in skill, f"Audit stage is undocumented in SKILL.md: {literal}")
+    audit = invariants.get("audit", {})
+    require(audit.get("independent_agent_required") is True, "Invariants must require an independent audit agent")
+    require(audit.get("max_rounds") == 3, "Audit rounds must be capped at three")
+    for literal in ("after the third round",):
+        require(literal in skill, f"Audit round cap is undocumented in SKILL.md: {literal}")
+        require(literal in audit_text, f"Audit round cap is undocumented in audit-prompt.md: {literal}")
 
     # Deterministic cognitive-load lint over every expected output exemplar.
     # Exemplars teach the format; an AI-patterned exemplar would teach the

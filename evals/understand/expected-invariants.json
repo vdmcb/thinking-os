@@ -1,5 +1,5 @@
 {
-  "schema_version": 8,
+  "schema_version": 9,
   "required_sections": [
     "Stance:",
     "Q1:",
@@ -16,6 +16,12 @@
     "Other important context",
     "Extraction limitations"
   ],
+  "audit": {
+    "reference": "skills/understand/references/audit-prompt.md",
+    "independent_agent_required": true,
+    "max_rounds": 3,
+    "notes": "Self-audit is the fallback only. Rounds are capped because a strict auditor can always find one more qualifier; an uncapped loop ran nine rounds without converging in the 2026-08-28 trial."
+  },
   "release_blockers": [
     "invented material fact, definition, mechanism, owner, or confidence",
     "independent recommendation or option ranking",
