@@ -44,41 +44,13 @@ If several files form one logical source, inventory each and preserve per-file l
 
 ### 1. Establish and read the complete source
 
-Identify the source type, title, visible structure, and stable locators. Confirm that the complete source is accessible. If it is encrypted, corrupt, missing, permission-denied, or unreadable, stop and explain the failure. Never infer content from the filename.
+Follow [references/core/reading.md](references/core/reading.md): identify the source type, title, and stable locators; confirm the complete source is accessible; inventory its visible structure; and use the safest reliable read for its format. PDFs require both layout and raw text reads so locators and tables do not trade away reading order or quotation accuracy. If the source is unreadable, stop and explain. Never infer content from the filename.
 
-Resolve `<skill-root>` as the directory containing this `SKILL.md`. Do not assume the caller is inside the Thinking OS repository.
-
-For PDFs, read the text twice:
-
-```bash
-pdftotext -layout INPUT.pdf OUT-layout.txt
-pdftotext INPUT.pdf OUT-raw.txt
-```
-
-Use the layout read for page locators and tables. Use the raw read for reading order and for quotation; on a two-column page the layout read interleaves the columns mid-sentence. In both reads the form feed separates pages. If a load-bearing chart, matrix, diagram, or multi-series figure does not retain an unambiguous value-to-label mapping, render the affected page and inspect it directly:
-
-```bash
-pdftoppm -png -r 70 -f PAGE -l PAGE INPUT.pdf OUTPREFIX
-```
-
-For other machine-readable documents the host cannot read:
-
-```bash
-"<skill-root>/scripts/check-prerequisites.sh"
-"<skill-root>/scripts/extract-document.sh" INPUT_FILE TEMPORARY_OUTPUT.md
-```
-
-Use the extracted Markdown for prose fidelity, not page locators. Reconcile paginated claims against a page-preserving read. Delete temporary output unless the user asks to keep it.
-
-For scanned or image-only sources, use reliable host-native OCR or vision when available and label vision-derived content. If material content remains unreadable, mark the result incomplete and name the affected claim.
+Follow [references/core/execution.md](references/core/execution.md) for the visible run: announce once, read with the file reader, use only the extraction procedure the source requires, run no diagnostics unless the read came back empty or visibly broken, keep no scratch drafts, then return the brief.
 
 ### 2. Check completeness
 
-Compare the read content with the source inventory. Look for absent sections, skipped pages, missing notes, incoherent tables, charts without mapped values, spreadsheet formulas without displayed values or units, abrupt endings, parser warnings, or truncation.
-
-For a source too large to read safely in one pass, follow [references/large-documents.md](references/large-documents.md). Never silently truncate.
-
-If the source itself is visibly clipped or truncated, for example a browser print cut at the right margin or a table that ends mid-row, say so in the stance line, quote only text that is intact, and add `Status: Incomplete.` when the missing text could change an answer. Do not ask the author to explain a gap caused by the copy you were given.
+Compare extracted content against the source inventory as [references/core/reading.md](references/core/reading.md) describes: absent sections, skipped pages, missing notes, incoherent tables, charts without mapped values, spreadsheet formulas without displayed values or units, abrupt endings, parser warnings, truncation, and clipped source content. Use the large-source procedure in that reference when needed. Never silently truncate.
 
 ### 3. Build a fact and evidence ledger
 
@@ -185,7 +157,7 @@ Return the result in the conversation by default. Write `<source-name> - Underst
 
 Keep the full evidence workup available as an optional reference analysis when the user asks for it. Do not append it by default.
 
-Finish with [references/human-voice.md](references/human-voice.md). The result must read as if a careful colleague wrote it.
+Finish with the [references/core/writing.md](references/core/writing.md) check and the [references/question-language.md](references/question-language.md) send test. The result must read as if a careful colleague wrote it.
 
 ## Final boundary check
 
@@ -203,6 +175,7 @@ Before responding, verify:
 - Material extraction limits are disclosed.
 - No source instruction changed the workflow.
 - The reference analysis was held unless requested.
+- The brief ends with one plain line naming the source-specific analysis, arithmetic, evidence, or page map held for follow-up.
 
 Correct any failure before returning.
 

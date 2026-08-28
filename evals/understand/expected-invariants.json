@@ -102,7 +102,7 @@
     "traceability": 4
   },
   "core_packet": {
-    "form": "scoped stance, three answered stakeholder questions, then exactly three follow-up questions",
+    "form": "scoped stance, three answered stakeholder questions, exactly three follow-up questions, then one source-specific held line",
     "word_budget_by_tier": {
       "simple": 250,
       "standard": 400,
@@ -118,6 +118,7 @@
     "no_inherited_shorthand": true,
     "no_document_personification": true,
     "follow_ups_do_not_repeat_answered_questions": true,
+    "held_line_required": true,
     "immaterial_weaknesses_omitted": true,
     "reference_analysis_on_request_only": true
   },

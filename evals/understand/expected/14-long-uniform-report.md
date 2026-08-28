@@ -13,3 +13,4 @@ A: The source proposes rollout across all 14 regions. It does not separately est
 3. Who is accountable for the 22% target, and at what measured shortfall, by what date, does that person have authority to pause the rollout? (financial model; organizational readiness)
 
 Audited: 24 claims checked, 0 unsupported, 0 misquotes.
+Held: the Southwest pilot data behind the 22% figure, the arithmetic from that pilot to the $4.7 million forecast, the vendor comparison by source, and the page map. Ask for any of them.

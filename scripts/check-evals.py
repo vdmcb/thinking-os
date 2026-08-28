@@ -125,7 +125,7 @@ def main() -> int:
     for exemplar in sorted((EVAL / "expected").glob("*.md")):
         text = exemplar.read_text(encoding="utf-8")
         low = text.lower()
-        # Quoted source text is verbatim by contract (see references/human-voice.md),
+        # Quoted source text is verbatim by contract (see references/core/writing.md),
         # so forbidden characters are exempt inside straight double-quoted spans.
         outside_quotes = re.sub(r'"[^"\n]*?"', "", text)
         for ch in forbidden_chars:
@@ -168,6 +168,7 @@ def main() -> int:
         )
         for literal in ("Stance:", "Q1:", "Q2:", "Q3:", "## Follow-up questions"):
             require(literal in text, f"{exemplar.name}: missing {literal!r} (structure lint)")
+        require("\nHeld: " in text, f"{exemplar.name}: missing source-specific held line (structure lint)")
         followups = text.split("## Follow-up questions", 1)[1]
         numbered = re.findall(r"(?m)^[123]\. ", followups)
         require(
@@ -186,6 +187,7 @@ def main() -> int:
         core.get("follow_ups_do_not_repeat_answered_questions") is True,
         "Follow-up questions must not repeat answered questions",
     )
+    require(core.get("held_line_required") is True, "Default output must end with a held line")
     require(core.get("reference_analysis_on_request_only") is True, "Reference analysis must be on-request only")
     for literal in ("600 words", "Follow-up questions", "Stance:", "Q1:", "Q2:", "Q3:",
                     "Evidence-first", "Responsiveness", "Genericity"):

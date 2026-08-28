@@ -13,3 +13,4 @@ A: The source requests EUR 120,000 for a Q1 build and says the platform team can
 3. Which current platform-team commitments would move to fit the Q1 build, and what staffing or reassignment calculation turns 40% ticket deflection into EUR 300,000 in annual savings? (Delivery; Savings)
 
 Audited: 18 claims checked, 0 unsupported, 0 misquotes.
+Held: the arithmetic from the EUR 750,000 support budget to the EUR 300,000 saving, the vendor case study behind the 40% rate, and the page map. Ask for any of them.

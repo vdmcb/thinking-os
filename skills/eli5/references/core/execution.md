@@ -1,6 +1,6 @@
 # The run and the follow-up
 
-The user sees the run as well as the output: every command, every printed result, every retry. For tools whose purpose is reducing cognitive load, a confusing run is a failed output even when the text is good. And understanding is rarely finished in one turn, so every skill holds more than it shows and answers from it on request.
+The run and output both affect reader burden. Understanding continues through follow-ups, so each skill holds more than it initially shows.
 
 ## The visible run
 
@@ -8,7 +8,7 @@ The ideal run has two visible parts: one line saying what is about to happen, th
 
 - **Announce once.** One sentence before reading: what will be read and how. No narration after that until the answer.
 - **Read with the file reader.** Never print the source or an extracted copy to the terminal. `pdftotext` writes a file; the file reader reads it.
-- **One extraction command at most.** No `pdfinfo`, page counts, image listings, or other diagnostics unless the read itself came back empty or visibly broken. Completeness is checked by reading.
+- **One extraction procedure at most.** PDFs use the two reads in `reading.md`; other sources use one command. No diagnostics unless the read is empty or visibly broken. Check completeness by reading.
 - **No scratch drafts.** Draft in your head to the budget and return the text once. No drafts on disk, no lints or word counts on them, no iterating in public.
 - **No tooling detours.** If a command fails for an environment reason (a shadowed binary, a missing tool), switch once and silently to the alternative.
 - **Keep the extraction for the session.** Extracted text lives in the session's temporary directory, never in the user's project, so follow-ups can cite locations without re-reading. Delete it when the user asks or when saving output.

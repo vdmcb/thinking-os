@@ -24,9 +24,10 @@ A: <Source-grounded answer; state what is not specified>
 3. <Third>
 
 Audited: <N> claims checked, 0 unsupported, 0 misquotes.
+Held: <source-specific reference analysis, arithmetic, evidence, or page map available for follow-up>. Ask for any of them.
 ```
 
-Print the audit line only when it is true. Do not add a title, preamble, conclusion, table, first-principles section, or generic summary.
+Print the audit line only when it is true. Always end with one held line naming specific material already analyzed for this source. Do not add a title, preamble, conclusion, table, first-principles section, or generic summary.
 
 ### Stance
 
@@ -101,7 +102,7 @@ Produce this only when the user asks for the full analysis, evidence ledger, cal
 - Do not repeat the same fact or gap across answers and follow-ups.
 - Preserve source shorthand only after introducing it in plain language.
 
-Load [human-voice.md](human-voice.md) before drafting.
+Load [core/writing.md](core/writing.md) before drafting.
 
 ## Saved output
 
@@ -118,5 +119,6 @@ Before returning:
 - confirm exactly three follow-up questions remain;
 - confirm every follow-up passes the evidence-first, responsiveness, and genericity tests;
 - confirm no follow-up repeats an answered question;
+- confirm the final held line names source-specific material already analyzed;
 - confirm the answer is within 600 words;
-- run the human-voice check.
+- run the core writing check.

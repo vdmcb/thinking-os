@@ -15,3 +15,4 @@ A: <Answer from the source, including cost, time, owner, dependency, or release 
 3. <The third question.>
 
 Audited: <N> claims checked, 0 unsupported, 0 misquotes.
+Held: <source-specific reference analysis, arithmetic, evidence, or page map available for follow-up>. Ask for any of them.
