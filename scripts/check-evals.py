@@ -62,7 +62,7 @@ def main() -> int:
             )
 
     required_sections = invariants.get("required_sections", [])
-    require(len(required_sections) >= 8, "Understanding Packet must define at least eight required sections")
+    require(len(required_sections) >= 8, "Understand must define the default and reference sections")
 
     skill = (ROOT / "skills" / "understand" / "SKILL.md").read_text(encoding="utf-8")
     output_format = (ROOT / "skills" / "understand" / "references" / "output-format.md").read_text(encoding="utf-8")
@@ -88,7 +88,7 @@ def main() -> int:
     for literal in ("read-aloud test", "One idea per sentence", "chatbot residue"):
         require(literal in voice_text, f"Human-voice rule is undocumented: {literal}")
 
-    # Deterministic cognitive-load lint over every expected packet exemplar.
+    # Deterministic cognitive-load lint over every expected output exemplar.
     # Exemplars teach the format; an AI-patterned exemplar would teach the
     # pattern. Fixtures are exempt: they simulate the documents under review
     # and may legitimately contain every pattern we ban.
@@ -137,25 +137,34 @@ def main() -> int:
         words = len(text.split())
         require(
             words <= ceiling,
-            f"{exemplar.name}: {words} words exceeds the {ceiling}-word brief ceiling (budget lint)",
+            f"{exemplar.name}: {words} words exceeds the {ceiling}-word default-output ceiling (budget lint)",
         )
+        for literal in ("Stance:", "Q1:", "Q2:", "Q3:", "## Follow-up questions"):
+            require(literal in text, f"{exemplar.name}: missing {literal!r} (structure lint)")
+        followups = text.split("## Follow-up questions", 1)[1]
+        numbered = re.findall(r"(?m)^[123]\. ", followups)
         require(
-            "Questions for the author" in text,
-            f"{exemplar.name}: missing the 'Questions for the author' section (structure lint)",
+            len(numbered) == 3,
+            f"{exemplar.name}: expected exactly three numbered follow-up questions",
         )
 
     core = invariants.get("core_packet", {})
     require(bool(core), "Invariants must define the core_packet contract")
-    require(core.get("hard_ceiling_words") == 600, "Brief hard ceiling must be 600 words")
-    require(core.get("passed_checks_are_silent") is True, "Passed checks must be silent in the brief")
+    require(core.get("hard_ceiling_words") == 600, "Default output hard ceiling must be 600 words")
+    require(
+        core.get("answered_question_roles") == ["state", "decision", "resources"],
+        "Answered questions must cover state, decision, and resources",
+    )
+    require(
+        core.get("follow_ups_do_not_repeat_answered_questions") is True,
+        "Follow-up questions must not repeat answered questions",
+    )
     require(core.get("reference_analysis_on_request_only") is True, "Reference analysis must be on-request only")
-    for literal in ("600 words", "materiality filter", "Do not write it unless the user asks",
-                    "Questions for the author", "Passed checks are silent", "No inherited shorthand",
-                    "No document personification", "Ask for the evidence, not the audit",
-                    "Evidence, or the plan to get it"):
-        require(literal in output_format, f"Brief contract is undocumented in output format: {literal}")
-    for literal in ("critical path", "materiality filter", "evidence first"):
-        require(literal in skill.lower(), f"Brief workflow is undocumented in SKILL.md: {literal}")
+    for literal in ("600 words", "Follow-up questions", "Stance:", "Q1:", "Q2:", "Q3:",
+                    "Evidence-first", "Responsiveness", "Genericity"):
+        require(literal in output_format, f"Default output contract is undocumented: {literal}")
+    for literal in ("first principles", "evidence-first", "separate pass"):
+        require(literal in skill.lower(), f"Understand workflow is undocumented in SKILL.md: {literal}")
 
     qgen = invariants.get("question_generation", {})
     require(bool(qgen), "Invariants must define the question_generation contract")

@@ -1,107 +1,122 @@
-# Understanding Packet format
+# Understand output format
 
-Understand produces two artifacts with different lives:
+Understand produces a compact default answer and holds a detailed reference analysis for requests that need it.
 
-1. **The brief**, the default and usually the only output: a short memo a careful colleague might write, ending in the questions that drive understanding. Hard ceiling: **600 words**.
-2. **The reference analysis**, the full evidentiary workup behind the brief. **Do not write it unless the user asks** ("show the numbers", "show the full analysis"). The analysis is still performed; it is held, not dumped.
+## Default answer
 
-## Word budgets for the brief
+Plain text with one Markdown section header. Hard ceiling: **600 words**, including the follow-up questions. Use fewer words when the source is simple.
 
-Ceilings, not targets. Pick the tier from decision complexity, never from page count: a fifty-page deck making one argument is a simple source.
+```text
+Status: Incomplete. <Only when a material extraction gap exists; name the gap and affected conclusion.>
 
-| Source | Ceiling |
-| --- | --- |
-| Single claim or short document | 250 words |
-| Standard proposal, plan, or study | 400 words |
-| Complex, decision-critical, several independent claim chains | 600 words |
+Stance: <Positive / Negative / Mixed> on <named object>. <One sentence when needed to distinguish material dimensions.>
+Q1: <State question in the stakeholder's words>
+A: <Source-grounded answer>
+Q2: <Decision question in the stakeholder's words>
+A: <Source-grounded answer; attribute any recommendation to the source>
+Q3: <Resource or first-change question in the stakeholder's words>
+A: <Source-grounded answer; state what is not specified>
 
-If material content cannot fit, cut elaboration and merge overlapping items. Never drop a caveat, and never raise the ceiling silently; when brevity and a material caveat genuinely conflict, keep the caveat and say in one line that the budget was exceeded for it.
+## Follow-up questions
 
-## Status line
+1. <Most consequential unanswered, source-specific question>
+2. <Second>
+3. <Third>
 
-Only when extraction is materially incomplete, the brief begins:
+Audited: <N> claims checked, 0 unsupported, 0 misquotes.
+```
 
-> **Status: Incomplete.** <scope of the gap, affected claims, interpretive consequence>
+Print the audit line only when it is true. Do not add a title, preamble, conclusion, table, first-principles section, or generic summary.
 
-Extraction honesty is never deferred to the reference layer.
+### Stance
 
----
+The stance is scoped and evidentiary. It may characterize reported performance, evidence, readiness, completeness, or the source's proposal as defined. It does not approve, reject, rank, fund, release, or otherwise make the user's decision.
 
-# The brief
+Good:
 
-Two or three short paragraphs of plain prose, then the questions. No other headings, no diagrams, no tables, no glyphs.
+- `Mixed on release readiness: positive on the measured pipeline repair, negative on live validation.`
+- `Positive on the migration case as presented; implementation cost and schedule are not stated.`
 
-**Paragraph one: what this is and what it asks.** The document, its author when named, the decision or belief it seeks, and the promised outcome with its headline numbers and page references inline.
+Bad:
 
-**Paragraph two (and three when needed): what holds and what stands on assumptions.** This is the critical path from the analysis, expressed as prose. Say plainly which claims stand on their own and which stand on models, examples, or assertions, and what each weak point would change. Page references in parentheses. Rules:
+- `Positive.`
+- `Approve the migration.`
+- `This is clearly the right strategy.`
 
-- **Passed checks are silent.** Verification that confirms expectations earns no words. Only a failed check, a check that cannot be run, or an ungrounded input earns a sentence. Never write that the math checked out.
-- **The materiality filter.** A weakness earns a sentence only if resolving it could change the reader's understanding. If it does not change the narrative, it is not worth mentioning; it stays in the held reference.
-- **No inherited shorthand.** The reader may never open the source. The source's internal vocabulary gets one plain introduction before any use, or gets replaced with a description.
-- **No document personification.** A deck does not count, believe, or assume. Write what the document presents, shows, or fails to show.
-- Every weak point named here must have a matching question below. The order of the questions mirrors the order of the weak points; that is the mapping. At most, add a parenthetical "(question 2)" where the order alone is ambiguous. Never spend a sentence on the mapping: "Question 1 addresses this" is scaffolding, not information.
-- Keep each paragraph under roughly 120 words. When a paragraph stacks a third finding, split it rather than densifying it.
+### Q1: state
 
-## Questions for the author
+Ask the question that establishes the current condition: whether the result is good or bad, working or broken, supported or unsupported, ready or incomplete. Answer with the strongest source-grounded evidence and its scope. Include what the source measured and what it did not.
 
-The section header is exactly that. **3-5** numbered questions the reader can send unchanged; fewer when the source warrants, never padded. Order by how much the answer moves the interpretation.
+### Q2: decision
 
-Each question is one or two sentences, intent first, with its page reference in parentheses at the end; a third sentence is allowed only when the plan-fallback clause ("if not, what is your plan and by when?") needs one of its own. No labels, no bold, no metadata line. The supporting facts (the claim challenged, the source locator, why the answer matters, the concrete answer required) must all be identifiable inside the sentences themselves; they are authoring requirements, not printed fields. A drafting aid: silently confirm for each question that you could name its Claim challenged, Source, Pushback, Why the answer matters, and Answer required; then publish only the sentences.
+Ask what decision the source changes. Use the source's actual decision when one exists. If the source cannot settle the question, say what it supports and what remains unresolved. A source recommendation stays attributed.
 
-Two generation rules, applied in order:
+### Q3: resources
 
-1. **Ask for the evidence, not the audit.** For each weak claim, first ask: what single real-world fact, if it exists, would settle this? A question like "are there customers behind the example already?" settles achievability and grounds the inputs in one ask. Fall back to input-tagging ("which of these numbers are contracted, measured, or assumed?") only when no single evidence object can settle the claim.
-2. **Evidence, or the plan to get it.** When a question asks whether evidence exists, it also asks what the author will do, and by when, if it does not. Ask for the author's plan; never propose one.
+Ask what begins, stops, changes first, or requires people, money, time, ownership, capacity, deployment, or another commitment. Include the source's caveats. Use `Not stated` for missing cost, timeline, owner, or release status.
 
-Every question must: name the exact claim under pressure; carry its locator; request something concrete and inspectable; be understandable on first read by someone who has not read the source; not ask for facts already in the source; not disguise a recommendation. Apply the **genericity deletion test** (strip the source-specific nouns and numbers; if it still fits most documents, rewrite or drop it), the **responsiveness test** (if the author could answer in vague prose and appear responsive, demand a more inspectable object), and the **send test** (readable once, aloud, and explainable to a colleague). An extraction gap is never a question for the author.
+### Follow-up questions
 
-If none are needed:
+The header is exactly **Follow-up questions**. Include exactly three numbered questions.
 
-> No material follow-up questions are required to understand and test the source's stated case.
+These are not alternate summaries of Q1-Q3. They identify the next three unknowns a stakeholder should resolve after reading the answers. Order them by how much the response could change interpretation or action.
 
-## The held line
+Silently confirm that each question has:
 
-The brief ends with one plain line, no heading, naming what is held for this source and can be asked for: the reference analysis, the arithmetic behind a named number, the evidence behind a named claim, or the page map. Name the specific objects, not the categories. Example: "Held: the arithmetic behind the EUR 300,000 saving, the vendor case study the 40% rate comes from, and the page map. Ask for any of them."
+- **Claim challenged:** the exact source-specific claim, number, conflict, term, or dependency;
+- **Source:** a stable locator when available;
+- **Pushback:** the missing or inadequate evidence, definition, bridge, or commitment;
+- **Why the answer matters:** the interpretation that could change;
+- **Answer required:** a concrete, inspectable response.
 
----
+Publish only the natural-language question. Do not print those field labels.
 
-# The reference analysis (on request only)
+Apply three tests:
 
-When the user asks, produce any or all of the following, compressed and table-first, using the contract's full epistemic labels. The brief is a surface; the underlying analysis is always done at full precision.
+1. **Evidence-first:** ask for the real-world fact that would settle the issue before asking for an audit of inputs.
+2. **Responsiveness:** if vague prose could appear responsive, request a more inspectable answer.
+3. **Genericity:** remove the source-specific nouns and numbers. If the question still fits most documents, rewrite it.
 
-- **The ask:** purpose and response sought; claimed outcome and horizon; the authorization perimeter, the explicit decision separated from implied commitments, unresolved dimensions marked (omit when the source seeks no authorization).
-- **Load-bearing reasoning:** per claim chain: claim and role; stated mechanism or `Not explained`; evidence, its provenance, and the narrowest proposition it supports, with the inferential hops named; required assumptions; unresolved items; value status; locator.
-- **Evidence strength and applicability:** one row per evidence item: provenance, population, period, sample and exclusions, metric definition, the exact proposition supported, whether external citations were independently checked. Citation presence is never verification.
-- **Numbers and internal consistency:** material values with unit, denominator, period, population, scenario; a compact list of the checks performed; whether premises are supported (consistency is not premise validity); for a load-bearing forecast, whether the opening actual state traces through the volume, capacity, unit-value, timing, cost, and formula bridges to each terminal output, naming missing bridge elements without supplying them.
-- **Material unknowns:** ordered by consequence, one line each, cross-referencing the brief's questions rather than restating them.
-- **Other important context:** caveats, dissent, alternatives that matter but sit off the load-bearing chain.
-- **Extraction limitations:** reading path, coverage, unreadable content and the claims depending on it, OCR or vision use, locator scheme, ordering or duplication artifacts. `None material` only after checking.
+Questions are one or two sentences, with the locator at the end. A third sentence is allowed only for the fallback: if the evidence does not exist, ask for the owner's plan and deadline to obtain it. Never propose the plan.
 
-## Typography
+## Optional reference analysis
 
-Packets are read by tired humans. Write plain.
+Produce this only when the user asks for the full analysis, evidence ledger, calculations, or detailed gaps. Keep it compact and table-first.
 
-- Never em-dashes or en-dashes, including ranges: "3-5". Use a comma, colon, period, or parentheses.
-- No emoji, no decorative symbols, no ASCII diagrams.
-- Bold and italics only where they carry information the reader needs to find again. Never bold for emphasis alone.
-- Prefer short sentences over stacked clauses.
+- **The ask:** purpose, requested response, claimed outcome, horizon, explicit decision, implied commitments, and unresolved authorization boundaries.
+- **Load-bearing reasoning:** each material claim chain, source-stated mechanism, evidence, required assumptions, unresolved items, value status, and locator.
+- **Evidence strength and applicability:** provenance, population, period, sample, exclusions, metric definition, exact proposition supported, and whether external citations were checked.
+- **Numbers and internal consistency:** material values with unit, denominator, period, population, scenario, transparent calculations, missing formulas, and unreconciled model bridges.
+- **Material unknowns:** ordered by consequence without repeating the default follow-up questions.
+- **Other important context:** caveats, dissent, alternatives, and conflicts outside the main claim chain.
+- **Extraction limitations:** reading path, coverage, unreadable content, OCR or vision use, locator scheme, and affected conclusions.
 
-The full writing rules live in [core/writing.md](core/writing.md). Load them before drafting; they are part of the output contract, not advice.
+## Writing and typography
 
-## Optional saved artifact
+- One idea per sentence.
+- Use plain verbs and concrete actors.
+- Use straight quotes.
+- Do not use em dashes, en dashes, emoji, decorative symbols, or ASCII diagrams.
+- Do not personify a document.
+- Do not repeat the same fact or gap across answers and follow-ups.
+- Preserve source shorthand only after introducing it in plain language.
 
-When the user asks to save, write `<source base name> - Simplified.md` (the brief; append the reference analysis only if they asked for it). Never overwrite the source.
+Load [human-voice.md](human-voice.md) before drafting.
 
-## Before returning: the compression pass
+## Saved output
 
-Reread the brief once as the reader, then:
+When the user asks to save the result, write `<source base name> - Understood.md`. Append the reference analysis only if requested. Never overwrite the source.
 
-- cut every sentence that does not change what the reader understands or asks;
-- confirm paragraph one alone says what the source is, what it wants, and its headline promise;
-- confirm every weak point in the prose has a matching question, and no immaterial weakness survived the materiality filter;
-- confirm nothing is stated twice, no passed check is narrated, no shorthand is unintroduced;
-- scan for the known recurring offenders, which have each survived a draft before: "the book" or any source shorthand in paragraph one, "the deck counts" or any document-as-actor verb, and mapping sentences of the form "question N addresses this";
-- recount the words after cutting; a draft that was over budget before the pass usually still is.
-- confirm every question passes the genericity, responsiveness, and send tests;
-- confirm the brief is within budget and no material caveat, number, conflict, or dissent was lost getting there;
-- run the [core/writing.md](core/writing.md) check.
+## Final compression pass
+
+Before returning:
+
+- confirm the stance has a named scope;
+- confirm Q1, Q2, and Q3 serve state, decision, and resource roles;
+- remove any sentence that does not change understanding;
+- confirm all facts, numbers, and causal directions against the source;
+- confirm exactly three follow-up questions remain;
+- confirm every follow-up passes the evidence-first, responsiveness, and genericity tests;
+- confirm no follow-up repeats an answered question;
+- confirm the answer is within 600 words;
+- run the human-voice check.

@@ -14,22 +14,23 @@ The main supporter of Thinking OS is [RebelDot](https://www.rebeldot.com/).
 
 RebelDot supports the internal experimentation and practical validation of agent-native ways of working. RebelDot does not imply endorsement of every experimental result or future public release.
 
+Project website: [vadim.software](https://vadim.software)
+
+Status: Private internal preview.
+
 
 ## Understand
 
-`Understand` is the first Thinking OS skill. It turns documents and pasted material into a faithful, plain-language model of:
+`Understand` is the first Thinking OS skill. It turns documents and pasted material into a compact stakeholder readout:
 
-- the central idea;
-- material claims and the reasoning offered for them;
-- evidence, assumptions, and unknowns;
-- important numbers, constraints, caveats, and disagreements;
-- ambiguity and missing definitions;
-- focused questions that would materially improve understanding;
-- extraction gaps and source locators.
+- a Positive, Negative, or Mixed stance on a named result, proposal, or state of readiness;
+- three answered questions about the current state, the decision, and the resource or first-change implication;
+- exactly three source-specific follow-up questions;
+- important evidence, numbers, constraints, caveats, disagreements, and extraction limits carried inside those answers.
 
 It is for anyone carrying the cost of reviewing polished or AI-generated material. It can review proposals, reports, ideas, and strategies from an executive perspective, but it is not limited to executives or business documents. It also handles technical designs, architecture notes, implementation proposals, operating procedures, policies, research, and other material where a human needs to expose the actual logic and ask targeted questions.
 
-Understand applies the review perspectives relevant to the source, such as decision and commitment, technical correctness, implementation feasibility, security, operations, evidence, and accountability. It does not force every source into an executive-summary format.
+Understand applies the review perspectives relevant to the source, such as decision and commitment, technical correctness, implementation feasibility, security, operations, evidence, and accountability. Its three-question roles adapt to the material rather than forcing every source into a business-case frame.
 
 It is not a generic summarizer. It does not recommend a decision, rewrite the source, invent missing logic, judge the author, or try to detect whether AI wrote the material.
 
@@ -95,7 +96,7 @@ $understand path/to/proposal.pdf
 
 You can also invoke the skill and paste source material directly. Explicit invocation is recommended during the internal pilot.
 
-The default output is an **Understanding Packet** in the current conversation. The source is never modified. A Markdown result is written only when explicitly requested.
+The default output is a compact stakeholder readout in the current conversation: a scoped stance, three answered questions about state, decision, and resources, followed by three important follow-up questions. The source is never modified. A Markdown result is written only when explicitly requested.
 
 ELI5 is invoked the same way:
 
@@ -115,15 +116,13 @@ The default output is a short explanation in the conversation, budgeted by the n
 2. Open Claude Code or Codex in a directory containing a proposal or report.
 3. Invoke `understand` with the file path.
 4. Confirm the result contains:
-   - `In one sentence`;
-   - `Core ideas`;
-   - `How the source's reasoning works`;
-   - `What is solid, assumed, and unknown`;
-   - material facts and constraints;
-   - remaining ambiguity;
-   - focused author questions;
-   - extraction limitations.
-5. Confirm the result explains the source without independently recommending approval, rejection, or another strategy.
+   - a `Positive`, `Negative`, or `Mixed` stance on a named object;
+   - `Q1` and an answer about the current state;
+   - `Q2` and an answer about the decision;
+   - `Q3` and an answer about resources or the first change;
+   - exactly three source-specific questions under `Follow-up questions`;
+   - material numbers, qualifiers, caveats, and extraction limits.
+5. Confirm the result characterizes the source without independently recommending approval, rejection, or another strategy.
 
 ## Five-minute smoke test for ELI5
 

@@ -1,16 +1,17 @@
-# <Source title> - Simplified
+Status: Incomplete. <Only when a material extraction gap exists; name the gap and affected conclusion.>
 
-> **Status: Incomplete.** <Only when extraction is materially incomplete; name affected claims and consequence.>
+Stance: <Positive / Negative / Mixed> on <named object>. <Optional sentence distinguishing material dimensions.>
+Q1: <State question: how good, bad, supported, broken, or ready is it?>
+A: <Answer from the source, preserving scope, qualifiers, numbers, and what was not measured.>
+Q2: <Decision question: what decision does this change?>
+A: <Answer from the source; attribute its recommendation and keep unresolved items unresolved.>
+Q3: <Resource question: what begins, stops, changes first, or remains unspecified?>
+A: <Answer from the source, including cost, time, owner, dependency, or release gaps when material.>
 
-<Paragraph one: what the document is, who wrote it when named, what it asks the reader to decide or believe, and the promised outcome with headline numbers and page references inline.>
+## Follow-up questions
 
-<Paragraph two, and three when needed: what holds on its own and what stands on models, examples, or assertions, with page references in parentheses. Passed checks are silent. Introduce any source shorthand before using it. State what the document presents or fails to show; never personify it. Every weak point named here gets a matching question below.>
+1. <The most consequential unanswered source-specific question, requesting a concrete answer and locator when available.>
+2. <The second question.>
+3. <The third question.>
 
-## Questions for the author
-
-1. <One or two sentences, intent first: the real-world evidence that would settle the claim, or the author's plan and deadline if it does not exist yet. (pp. X-Y)>
-2. <...>
-
-> No material follow-up questions are required to understand and test the source's stated case.
-
-<Use the sentence above only when no material questions are needed. The reference analysis is produced only when the user asks.>
+Audited: <N> claims checked, 0 unsupported, 0 misquotes.
