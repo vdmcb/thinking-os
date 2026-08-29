@@ -8,9 +8,9 @@ marketplaces with "Sync automatically" enabled re-sync when a pull
 request containing a version bump merges to `main`, so every release
 is a PR that bumps both files and adds an entry here.
 
-## [Unreleased]
+## [0.1.1] - 2026-08-29
 
-- `understand` skill 2.1.1 (plugin version unchanged): the independent audit
+- `understand` skill 2.1.1: the independent audit
   is capped at three rounds, with round three limited to deleting or
   downgrading unsupported claims; page-less sources (HTML, Markdown, text)
   are cited by their nearest heading; `evals/understand/RESULTS-2026-08-28.md`

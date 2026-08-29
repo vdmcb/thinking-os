@@ -1,7 +1,7 @@
 {
   "name": "thinking-os",
   "displayName": "Thinking OS",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Portable cognitive skills for capable AI agents: Understand produces an audited stakeholder brief with a scoped stance, three answered questions, and three source-specific follow-ups; ELI5 explains a file from first principles for a reader with no background.",
   "author": {
     "name": "vdmcb",
