@@ -44,7 +44,7 @@ for script in core/scripts/*.sh skills/*/scripts/*.sh tests/*.sh scripts/*.sh; d
   bash -n "$script"
   printf 'OK: %s\n' "$script"
 done
-python3 -m py_compile scripts/check-evals.py scripts/check-eli5-evals.py scripts/check-activation.py scripts/check-plugin.py scripts/audit-run.py tests/generate-document-fixtures.py tests/test-check-plugin.py
+python3 -m py_compile scripts/check-evals.py scripts/check-eli5-evals.py scripts/check-activation.py scripts/check-plugin.py scripts/audit-run.py tests/generate-document-fixtures.py tests/test-audit-run.py tests/test-check-plugin.py
 printf 'OK: Python syntax\n'
 
 if command -v shellcheck >/dev/null 2>&1; then
@@ -58,6 +58,7 @@ printf '\n%s\n' '== Deterministic eval checks =='
 python3 scripts/check-evals.py
 python3 scripts/check-eli5-evals.py
 python3 scripts/check-activation.py
+python3 tests/test-audit-run.py
 
 printf '\n%s\n' '== Extraction tests =='
 tests/test-extract-document.sh
