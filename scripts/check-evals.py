@@ -111,6 +111,31 @@ def main() -> int:
         require(literal in audit_text, f"Audit verdict vocabulary is undocumented: {literal}")
     for literal in ("audit-prompt.md", "evaluative", "in production"):
         require(literal in skill, f"Audit stage is undocumented in SKILL.md: {literal}")
+    audit = invariants.get("audit", {})
+    require(audit.get("independent_agent_required") is True, "Invariants must require an independent audit agent")
+    require(audit.get("source_read_passes") == 1, "Invariants must limit source reading to one pass")
+    require(audit.get("auditor_source_access") is False, "The auditor must not receive the original source")
+    require(
+        audit.get("audit_basis") == "evidence packet captured during the single source-read pass",
+        "The audit basis must be the evidence packet from the single source-read pass",
+    )
+    require(audit.get("missing_packet_evidence_verdict") == "UNVERIFIABLE", "Packet gaps need an explicit verdict")
+    require(audit.get("max_rounds") == 3, "Audit rounds must be capped at three")
+    ordinal = {1: "first", 2: "second", 3: "third"}[audit["max_rounds"]]
+    for literal in (f"after the {ordinal} round", "deletion"):
+        require(literal in skill, f"Audit round cap is undocumented in SKILL.md: {literal}")
+        require(literal in audit_text, f"Audit round cap is undocumented in audit-prompt.md: {literal}")
+    for literal in ("evidence packet", "Never give the auditor the original asset", "UNVERIFIABLE"):
+        require(literal in skill, f"Single-read audit contract is undocumented in SKILL.md: {literal}")
+    for literal in ("EVIDENCE_PACKET", "Do not open, extract, render", "UNVERIFIABLE", "Never reopen or re-extract"):
+        require(literal in audit_text, f"Single-read audit contract is undocumented in audit-prompt.md: {literal}")
+    visible_run = invariants.get("visible_run", {})
+    require(visible_run.get("initial_announcement") == 1, "Visible run must have one initial announcement")
+    require(visible_run.get("max_progress_updates") == 2, "Visible run must cap progress updates at two")
+    require(visible_run.get("progress_threshold_seconds") == 60, "Visible run progress threshold must be 60 seconds")
+    require(visible_run.get("command_narration_forbidden") is True, "Visible run must forbid command narration")
+    for literal in ("at most two outcome-level progress updates", "Never narrate commands", "one initial pass"):
+        require(literal in skill, f"Visible run contract is undocumented: {literal}")
 
     # Deterministic cognitive-load lint over every expected output exemplar.
     # Exemplars teach the format; an AI-patterned exemplar would teach the

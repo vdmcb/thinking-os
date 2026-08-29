@@ -1,5 +1,5 @@
 {
-  "schema_version": 8,
+  "schema_version": 10,
   "required_sections": [
     "Stance:",
     "Q1:",
@@ -16,6 +16,22 @@
     "Other important context",
     "Extraction limitations"
   ],
+  "audit": {
+    "reference": "skills/understand/references/audit-prompt.md",
+    "independent_agent_required": true,
+    "source_read_passes": 1,
+    "auditor_source_access": false,
+    "audit_basis": "evidence packet captured during the single source-read pass",
+    "missing_packet_evidence_verdict": "UNVERIFIABLE",
+    "max_rounds": 3,
+    "notes": "Self-audit is the fallback only. Neither auditor may reopen, re-extract, or render the original asset. Rounds are capped because a strict auditor can always find one more qualifier; an uncapped loop ran nine rounds without converging in the 2026-08-28 trial."
+  },
+  "visible_run": {
+    "initial_announcement": 1,
+    "max_progress_updates": 2,
+    "progress_threshold_seconds": 60,
+    "command_narration_forbidden": true
+  },
   "release_blockers": [
     "invented material fact, definition, mechanism, owner, or confidence",
     "independent recommendation or option ranking",

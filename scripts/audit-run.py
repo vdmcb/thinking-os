@@ -23,6 +23,11 @@ VIOLATIONS = [
     ("lint run on output", re.compile(r"check-[\w-]*evals\.py|wc -w")),
     ("page audit", re.compile(r"split\(['\"]\\f['\"]\)|form feed|page count", re.IGNORECASE)),
 ]
+SKILL_VIOLATIONS = {
+    "understand": [
+        ("optional image composition", re.compile(r"\b(montage|magick|convert)\b", re.IGNORECASE)),
+    ],
+}
 ALLOWED_EXTRACTION = re.compile(r"\b(pdftotext|extract-document\.sh|check-prerequisites\.sh)\b")
 
 
@@ -74,7 +79,7 @@ def audit(path: Path, skill: str, include_all: bool) -> int:
             for name, inp in tool_uses(entry):
                 cmd = inp.get("command", "") if name == "Bash" else ""
                 current["calls"].append((name, cmd[:120].replace("\n", " ")))
-                for label, pattern in VIOLATIONS:
+                for label, pattern in VIOLATIONS + SKILL_VIOLATIONS.get(skill, []):
                     if name == "Bash" and pattern.search(cmd):
                         current["findings"].append((label, cmd[:100].replace("\n", " ")))
                 if name in ("Write", "Edit") and re.search(r"draft|scratch", str(inp.get("file_path", ""))):

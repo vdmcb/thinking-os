@@ -14,8 +14,8 @@ Changes in 2.1.0, each traced to a defect an independent auditor caught during t
 Evaluation alignment:
 
 - Exemplars 14 and 15 are the format references. Exemplars 01-13 remain contract-behavior references (labels, injection resistance, value-status conflicts).
-- Deterministic lints for exemplars 14 and up: 600-word ceiling; "Stance:", "Q1:", "Q2:", "Q3:", and "## Follow-up questions" with exactly three numbered items; a source-specific "Held:" line; no analyst jargon in questions; no dashes outside quotes; no emoji, banned vocabulary, or dramatic-reveal phrases. expected-invariants.json (schema 8) separates the five default sections from the seven reference-analysis headers.
-- Live trial of the 2.1.0 skill on the four documents above: completed; sources and outputs remain private and are not committed.
+- Deterministic lints for exemplars 14 and up: 600-word ceiling; "Stance:", "Q1:", "Q2:", "Q3:", and "## Follow-up questions" with exactly three numbered items; a source-specific "Held:" line; no analyst jargon in questions; no dashes outside quotes; no emoji, banned vocabulary, or dramatic-reveal phrases. expected-invariants.json (schema 9) separates the five default sections from the seven reference-analysis headers and declares the audit contract: independent agent required, at most three rounds.
+- Live trial of the 2.1.0 skill on the four documents above plus one further deck: run on 2026-08-28 with independent audits under the three-round cap; derived lints, audit counts, and rubric scores are in RESULTS-2026-08-28.md. Sources and outputs remain private and are not committed. The trial also produced the cap itself: the subagents' uncapped audit loops ran to nine rounds and 27 drafts without converging.
 - Still model-judged: materiality of omissions, question fairness, adjective discipline, personification.
 
 ## v1.1.0 internal preview: shared core and the follow-up (foundation inherited by v2.1.0)
