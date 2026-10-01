@@ -6,6 +6,8 @@ set -euo pipefail
 repo_root="$(cd "$(dirname "$0")/.." && pwd -P)"
 cd "$repo_root"
 
+skills_root="plugins/thinking-os/skills"
+
 mode="sync"
 if [[ "${1:-}" == "--check" ]]; then
   mode="check"
@@ -13,7 +15,7 @@ fi
 
 status=0
 synced=()
-for skill_dir in skills/*/; do
+for skill_dir in "$skills_root"/*/; do
   skill="${skill_dir%/}"
   synced+=("$skill")
   for src in core/references/*.md; do

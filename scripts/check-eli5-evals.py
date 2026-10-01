@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 EVAL = ROOT / "evals" / "eli5"
-SKILL_DIR = ROOT / "skills" / "eli5"
+SKILL_DIR = ROOT / "plugins" / "thinking-os" / "skills" / "eli5"
 
 EMOJI_RE = re.compile("[\U0001F000-\U0001FAFF\U00002700-\U000027BF\U0001F1E6-\U0001F1FF⬀-⯿☀-⛿]")
 

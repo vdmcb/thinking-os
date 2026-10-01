@@ -1,15 +1,24 @@
 # Changelog
 
 Plugin releases follow semantic versioning. The version lives in
-`.claude-plugin/plugin.json` and the matching marketplace entry in
-`.claude-plugin/marketplace.json`; the two must move together
-(`scripts/check-plugin.py` enforces this). Cowork organization
+`plugins/thinking-os/.claude-plugin/plugin.json` and the matching
+marketplace entry in `.claude-plugin/marketplace.json`; the two must move
+together (`scripts/check-plugin.py` enforces this). Cowork organization
 marketplaces with "Sync automatically" enabled re-sync when a pull
 request containing a version bump merges to `main`, so every release
 is a PR that bumps both files and adds an entry here.
 
 ## [Unreleased]
 
+- The plugin now ships from `plugins/thinking-os/` instead of the repository
+  root (plugin version unchanged). Installs carry only the manifest, the
+  listing icon, and the two skills; evals, fixtures, tests, CI, and
+  `CLAUDE.md` no longer ship or get scanned by the Claude plugin directory.
+  Skill packages moved to `plugins/thinking-os/skills/`; manual-copy paths in
+  the README changed accordingly. `npx skills add` still finds both skills
+  through the marketplace manifest. Adds the listing icon
+  (`.claude-plugin/icon.png` in the plugin folder) and a `check-plugin.py`
+  check for it.
 - `understand` skill 2.1.1 (plugin version unchanged): the independent audit
   is capped at three rounds, with round three limited to deleting or
   downgrading unsupported claims; page-less sources (HTML, Markdown, text)

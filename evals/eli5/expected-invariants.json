@@ -74,7 +74,7 @@
     "numbers_on_main_path_only": true
   },
   "first_principles": {
-    "reference": "skills/eli5/references/first-principles.md",
+    "reference": "plugins/thinking-os/skills/eli5/references/first-principles.md",
     "bedrock_kinds": [
       "fact about the world",
       "constraint",
@@ -88,7 +88,7 @@
     "claims_are_not_bedrock": true
   },
   "cognitive_load": {
-    "reference": "skills/eli5/references/core/writing.md",
+    "reference": "plugins/thinking-os/skills/eli5/references/core/writing.md",
     "shared_lint": "core/lint.json",
     "additional_forbidden_characters": [
       "!"
@@ -120,7 +120,7 @@
     "extraction_honesty": 4
   },
   "execution": {
-    "reference": "skills/eli5/references/core/execution.md",
+    "reference": "plugins/thinking-os/skills/eli5/references/core/execution.md",
     "visible_run": "one announce line, silent reading, then the explanation",
     "forbidden_in_run": [
       "printing the source to the terminal",
@@ -139,20 +139,20 @@
   },
   "instruction_load": {
     "always_loaded": [
-      "skills/eli5/SKILL.md",
-      "skills/eli5/references/eli5-contract.md",
-      "skills/eli5/references/output-format.md",
-      "skills/eli5/references/core/writing.md",
-      "skills/eli5/references/core/execution.md"
+      "plugins/thinking-os/skills/eli5/SKILL.md",
+      "plugins/thinking-os/skills/eli5/references/eli5-contract.md",
+      "plugins/thinking-os/skills/eli5/references/output-format.md",
+      "plugins/thinking-os/skills/eli5/references/core/writing.md",
+      "plugins/thinking-os/skills/eli5/references/core/execution.md"
     ],
     "max_always_loaded_words": 3500,
     "reported_only": [
-      "skills/understand/SKILL.md",
-      "skills/understand/references/understanding-contract.md",
-      "skills/understand/references/output-format.md",
-      "skills/understand/references/question-language.md",
-      "skills/understand/references/core/writing.md",
-      "skills/understand/references/core/execution.md"
+      "plugins/thinking-os/skills/understand/SKILL.md",
+      "plugins/thinking-os/skills/understand/references/understanding-contract.md",
+      "plugins/thinking-os/skills/understand/references/output-format.md",
+      "plugins/thinking-os/skills/understand/references/question-language.md",
+      "plugins/thinking-os/skills/understand/references/core/writing.md",
+      "plugins/thinking-os/skills/understand/references/core/execution.md"
     ]
   },
   "cross_skill_activation": "evals/activation-crosscheck.json",
