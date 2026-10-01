@@ -6,7 +6,7 @@ The default output is a scoped Positive, Negative, or Mixed stance on a named ob
 
 Changes in 2.1.0, each traced to a defect an independent auditor caught during the trial:
 
-- The audit in step 9 is mandatory and uses an independent agent when the host has one (skills/understand/references/audit-prompt.md). A self-audit passed a correct figure with a reversed causal verb three times; the independent agent caught it.
+- The audit in step 9 is mandatory and uses an independent agent when the host has one (plugins/thinking-os/skills/understand/references/audit-prompt.md). A self-audit passed a correct figure with a reversed causal verb three times; the independent agent caught it.
 - Three rules in step 7: no evaluative adjectives or adverbs (the stance carries the judgement); no "current", "deployed", or "in production" unless the source states it; "recommends" stays a recommendation, and every qualifier and scope word travels with its figure.
 - PDFs are read twice, layout for locators and tables and raw for reading order, after the layout read interleaved a two-column paper mid-sentence. A visibly clipped source is disclosed in the stance line.
 - Inside quotation marks the source's characters win; the dash lint in check-evals.py skips quoted spans.

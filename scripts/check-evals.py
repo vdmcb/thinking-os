@@ -9,6 +9,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 EVAL = ROOT / "evals" / "understand"
+SKILL_DIR = ROOT / "plugins" / "thinking-os" / "skills" / "understand"
 
 
 def load_json(path: Path) -> dict:
@@ -67,10 +68,10 @@ def main() -> int:
         "required_sections must define the five default-output sections",
     )
 
-    skill = (ROOT / "skills" / "understand" / "SKILL.md").read_text(encoding="utf-8")
-    output_format = (ROOT / "skills" / "understand" / "references" / "output-format.md").read_text(encoding="utf-8")
+    skill = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
+    output_format = (SKILL_DIR / "references" / "output-format.md").read_text(encoding="utf-8")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    examples = (ROOT / "skills" / "understand" / "references" / "examples.md").read_text(encoding="utf-8")
+    examples = (SKILL_DIR / "references" / "examples.md").read_text(encoding="utf-8")
     for section in required_sections:
         require(
             section in skill or section in output_format,
@@ -98,13 +99,13 @@ def main() -> int:
 
     voice = invariants.get("cognitive_load", {})
     require(bool(voice), "Invariants must define the cognitive_load contract")
-    voice_doc = ROOT / voice.get("reference", "skills/understand/references/core/writing.md")
+    voice_doc = ROOT / voice.get("reference", "plugins/thinking-os/skills/understand/references/core/writing.md")
     require(voice_doc.is_file(), f"Missing human-voice reference: {voice_doc}")
     voice_text = voice_doc.read_text(encoding="utf-8")
     for literal in ("read-aloud test", "One idea per sentence", "chatbot residue"):
         require(literal in voice_text, f"Human-voice rule is undocumented: {literal}")
 
-    audit_prompt = ROOT / "skills" / "understand" / "references" / "audit-prompt.md"
+    audit_prompt = SKILL_DIR / "references" / "audit-prompt.md"
     require(audit_prompt.is_file(), f"Missing audit-prompt reference: {audit_prompt}")
     audit_text = audit_prompt.read_text(encoding="utf-8")
     for literal in ("SUPPORTED", "UNSUPPORTED", "STRETCH", "MISQUOTE", "direction"):
@@ -245,7 +246,7 @@ def main() -> int:
         "Value-status conflicts must define detection, classification, and propagation requirements",
     )
     status_contract = (skill + "\n" + output_format + "\n" + (
-        ROOT / "skills" / "understand" / "references" / "understanding-contract.md"
+        SKILL_DIR / "references" / "understanding-contract.md"
     ).read_text(encoding="utf-8")).lower()
     for literal in ("contradictory status cues", "unknown status", "dependent calculations"):
         require(literal in status_contract, f"Value-status conflict behavior is undocumented: {literal}")
@@ -306,7 +307,7 @@ def main() -> int:
     )
 
     logo = ROOT / "assets" / "rebeldot-logo.svg"
-    packaged_license = ROOT / "skills" / "understand" / "LICENSE"
+    packaged_license = SKILL_DIR / "LICENSE"
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     require(logo.is_file() and logo.stat().st_size > 0, "RebelDot logo asset is missing")
     require(packaged_license.is_file() and packaged_license.stat().st_size > 0, "Packaged skill license is missing")

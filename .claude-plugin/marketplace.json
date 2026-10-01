@@ -8,7 +8,7 @@
   "plugins": [
     {
       "name": "thinking-os",
-      "source": "./",
+      "source": "./plugins/thinking-os",
       "description": "Portable cognitive skills for capable AI agents: Understand 2.1 (audited stakeholder brief) and ELI5 0.3 (first-principles explanation).",
       "version": "0.1.0"
     }

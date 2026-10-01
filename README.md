@@ -65,7 +65,7 @@ This repository is private. Installation currently requires GitHub access to `vd
 
 ### Claude Cowork and Claude Code (plugin marketplace)
 
-The repository is a plugin marketplace: `.claude-plugin/marketplace.json` serves a single `thinking-os` plugin that bundles both skills.
+The repository is a plugin marketplace: `.claude-plugin/marketplace.json` serves a single `thinking-os` plugin from `plugins/thinking-os/` that bundles both skills. Only that folder ships to installers; evals, tests, and contributor files stay in the repository.
 
 In Claude Cowork, open **Customize → Plugins → Add marketplace** and enter `vdmcb/thinking-os`, then install the **Thinking OS** plugin. Click **Update** on the marketplace to pull new releases.
 
@@ -92,10 +92,10 @@ Install for only one agent by removing the other `-a` value.
 ### Manual installation
 
 ```bash
-cp -R skills/understand ~/.claude/skills/understand
-cp -R skills/understand ~/.agents/skills/understand
-cp -R skills/eli5 ~/.claude/skills/eli5
-cp -R skills/eli5 ~/.agents/skills/eli5
+cp -R plugins/thinking-os/skills/understand ~/.claude/skills/understand
+cp -R plugins/thinking-os/skills/understand ~/.agents/skills/understand
+cp -R plugins/thinking-os/skills/eli5 ~/.claude/skills/eli5
+cp -R plugins/thinking-os/skills/eli5 ~/.agents/skills/eli5
 ```
 
 ## Use
@@ -181,10 +181,12 @@ AnyDoc does not OCR scanned or image-only PDFs. In those cases, the agent may us
 ## Repository structure
 
 ```text
-.claude-plugin/          Plugin marketplace and plugin manifests (Claude Cowork and Claude Code)
+.claude-plugin/          Plugin marketplace manifest (Claude Cowork and Claude Code)
+plugins/thinking-os/     The shipped plugin: manifest, listing icon, and the skill packages
+  skills/understand/     Portable skill package: Understand (core copied in)
+  skills/eli5/           Portable skill package: ELI5 (core copied in)
+assets/                  Supporter logo and the plugin icon source (thinking-os-icon.svg)
 core/                    Shared reading, writing, and execution contracts, and the extraction helper
-skills/understand/       Portable skill package: Understand (core copied in)
-skills/eli5/             Portable skill package: ELI5 (core copied in)
 evals/usefulness-protocol.md   The human usefulness gate shared by every skill
 evals/understand/        Activation and quality evaluation definitions for Understand
 evals/eli5/              Activation and quality evaluation definitions for ELI5

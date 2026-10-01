@@ -8,8 +8,9 @@ Portable cognitive skills (`understand`, `eli5`) for multiple agent runtimes. Th
 
 ## Invariants
 
-- `core/` is the source of truth for shared reading/writing/execution contracts. It is copied into each skill by `./scripts/sync-core.sh`. Never edit `skills/<name>/references/core/` or `skills/<name>/scripts/` directly; edit `core/` and re-sync.
-- Skill packages must stay self-contained and runtime-portable: they are installed three ways — the Cowork/Claude Code plugin (`.claude-plugin/`), `npx skills add` (Claude Code and Codex, via `agents/openai.yaml`), and plain copy. Never add anything to `skills/` that works in only one runtime, and never break any of the three install paths.
+- `core/` is the source of truth for shared reading/writing/execution contracts. It is copied into each skill by `./scripts/sync-core.sh`. Never edit `plugins/thinking-os/skills/<name>/references/core/` or `plugins/thinking-os/skills/<name>/scripts/` directly; edit `core/` and re-sync.
+- Skill packages must stay self-contained and runtime-portable: they are installed three ways — the Cowork/Claude Code plugin (`.claude-plugin/marketplace.json` serving `plugins/thinking-os/`), `npx skills add` (Claude Code and Codex, via `agents/openai.yaml`; it finds the skills through the marketplace manifest), and plain copy. Never add anything to `plugins/thinking-os/skills/` that works in only one runtime, and never break any of the three install paths.
+- The plugin root is `plugins/thinking-os/`, never the repository root. Everything inside it ships to installers and is scanned by the Claude plugin directory, so keep evals, fixtures (including the prompt-injection ones), tests, CI, and contributor docs such as this file outside it.
 - Skill boundaries are part of the product: `understand` never recommends or decides; `eli5` never reviews or judges. Descriptions in `SKILL.md` frontmatter drive activation — when you change one, update the skill's activation cases and `evals/activation-crosscheck.json` in the same change.
 - Every behavioral change updates evaluation cases. The `eli5` instruction load has a hard ceiling (enforced by `scripts/check-eli5-evals.py`); adding text means cutting text.
 - The usefulness protocol (`evals/usefulness-protocol.md`) is a human gate. Never fabricate, mark passed, or log a usefulness session yourself.
@@ -21,7 +22,7 @@ Run `./scripts/validate.sh` before every push; CI (`.github/workflows/validate.y
 
 ## Plugin releases
 
-The repo is a Claude plugin marketplace (`.claude-plugin/marketplace.json` serving the `thinking-os` plugin). Versions in `plugin.json` and the marketplace entry must move together — `check-plugin.py` fails on drift. A release is a PR to `main` that bumps both versions and adds a `CHANGELOG.md` entry; Cowork org marketplaces re-sync on that merge. Never bump versions as a side effect of unrelated work.
+The repo is a Claude plugin marketplace (`.claude-plugin/marketplace.json` serving the `thinking-os` plugin). Versions in `plugins/thinking-os/.claude-plugin/plugin.json` and the marketplace entry must move together — `check-plugin.py` fails on drift. A release is a PR to `main` that bumps both versions and adds a `CHANGELOG.md` entry; Cowork org marketplaces re-sync on that merge. Never bump versions as a side effect of unrelated work. The directory listing icon is `plugins/thinking-os/.claude-plugin/icon.png` (square PNG, 512 to 2048 px, under 2 MB, enforced by `check-plugin.py`), rendered from `assets/thinking-os-icon.svg`; the directory takes it only at first submission, so later changes do not update the listing.
 
 ## Git and GitHub conventions
 

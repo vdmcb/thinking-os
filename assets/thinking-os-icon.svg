@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <title>Thinking OS</title>
+  <rect width="1024" height="1024" fill="#151515"/>
+  <rect x="278" y="526" width="220" height="220" rx="36" fill="#F4F1EA"/>
+  <rect x="526" y="526" width="220" height="220" rx="36" fill="#F4F1EA"/>
+  <rect x="402" y="278" width="220" height="220" rx="36" fill="#F2B544"/>
+</svg>
